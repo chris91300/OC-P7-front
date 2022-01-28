@@ -12,7 +12,7 @@ const common = {
     },
     output : {
         path : dist_path,
-        publicPath : dist_path,
+        publicPath : '/',//dist_path,
         filename : 'js/[name]-[contenthash].js'
     },
     
@@ -35,9 +35,17 @@ const common = {
             {
                 test : /\.(png|svg|jpg|jpeg|gif|webp)$/,
                 use : [
-                    {loader : "file-loader",
-                    options : {
-                        name : '/img/[name].[ext]'
+                    {
+                        loader : "file-loader",
+                        options : {
+                            name : '[name].[ext]',
+                            outputPath: 'img/',
+                           /* postTransformPublicPath : ( p ) => { 
+                                let url = p.split('+')[1];                            
+                                url = url.replace(" ", "");
+                                
+                                return url;
+                            }*/
                         }
                     }
                 ],

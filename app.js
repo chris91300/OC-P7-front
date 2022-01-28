@@ -19,14 +19,14 @@ app.use((req, res, next) => {
 
   // Pour que l'on puisse autoriser à récupérer les images
 app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "same-site" }));
+app.use(helmet.crossOriginResourcePolicy({ policy: "same-origin" }));
 
 
 
 
 app.set('views', path.join(__dirname, 'views')); 
 app.set('view engine', 'ejs');
-app.use(express.static("dist"));
+app.use(express.static("dist"));// voir comment indiquer "/dist"
 app.use('/', appRoutes);
 
 
