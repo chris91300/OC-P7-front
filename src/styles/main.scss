@@ -1,5 +1,19 @@
 @import './Utils/variables';
+@import './Utils/animations';
 
-h1{
-    color : $primary_color;
-}
+@import './Vendors/normalize.css';
+
+@import './Base/base';
+
+@import './Components/header';
+@import './Components/nav';
+@import './Components/field';
+@import './Components/form';
+@import './Components/button';
+@import './Components/menus';
+@import './Components/profil';
+@import './Components/createMedia';
+
+
+@import './Layout/footer';
+

@@ -1,0 +1,27 @@
+
+// button without button appearance
+.btn__no-style{
+    border: none;
+    background-color: transparent;
+}
+
+
+
+//submit input
+
+input[type=submit]{
+    border-radius: 20px;
+    background-color: white;
+    border-color: $primary_color_darken;
+    padding: 5px 15px;
+    font-weight: bold;
+    color: $primary_color_darken;
+    border-style: solid;
+    transition: all 0.3s;
+    margin: 15px 0;
+
+    &:hover{
+        background-color: $primary_color_darken;
+        color: white;
+    }
+}

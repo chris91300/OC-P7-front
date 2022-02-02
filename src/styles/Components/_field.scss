@@ -1,0 +1,30 @@
+
+.field{
+    display: flex;
+    align-items: flex-start;
+    /*align-self: stretch;*/
+    /*padding: 0 20px;*/
+
+    &__input{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        width: 180px;
+
+        @media screen and (min-width: map-get($breakpoints, "tablette")){
+            width: 250px
+        }
+
+    }
+
+    &__error{
+        color: $error_color;
+        font-size: 0.8rem;
+    }
+
+    & label{
+        width: 100px;
+        padding: 3px 0;
+    }
+
+}

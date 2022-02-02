@@ -1,0 +1,76 @@
+// form for login and signup
+.forms{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+
+    & form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 450px;
+        min-width: 300px;
+        width: 300px;
+
+        @media screen and (min-width: map-get($breakpoints, "tablette")){
+            min-width: 500px;
+            width: 500px;
+        }
+        
+    
+        &[id=form_login]{            
+            
+            background-color: white;
+            overflow: hidden;
+            flex: 1;
+
+            & h2{
+                flex-shrink: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                min-width: 100%;
+            }
+
+        }
+
+
+        & h2{
+            text-align: center;
+        }
+
+        & .form__error{
+            color : $error_color;
+        }
+    }
+
+
+    & #animated_container{        
+        position: absolute;
+        top: 0;
+        display: flex;
+        z-index: 2;
+        overflow: hidden;
+        border-right: 2px solid black;
+
+        &.hide{
+            animation: hideForm 2s 0s forwards;
+        }
+
+        &.show{
+            animation: showForm 2s 0s forwards;
+        }
+    }
+}
+
+
+
+// other form
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}

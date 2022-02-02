@@ -1,16 +1,31 @@
 import React from 'react';
-import { HeaderAccueil } from "./HeaderAccueil.jsx";
-const Title = ()=>{
-    return <h1>bienvenue dans l'application Groupomania</h1>
-}
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from '../utils/store';
 
-console.log(HeaderAccueil)
+import Menu from './Menu.jsx';
+import Medias from './Medias.jsx';
+import Accueil from './Accueil.jsx';
+
+
 export function App(){
 
     return(
         <>
-        <HeaderAccueil/>
-        <Title/>
+        <Provider store={store}>
+            <BrowserRouter>
+
+                <Routes>
+
+                    <Route path="/menu" element={ <Menu /> } />
+                    <Route path="/medias" element={ <Medias /> } />
+                    <Route path="/" element={ <Accueil /> } />
+
+                </Routes>
+
+            </BrowserRouter>
+        </Provider>
+        
         </>
     )
 }

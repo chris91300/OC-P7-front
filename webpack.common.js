@@ -33,7 +33,7 @@ const common = {
                 
             },
             {
-                test : /\.(png|svg|jpg|jpeg|gif|webp)$/,
+                test : /\.(png|svg|jpg|jpeg|gif|webp.ico)$/,
                 use : [
                     {
                         loader : "file-loader",
@@ -75,6 +75,7 @@ const common = {
             filename: 'index.html',
             publicPath : '/',
             chunks : ["index"],
+            favicon : './src/img/icon.ico'
         })/*,
         new htmlWebpackPlugin({
             inject : true,

@@ -1,0 +1,16 @@
+
+//  to show the form connection
+@keyframes showForm {
+    from{width: 1px;}
+    to{ width: 100%;}
+    
+}
+
+
+//  to hide the form connection
+@keyframes hideForm {
+
+    from{ width: 100%;}
+    to{ width: 1px}
+    
+}
