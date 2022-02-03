@@ -63,14 +63,15 @@ const FormLogin = ( { name, className } ) => {
             fields.pseudo.isValid &
             fields.password.isValid
             ) {
-                console.log("login user ok AAA")
+
                 loginUser();
+
             } else {
                 let formIsValid = checkInput();
                 if (formIsValid){
-                    console.log("on verifie le fields")
-                    console.log(fields)
+                    
                     loginUser();
+
                 } else {
                     console.log("form non valide même après verif")
                 }
@@ -147,11 +148,11 @@ const FormLogin = ( { name, className } ) => {
     const form = ()=>{
 
         if ( redirect ) {
-            console.log("on fait une redirect")
+            
             return <Navigate to={urlMenu} />
             
         } else {
-            console.log("pas de redirection")
+            
             return (     
                 <div id="animated_container" className={ className }>
                     <form method="post" action="#" id="form_login">

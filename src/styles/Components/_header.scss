@@ -6,7 +6,7 @@ header{
     justify-content: space-between;
     padding: 20px 3%;
     width: 100%;
-    border-bottom: 2px solid $primary_color;
+    border-bottom: 2px solid $primary_color_darken;
 
     @media screen and (min-width: map-get($breakpoints, "mobile-landscape")){
         flex-direction: row;

@@ -17,7 +17,7 @@ const Menu = ()=>{
 
     return(
         <>
-        <HeaderApp admin={user.admin} />
+        <HeaderApp />
         <main>
             <h1>MENU</h1>
             <Menus admin={user.admin} />

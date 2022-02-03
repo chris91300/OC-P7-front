@@ -6,6 +6,7 @@
 $text_color : #333;
 $primary_color : #FFD7D7;
 $primary_color_darken : color.adjust($primary-color, $lightness: -55%, $saturation: -15%);
+$secondary_color : #FC2A0A;
 $error_color : rgb(241, 45, 45);
 
 

@@ -9,6 +9,7 @@ const initialState = {
         pseudo : "",
         createdAt : "",
         password : "",
+        urlProfil : "",
         token : "",
         admin : false,
     },

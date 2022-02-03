@@ -1,12 +1,15 @@
 
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from '../../img/logo.png';
 import ButtonSimple from './ButtonSimple.jsx';
 
 
 
-const HeaderApp = ( { admin } )=>{
+const HeaderApp = ()=>{
+
+    const admin = useSelector((state) => state.user.admin);
 
     const goToProfil = ()=>{
         console.log("go to profil")
