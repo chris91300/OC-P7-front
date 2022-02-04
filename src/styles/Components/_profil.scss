@@ -16,4 +16,28 @@
             object-fit: cover;
         }
     }
+
+    &__aside{
+        display: none;
+
+        @media screen and (min-width: map-get($breakpoints, "tablette")){
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: white;
+            margin: 0 10px;
+
+            & .profil__image{
+                align-self: center;
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+
+        
+    }
 }

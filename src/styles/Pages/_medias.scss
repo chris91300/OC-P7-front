@@ -1,10 +1,14 @@
 
 .main__container{
     display: flex;
+    width: 100%;
 
 
     &__section{
         display: flex;
         flex-direction: column;
+        flex: 1;
     }
+
+    
 }

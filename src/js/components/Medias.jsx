@@ -6,6 +6,7 @@ import Footer from "./Footer.jsx";
 import HeaderApp from "./HeaderApp.jsx";
 import Loading from "./Loading.jsx";
 import MediasList from "./MediasList.jsx";
+import ProfilAside from "./ProfilAside.jsx";
 
 
 const Medias = ()=>{
@@ -17,7 +18,8 @@ const Medias = ()=>{
         <main>
             <h1>FORUM MULTIMEDIAS</h1>
             <div className="main__container">
-                <div className="man__container__section">
+                <ProfilAside />
+                <div className="main__container__section">
                     <CreateMedia />
                     <MediasList />   
                 </div>
