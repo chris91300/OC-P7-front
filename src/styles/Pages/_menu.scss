@@ -1,0 +1,10 @@
+
+.main__container{
+    display: flex;
+
+
+    &__section{
+        display: flex;
+        flex-direction: column;
+    }
+}

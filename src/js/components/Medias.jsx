@@ -16,8 +16,12 @@ const Medias = ()=>{
         <HeaderApp />
         <main>
             <h1>FORUM MULTIMEDIAS</h1>
-            <CreateMedia />
-            <MediasList />             
+            <div className="main__container">
+                <div className="man__container__section">
+                    <CreateMedia />
+                    <MediasList />   
+                </div>
+            </div>          
         </main>
         <Footer />
         </>

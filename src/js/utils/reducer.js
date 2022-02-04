@@ -46,7 +46,7 @@ function Reducer(state = initialState, action){
             if( typeof action.value === "object")
             {
                 let nextMedias = [...state.medias];
-                nextMedias.push(action.value)
+                nextMedias.unshift(action.value)
                 
                 return {...state, medias : nextMedias}
             }

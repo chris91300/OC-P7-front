@@ -78,7 +78,8 @@ const FormCreateMedia = ( { name } ) => {
         let options = {
             method : 'POST',
             headers: {
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Authorization' : 'Bearer '+user.token
             },
             body : formData
         }
@@ -86,6 +87,8 @@ const FormCreateMedia = ( { name } ) => {
         try{
             
             let media = await useFetch(createMediaUrl, options)
+            console.log("media créé et vaut ")
+            console.log(media)
             dispatch({type : 'ADD_MEDIA', value : media })
             
         } catch (err){

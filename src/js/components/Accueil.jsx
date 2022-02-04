@@ -6,11 +6,20 @@ import FormSignup from "./FormSingup.jsx";
 import HeaderAccueil from "./HeaderAccueil.jsx";
 
 
-
+/**
+ * the home page
+ * with the two form for signup and login
+ */
 const Accueil = ()=>{
 
     const [ className, setClassName ] = useState("");
     
+    /**
+     * change the class name of the login form 
+     * in orde to show or hide the form
+     * on click on "s'inscrire" or "se connecter"
+     * @param {string} action 
+     */
     const changeClass = (action) => {
         if (/^show|hide$/.test(action))
         {

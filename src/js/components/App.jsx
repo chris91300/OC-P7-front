@@ -8,6 +8,9 @@ import Medias from './Medias.jsx';
 import Accueil from './Accueil.jsx';
 
 
+/**
+ * the application and the routes
+ */
 export function App(){
 
     return(
