@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import FormCreateMedia from "./FormCreateMedia.jsx";
+import FormCreateMedia from "./form/FormCreateMedia.jsx";
 import ProfilImage from "./ProfilImage.jsx";
 
 

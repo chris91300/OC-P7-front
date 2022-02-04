@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import formFields from "../utils/formFields";
+import formFields from "../../utils/formFields";
 
 
 

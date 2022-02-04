@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { Navigate } from "react-router-dom";
 import Field from "./Field.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
-import formFields from "../utils/formFields";
-import useFetch from "../utils/fetch.js";
+import formFields from "../../utils/formFields";
+import useFetch from "../../utils/fetch.js";
 import { useDispatch } from "react-redux";
 
 

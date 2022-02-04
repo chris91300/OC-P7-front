@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import Field from "./Field.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
-import formFields from "../utils/formFields";
+import formFields from "../../utils/formFields";
 import { useDispatch } from "react-redux";
-import useFetch from "../utils/fetch.js";
+import useFetch from "../../utils/fetch.js";
 
 
 const defautlFields = {
