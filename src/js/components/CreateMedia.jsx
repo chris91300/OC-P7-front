@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import FormCreateMedia from "./form/FormCreateMedia.jsx";
 import ProfilImage from "./ProfilImage.jsx";
+import { FaPlusCircle } from "react-icons/fa"
 
 
 
@@ -21,7 +22,7 @@ const CreateMedia = ()=>{
     return(
         <section id="section_create_media" className="create-media">
             <div className="create-media__title">
-                <ProfilImage />
+                <FaPlusCircle />
                 <h2 title="faire apparaître le formulaire pour ajouter un media" onClick={handleClick}>AJOUTER UN MEDIA</h2>
             </div>
             <div className="create-media__form">
