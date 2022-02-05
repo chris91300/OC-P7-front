@@ -67,18 +67,43 @@ const FormLogin = ( { name, className } ) => {
      * when user press 'Enter' key
      */
     useEffect(()=>{
-        let body = document.body;
-        console.log("on ajout le keypress event")
+
+        let body = document.body;        
         body.addEventListener("keyup", keyPressEvent);
 
         return ()=>{ body.removeEventListener("keyup", keyPressEvent);}
+
     }, [])
 
-   /* useEffect( async ()=>{
+
+    /**
+     * when the component did mount
+     * check if there is a session not expired
+     * if there is one, loginUser()
+     * else nothing
+     */
+    useEffect( async ()=>{
         
-        let response = await useFetch(sessionUrl);
-        console.log(response)
-    }, [])*/
+        try{
+
+            let response = await useFetch("/session");
+            
+            let user = response.user;
+            if ( user.pseudo != "" & user.password != "" ) {
+                let newFields = {...fields};
+                fields.pseudo.value = user.pseudo;
+                fields.pseudo.isValid = true;
+                fields.password.value = user.password;
+                fields.password.isValid = true;
+                setFields(newFields);
+                loginUser();
+            }
+
+        } catch(err){
+            
+        }
+        
+    }, [])
 
     /**
      * if user press Enter key,
@@ -209,6 +234,8 @@ const FormLogin = ( { name, className } ) => {
             //console.log(user);
 
             dispatch({type : "SET_USER", value : user})
+            let response = await useFetch("/session/set", options)
+            console.log(response)
             setRedirect(true)
             
 

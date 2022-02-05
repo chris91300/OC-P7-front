@@ -2,12 +2,23 @@ const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
 const app = express();
+const session = require('express-session');
 const appRoutes = require('./routes/appRoutes');
 
 
 
 app.use(express.json());
 
+// creating 24 hours from milliseconds
+const oneDay = 1000 * 60 * 60 * 24;
+
+//session middleware
+app.use(session({
+  secret: 'didjiI008HkhHUKYU',
+  saveUninitialized:false,
+  cookie: { maxAge: oneDay },
+  resave: false
+}));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
