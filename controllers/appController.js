@@ -24,13 +24,13 @@ exports.GET_SESSION = ( req, res ) => {
 
         }
         else {
-            req.session.userSession = {}
-            res.status(401).json( { sessionIsOk : false } )
+            //req.session.userSession = {}
+            res.status(200).json( { sessionIsOk : false } )
         }
         
     } else {
-        req.session.userSession = {}
-        res.status(401).json( { sessionIsOk : false } )
+        //req.session.userSession = {}
+        res.status(200).json( { sessionIsOk : false } )
     }
 }
 

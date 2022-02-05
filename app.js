@@ -14,8 +14,8 @@ const oneDay = 1000 * 60 * 60 * 24;
 
 //session middleware
 app.use(session({
-  secret: 'didjiI008HkhHUKYU',
-  saveUninitialized:false,
+  secret: process.env.COOKIESECRET,
+  saveUninitialized:true,
   cookie: { maxAge: oneDay },
   resave: false
 }));

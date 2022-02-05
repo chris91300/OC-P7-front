@@ -88,16 +88,20 @@ const FormLogin = ( { name, className } ) => {
 
             let response = await useFetch("/session");
             
-            let user = response.user;
-            if ( user.pseudo != "" & user.password != "" ) {
-                let newFields = {...fields};
-                fields.pseudo.value = user.pseudo;
-                fields.pseudo.isValid = true;
-                fields.password.value = user.password;
-                fields.password.isValid = true;
-                setFields(newFields);
-                loginUser();
+            if ( response.sessionIsOk) {
+
+                let user = response.user;
+                if ( user.pseudo != "" & user.password != "" ) {
+                    let newFields = {...fields};
+                    fields.pseudo.value = user.pseudo;
+                    fields.pseudo.isValid = true;
+                    fields.password.value = user.password;
+                    fields.password.isValid = true;
+                    setFields(newFields);
+                    loginUser();
+                }
             }
+            
 
         } catch(err){
             
