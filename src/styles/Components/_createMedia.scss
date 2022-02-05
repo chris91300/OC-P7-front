@@ -7,17 +7,17 @@
     align-items: center;
     border: 1px solid black;
     padding: 10px;
-    width: 90%;
+    width: 100%;
     max-width: 600px;
     background-color: white;
+    margin: auto;
     
     &__title{
         display: flex;
         align-items: center;
+        cursor: pointer;
 
-        & h2{
-            cursor: pointer;
-        }
+        
 
         & svg{
             color: $primary_color_darken;
@@ -31,8 +31,8 @@
         width: 100%;
 
         & form{
-            width: fit-content;
-            align-items: flex-start;
+            width: 100%;
+            align-items: stretch;
 
             & .field__input{
                 width: fit-content;
@@ -40,6 +40,10 @@
 
             & input[type=submit]{
                 align-self: center;
+            }
+
+            & textarea{
+                height: 100px;
             }
         }
     }

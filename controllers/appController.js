@@ -7,10 +7,6 @@ exports.APPLICATION = ( req, res ) => {
 
 
 exports.GET_SESSION = ( req, res ) => {
-
-    console.log("session req")
-    
-    console.log(req.session)
    
     let session = req.session;
     if ( session.userSession ) {
