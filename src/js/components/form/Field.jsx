@@ -45,6 +45,7 @@ const Field = ( { label, type, name, formName, returnValueToForm } ) => {
             case "textarea" :
                return <textarea
                             name={name}
+                            id={`${formName}_${name}`}
                             onChange={ (e) => handleChange(e.target.value) }
                         /> 
 
@@ -52,6 +53,7 @@ const Field = ( { label, type, name, formName, returnValueToForm } ) => {
                 return <input
                             type="file"
                             name={name}
+                            id={`${formName}_${name}`}
                             onChange={ (e) => handleChange(e.target.files[0]) }
                         />
 

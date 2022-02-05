@@ -26,7 +26,7 @@ const CreateMedia = ()=>{
                 <h2 title="faire apparaître le formulaire pour ajouter un media" >AJOUTER UN MEDIA</h2>
             </div>
             <div className="create-media__form">
-                {showForm? <FormCreateMedia name="create_media" /> : null}
+                {showForm? <FormCreateMedia name="create_media" handleClick={handleClick}/> : null}
             </div>
         </section>
     )

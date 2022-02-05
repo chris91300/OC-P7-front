@@ -22,7 +22,7 @@ const defautlFields = {
     }
 }
 
-const FormCreateMedia = ( { name } ) => {
+const FormCreateMedia = ( { name, handleClick } ) => {
 
     const createMediaUrl = "http://localhost:3000/api/medias/create";
 
@@ -89,12 +89,27 @@ const FormCreateMedia = ( { name } ) => {
             console.log("media créé et vaut ")
             console.log(media)
             dispatch({type : 'ADD_MEDIA', value : media })
+            reset();
             
         } catch (err){
             setErrorMessage(err.message)
             console.log(err.message)
         }
         
+    }
+
+
+    const reset = ()=>{
+
+        Object.entries(defautlFields).map(([key, data]) => {
+            console.log("on reset et key => "+key)
+            let element = document.getElementById(`${name}_${key}`);
+            console.log(element)
+            element.value = null;
+            console.log(document.getElementById(`${name}_${key}`).value)
+        })
+        setFields({...defautlFields});
+        handleClick();
     }
 
 
