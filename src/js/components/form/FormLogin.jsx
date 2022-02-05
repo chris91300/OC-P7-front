@@ -31,6 +31,7 @@ const defautlFields = {
 const FormLogin = ( { name, className } ) => {
 
     const loginUserUrl = "http://localhost:3000/api/users/login";
+    const sessionUrl = "http://localhost:3000/api/session";
     const urlMenu = "/menu";
 
     const [ redirect, setRedirect ] = useState(false);
@@ -60,6 +61,11 @@ const FormLogin = ( { name, className } ) => {
 
     }, [user])
 
+    /**
+     * when the component did mount
+     * add the event type keyup the the body in order to manage
+     * when user press 'Enter' key
+     */
     useEffect(()=>{
         let body = document.body;
         console.log("on ajout le keypress event")
@@ -67,6 +73,12 @@ const FormLogin = ( { name, className } ) => {
 
         return ()=>{ body.removeEventListener("keyup", keyPressEvent);}
     }, [])
+
+   /* useEffect( async ()=>{
+        
+        let response = await useFetch(sessionUrl);
+        console.log(response)
+    }, [])*/
 
     /**
      * if user press Enter key,
@@ -81,10 +93,9 @@ const FormLogin = ( { name, className } ) => {
         
         if ( e.key === 'Enter' & containerClass != 'hide')
         {
-            console.log("il faut vérifier les inputs")
+            
             submit(e);
-        } else {
-            console.log("on est sur s'inscrire")
+
         }
     }
     
@@ -115,18 +126,18 @@ const FormLogin = ( { name, className } ) => {
             fields.pseudo.isValid &
             fields.password.isValid
             ) {
-                console.log("AAA")
+                //console.log("AAA")
                 loginUser();
 
             } else {
 
                 let formIsValid = checkInput();
                 if (formIsValid){
-                    console.log("BBB")
+                   // console.log("BBB")
                     loginUser();
 
                 } else {
-                    console.log("CCC")
+                   // console.log("CCC")
                     setErrorMessage("formulaire non valide.");
                     
                 }
@@ -146,9 +157,11 @@ const FormLogin = ( { name, className } ) => {
         let newFields = {...fields};
         
         Object.entries(defautlFields).map(( [ key, data ]) => {
-            let element = document.getElementsByName(key)[0];
+            let element = document.getElementById(name+"_"+key);
+            //console.log(element)
             let value = element.value;
-            /*console.log("key => " + key)
+            /*console.log("on est dans LOGIN")
+            console.log("key => " + key)
             console.log("value => " + value)
             console.log("regex => "+formFields[key].regex)*/
             
@@ -165,7 +178,7 @@ const FormLogin = ( { name, className } ) => {
             }
 
         })
-       // console.log("le form est valid ? => "+formIsValid)
+        //console.log("le form est valid ? => "+formIsValid)
         setFields(newFields);
         return formIsValid;
     }

@@ -67,10 +67,10 @@ const FormSignup = ( { name } ) => {
         
         if ( e.key === 'Enter' & containerClass === 'hide')
         {
-            console.log("il faut vérifier les inputs")
+            console.log("il faut vérifier les inputs dans s'inscrire")
             submit(e);
         } else {
-            console.log("on est sur se connecter")
+            //console.log("on est sur se connecter")
         }
     }
 
@@ -114,7 +114,7 @@ const FormSignup = ( { name } ) => {
         let formIsValid = true;
         let newFields = {...fields};
         Object.entries(defautlFields).map(( [ key, data ]) => {
-            let element = document.getElementsByName(key)[0];
+            let element = document.getElementById(name+"_"+key);
             let value = element.value;
             
             if ( formFields[key].regex.test(value)){
