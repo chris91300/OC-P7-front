@@ -9,7 +9,7 @@ import useFetch from "../../utils/fetch.js";
 import { useDispatch } from "react-redux";
 
 
-
+// default user value
 const defautlFields = {
     pseudo : {
         value : "",
@@ -21,6 +21,13 @@ const defautlFields = {
     }
 }
 
+
+/**
+ * Form Login. 
+ * @param {string} name: the form name (here login)
+ * @param {string} className the className of the container of the form (animated_container)
+ * @returns 
+ */
 const FormLogin = ( { name, className } ) => {
 
     const loginUserUrl = "http://localhost:3000/api/users/login";
@@ -29,9 +36,14 @@ const FormLogin = ( { name, className } ) => {
     const [ redirect, setRedirect ] = useState(false);
     const [ fields, setFields] = useState({...defautlFields})
     const [ errorMessage, setErrorMessage ] = useState("");
-    const user = useSelector((state)=> state.user);
-    
+    const user = useSelector((state)=> state.user);    
     const dispatch = useDispatch();
+
+    /**
+     * check if user in the store (reducer) has changed
+     * user changed if is a new user. he signed up and if his sign up is ok
+     * ths login is automatic
+     */
     useEffect( () => {
         //console.log("user a changé")
         //console.log(user)
@@ -47,9 +59,42 @@ const FormLogin = ( { name, className } ) => {
         }
 
     }, [user])
+
+    useEffect(()=>{
+        let body = document.body;
+        console.log("on ajout le keypress event")
+        body.addEventListener("keyup", keyPressEvent);
+
+        return ()=>{ body.removeEventListener("keyup", keyPressEvent);}
+    }, [])
+
+    /**
+     * if user press Enter key,
+     * if the login form is showed, we check the inputs value
+     * else nothing
+     * @param {object} e the event object
+     */
+    const keyPressEvent = (e)=>{
+        
+        let container = document.getElementById("animated_container");
+        let containerClass = container.className;
+        
+        if ( e.key === 'Enter' & containerClass != 'hide')
+        {
+            console.log("il faut vérifier les inputs")
+            submit(e);
+        } else {
+            console.log("on est sur s'inscrire")
+        }
+    }
     
 
-
+    /**
+     * set the inputs value in the fields object
+     * @param {string} name the input name
+     * @param {string} value the input value
+     * @param {boolean} isValid if the value is valid
+     */
     const changeFields = (name, value, isValid) => {
         let newFields = {...fields};
         fields[name].value = value;
@@ -57,23 +102,33 @@ const FormLogin = ( { name, className } ) => {
         setFields(newFields);
     }
 
+    /**
+     * on click on th esubmit button 
+     * verifie if inputs value are valid
+     * if form is valid, userLogin()
+     * else show errorMessage
+     * @param {object} e the event manager
+     */
     const submit = (e) => {
         e.preventDefault();
         if (
             fields.pseudo.isValid &
             fields.password.isValid
             ) {
-
+                console.log("AAA")
                 loginUser();
 
             } else {
+
                 let formIsValid = checkInput();
                 if (formIsValid){
-                    
+                    console.log("BBB")
                     loginUser();
 
                 } else {
-                    console.log("form non valide même après verif")
+                    console.log("CCC")
+                    setErrorMessage("formulaire non valide.");
+                    
                 }
                 
             }
@@ -93,25 +148,32 @@ const FormLogin = ( { name, className } ) => {
         Object.entries(defautlFields).map(( [ key, data ]) => {
             let element = document.getElementsByName(key)[0];
             let value = element.value;
-
+            /*console.log("key => " + key)
+            console.log("value => " + value)
+            console.log("regex => "+formFields[key].regex)*/
             
-            if ( !formFields[key].regex.test(value)){
+            if ( formFields[key].regex.test(value)){
+               // console.log("valide")
                 fields[key].value = value;
                 fields[key].isValid = true;
                 
             } else {
+               // console.log("non valid")
                 fields[key].value = value;
                 fields[key].isValid = false;
                 formIsValid = false;
             }
 
         })
-
+       // console.log("le form est valid ? => "+formIsValid)
         setFields(newFields);
         return formIsValid;
     }
 
 
+    /**
+     * get inputs value and log in user
+     */
     const loginUser = async ()=>{
         //console.log("login user")
         let body = {
@@ -145,6 +207,9 @@ const FormLogin = ( { name, className } ) => {
     }
 
 
+    /**
+     * the form to put in reactDom
+     */
     const form = ()=>{
 
         if ( redirect ) {
@@ -174,6 +239,6 @@ const FormLogin = ( { name, className } ) => {
 
     return form();
 }
-//<div id="form__slide__container" className=""></div>
+
 
 export default FormLogin;

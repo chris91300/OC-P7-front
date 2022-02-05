@@ -1,13 +1,13 @@
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Field from "./Field.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
 import formFields from "../../utils/formFields";
 import { useDispatch } from "react-redux";
 import useFetch from "../../utils/fetch.js";
 
-
+// default user value
 const defautlFields = {
     lastName : {
         value : "",
@@ -31,6 +31,12 @@ const defautlFields = {
     }
 }
 
+
+/**
+ * Form Sign up. 
+ * @param {string} name: the form name (here signup)
+ * @returns 
+ */
 const FormSignup = ( { name } ) => {
 
     const signupUserUrl = "http://localhost:3000/api/users/signup";
@@ -38,6 +44,35 @@ const FormSignup = ( { name } ) => {
     const [ fields, setFields] = useState({...defautlFields})
     const [ errorMessage, setErrorMessage ] = useState("");
     const dispatch = useDispatch();
+
+
+    useEffect(()=>{
+        let body = document.body;
+        console.log("on ajout le keypress event dans sign up")
+        body.addEventListener("keyup", keyPressEvent);
+
+        return ()=>{ body.removeEventListener("keyup", keyPressEvent);}
+    }, [])
+
+    /**
+     * if user press Enter key,
+     * if the login form is showed, we check the inputs value
+     * else nothing
+     * @param {object} e the event object
+     */
+    const keyPressEvent = (e)=>{
+        
+        let container = document.getElementById("animated_container");
+        let containerClass = container.className;
+        
+        if ( e.key === 'Enter' & containerClass === 'hide')
+        {
+            console.log("il faut vérifier les inputs")
+            submit(e);
+        } else {
+            console.log("on est sur se connecter")
+        }
+    }
 
     const changeFields = (name, value, isValid) => {
         let newFields = {...fields};
@@ -62,6 +97,7 @@ const FormSignup = ( { name } ) => {
                     signupUser();
                 } else {
                     console.log("form non valide même après verif")
+                    setErrorMessage("formulaire non valide.");
                 }
                 
             }
