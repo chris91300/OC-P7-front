@@ -8,6 +8,11 @@
     padding: 10px;
     width: 100%;
     max-width: 520px;
+    border: 2px solid transparent;
+
+    &.reported{
+        border-color: red;
+    }
 
 
     &__author{
@@ -16,6 +21,11 @@
 
         & p{
             margin: 0 0 0 20px;
+            flex: 1;
+        }
+
+        & svg{
+            color: red;
         }
 
     }

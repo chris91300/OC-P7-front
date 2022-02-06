@@ -31,18 +31,26 @@ const Media = ( { data } )=>{
     const { pseudo, urlProfil } = user;
     const createdDate = getDate(createdAt);
     const [ totalUserLiked, setTotalUserLiked ] = useState( userLiked.length );
-    const [ userLikedCopy, setUserLikedCopy ] = useState( [...userLiked]);
+    const [ userLikedCopy, setUserLikedCopy ] = useState( [...userLiked ] );
+    const [ mediaReported, setMediaReported ] = useState( reported );
     const urlApiLikeMedia = `http://localhost:3000/api/medias/${id}/like`;
+    const urlApiReportedMedia = `http://localhost:3000/api/medias/${id}/reported`;
     console.log("on est dans Media.jsx")
     console.log(data)
 
 
+    /**
+     * user can like or dislike the media
+     * on click on button like :
+     * check if user already liked 
+     * if yes => remove user id on userLiked array and on database
+     * if non => add user id on userLiked array and on database
+     */
     const like = async ()=>{
-        console.log("user like this media id => "+currentUserId)
+        
         let listUserLiked = [...userLikedCopy]
         let index = listUserLiked.indexOf(currentUserId)
-        let like = index === -1 ? 1 : 0;
-        console.log("like => "+like) 
+        let like = index === -1 ? 1 : 0;        
         let add = like === 1 ? 1 : -1;
         let newTotal = parseInt(totalUserLiked) + add;
         let body = {
@@ -62,7 +70,7 @@ const Media = ( { data } )=>{
         try{
 
             let response = await useFetch(urlApiLikeMedia, options);
-            console.log(response)
+            
             if( like === 1 ){
 
                 listUserLiked.push(currentUserId)
@@ -76,7 +84,37 @@ const Media = ( { data } )=>{
 
         } catch(err){
             console.log(err)
+            //  gerer les erreur avec une modal
         }        
+    }
+
+
+    const reportedMedia = async ()=>{
+        let body = {
+            userId : currentUserId,
+        }
+
+        let options = {
+            method : 'POST',
+            headers: {
+                'Accept': 'application/json', 
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(body)
+        }
+
+        try{
+
+            let response = await useFetch(urlApiReportedMedia, options);
+            
+            setMediaReported(true);
+
+        } catch(err){
+            console.log(err)
+            //  gerer les erreur avec une modal
+        }  
+
+        
     }
     
 
@@ -97,10 +135,11 @@ const Media = ( { data } )=>{
 
 
     return (
-        <div className="media">
+        <div className={mediaReported ? "media reported" : "media"}>
             <div className="media__author">
                 <ProfilImage url={urlProfil}/>
-                <p>{pseudo}</p>                
+                <p>{pseudo}</p>   
+                {mediaReported? <FaFlag /> : null}             
             </div>
             <div className="media__title">
                 <p className="media__title__title">{title}</p>
@@ -114,7 +153,7 @@ const Media = ( { data } )=>{
             <div className="media__action">
                 <ButtonSimple onClick={like}><AiOutlineHeart />j'aime</ButtonSimple>
                 <ButtonSimple><AiOutlineComment />commenter</ButtonSimple>
-                <ButtonSimple><FaRegFlag />signaler</ButtonSimple>
+                <ButtonSimple onClick={reportedMedia}><FaRegFlag />signaler</ButtonSimple>
                 {admin ? 
                 <ButtonSimple><FaRegTrashAlt />supprimer</ButtonSimple> : null}
             </div>
