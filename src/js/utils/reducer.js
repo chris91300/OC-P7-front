@@ -13,7 +13,8 @@ const initialState = {
         token : "",
         admin : false,
     },
-    medias : []
+    medias : [],
+    comments : {}
 }
 
 
@@ -52,6 +53,31 @@ function Reducer(state = initialState, action){
             }
             else {return state}
             
+
+        case "SET_COMMENTS":
+            if( typeof action.value === "object")
+            {
+                let mediaId = action.value.mediaId;
+                let comments = action.value.comments
+                let nextComments = {...state.comments};
+                nextComments[mediaId] = comments;
+                
+                return {...state, comments : nextComments}
+            }
+            else {return state}
+
+        case "ADD_COMMENT":
+            
+            if( typeof action.value === "object")
+            {
+                let mediaId = action.value.mediaId;
+                let comment = action.value.comment
+                let nextComments = {...state.comments};
+                nextComments[mediaId].push(comment);
+                
+                return {...state, comments : nextComments}
+            }
+            else {return state}
 
 
         default:

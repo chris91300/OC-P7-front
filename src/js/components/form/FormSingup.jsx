@@ -67,10 +67,9 @@ const FormSignup = ( { name } ) => {
         
         if ( e.key === 'Enter' & containerClass === 'hide')
         {
-            console.log("il faut vérifier les inputs dans s'inscrire")
+            
             submit(e);
-        } else {
-            //console.log("on est sur se connecter")
+
         }
     }
 
@@ -96,7 +95,7 @@ const FormSignup = ( { name } ) => {
                 if (formIsValid){
                     signupUser();
                 } else {
-                    console.log("form non valide même après verif")
+                    
                     setErrorMessage("formulaire non valide.");
                 }
                 
@@ -154,7 +153,7 @@ const FormSignup = ( { name } ) => {
 
         try{
             let response = await useFetch(signupUserUrl, options)
-            console.log(response)
+            
             let user = {
                 lastName : response.lastName,
                 firstName : response.firstName,

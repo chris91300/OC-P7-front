@@ -2,10 +2,12 @@
 import React from "react";
 
 
+/**
+ * component for animation loading
+ */
+const Loading = ( { size="" }) => {
 
-const Loading = () => {
-
-    return <div className="loading"></div>
+    return <div className={"loading "+size}></div>
 }
 
 

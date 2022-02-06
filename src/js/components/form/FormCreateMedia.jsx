@@ -33,11 +33,6 @@ const FormCreateMedia = ( { name, handleClick } ) => {
     const dispatch = useDispatch();
 
 
-    useEffect(()=>{
-        console.log("medias dans reducer a cangé")
-        console.log(medias)
-    }, [medias])
-
     const changeFields = (name, value, isValid) => {
         
         let newFields = {...fields};
@@ -86,8 +81,7 @@ const FormCreateMedia = ( { name, handleClick } ) => {
         try{
             
             let media = await useFetch(createMediaUrl, options)
-            console.log("media créé et vaut ")
-            console.log(media)
+            
             dispatch({type : 'ADD_MEDIA', value : media })
             reset();
             
@@ -102,11 +96,9 @@ const FormCreateMedia = ( { name, handleClick } ) => {
     const reset = ()=>{
 
         Object.entries(defautlFields).map(([key, data]) => {
-            console.log("on reset et key => "+key)
+            
             let element = document.getElementById(`${name}_${key}`);
-            console.log(element)
             element.value = null;
-            console.log(document.getElementById(`${name}_${key}`).value)
         })
         setFields({...defautlFields});
         handleClick();

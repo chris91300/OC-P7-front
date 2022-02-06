@@ -10,6 +10,7 @@ import { AiFillHeart, AiOutlineHeart, AiOutlineComment } from "react-icons/ai";
 import FormComment from "./form/FormComment.jsx";
 import { useState } from "react";
 import useFetch from "../utils/fetch";
+import Comments from "./Comments.jsx";
 
 /**
  * coeur vide => far fa-heart
@@ -29,14 +30,17 @@ const Media = ( { data } )=>{
     const currentUserId = currentUser.id;
     const { id, userId, title, text, urlImage, reported, userLiked, user, createdAt } = data;
     const { pseudo, urlProfil } = user;
+    const [ comments, setComments ] = useState(data.comment);
+   // console.log("les commentaire pour le media "+id)
+    //console.log(comments)
     const createdDate = getDate(createdAt);
     const [ totalUserLiked, setTotalUserLiked ] = useState( userLiked.length );
     const [ userLikedCopy, setUserLikedCopy ] = useState( [...userLiked ] );
     const [ mediaReported, setMediaReported ] = useState( reported );
     const urlApiLikeMedia = `http://localhost:3000/api/medias/${id}/like`;
     const urlApiReportedMedia = `http://localhost:3000/api/medias/${id}/reported`;
-    console.log("on est dans Media.jsx")
-    console.log(data)
+  //  console.log("on est dans Media.jsx")
+  //  console.log(data)
 
 
     /**
@@ -88,7 +92,24 @@ const Media = ( { data } )=>{
         }        
     }
 
+    /**
+     * on click on button comment, scroll to the textare and focus on it for write comment
+     */
+    const scrollToComment = ()=>{
+        let elementId = `comment_media_${id}_comment`;
+        let element = document.getElementById(elementId);
+        let position = element.getBoundingClientRect();
+        let positionY = position.y;
+        
+        scroll(0, positionY);
+        element.focus();
 
+    }
+
+    /**
+     * user can reported the media
+     * admin will can see the reported media and delete it 
+     */
     const reportedMedia = async ()=>{
         let body = {
             userId : currentUserId,
@@ -117,6 +138,15 @@ const Media = ( { data } )=>{
         
     }
     
+
+
+    const addNewComment = (comment)=>{
+        console.log("on est dans addNexComment")
+
+        let listOfComments = comments ? [...comments] : [];
+        listOfComments.push(comments)
+        setComments(listOfComments);
+    }
 
 
     /**
@@ -152,12 +182,18 @@ const Media = ( { data } )=>{
             <p>{text}</p>
             <div className="media__action">
                 <ButtonSimple onClick={like}><AiOutlineHeart />j'aime</ButtonSimple>
-                <ButtonSimple><AiOutlineComment />commenter</ButtonSimple>
+                <ButtonSimple onClick={scrollToComment}><AiOutlineComment />commenter</ButtonSimple>
                 <ButtonSimple onClick={reportedMedia}><FaRegFlag />signaler</ButtonSimple>
                 {admin ? 
                 <ButtonSimple><FaRegTrashAlt />supprimer</ButtonSimple> : null}
             </div>
-            <FormComment name="comment" />
+            <Comments mediaId={id} />
+            <FormComment
+                name={`comment_media_${id}`}
+                mediaId={id}
+                userId={currentUserId}
+                returnNewComment={addNewComment}
+                />
         </div>
     )
 }

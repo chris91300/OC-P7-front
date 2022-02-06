@@ -10,4 +10,9 @@
     border-left-color: $primary-color_darken;
     animation: turn 1s 0s linear infinite;
 
+    &.small{
+        width: 20px;
+        height: 20px;
+    }
+
 }

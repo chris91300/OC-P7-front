@@ -46,10 +46,10 @@ const FormLogin = ( { name, className } ) => {
      * ths login is automatic
      */
     useEffect( () => {
-        //console.log("user a changé")
-        //console.log(user)
+
         if ( user.pseudo != "" & user.password != "" ) {
-            //console.log("on est dans le use effect")
+
+            
             let newFields = {...fields};
             fields.pseudo.value = user.pseudo;
             fields.pseudo.isValid = true;
@@ -57,6 +57,7 @@ const FormLogin = ( { name, className } ) => {
             fields.password.isValid = true;
             setFields(newFields);
             loginUser();
+            
         }
 
     }, [user])
@@ -235,11 +236,8 @@ const FormLogin = ( { name, className } ) => {
         try{
 
             let user = await useFetch(loginUserUrl, options)
-            //console.log(user);
-
             dispatch({type : "SET_USER", value : user})
-            let response = await useFetch("/session/set", options)
-            console.log(response)
+            let response = await useFetch("/session/set", options)            
             setRedirect(true)
             
 
