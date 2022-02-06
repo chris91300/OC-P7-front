@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 
 
 
-const ProfilImage = ()=>{
+const ProfilImage = ( { url=undefined } )=>{
 
-    const url = useSelector( ( state ) => state.user.urlProfil );
+    url =  url == undefined ? useSelector( ( state ) => state.user.urlProfil ) : url;
 
     return(
         <div className="profil__image">

@@ -1,0 +1,19 @@
+#form_comment{
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 20px;
+
+    & .field{
+        flex: 1;
+
+        & label{
+            width: fit-content;
+        }
+
+        & textarea{
+           /* border-radius: 20px;*/
+            width: 100%;
+        }
+    }
+
+}

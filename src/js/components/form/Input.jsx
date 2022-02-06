@@ -10,7 +10,7 @@ import formFields from "../../utils/formFields";
  * @param {string} name input name
  * @returns 
  */
-const Input = ( { type, name, onBlur, onFocus, formName } ) => {
+const Input = ( { type, name, onBlur, onFocus, formName, placeholder } ) => {
     
     const [ value, setValue ] = useState("");
 
@@ -34,6 +34,7 @@ const Input = ( { type, name, onBlur, onFocus, formName } ) => {
                 type={type}
                 id={`${formName}_${name}`}
                 name = {name}
+                placeholder={placeholder}
                 value={value}
                 onChange={handleChange }
                 onBlur={checkValue}

@@ -5,7 +5,7 @@ import Label from "./Label.jsx";
 
 
 
-const Field = ( { label, type, name, formName, returnValueToForm } ) => {
+const Field = ( { label, type, name, formName, placeholder="", returnValueToForm } ) => {
 
     const [ errorMessage, setErrorMessage ] = useState("");
     const [ fieldIsValid, setFieldIsValid ] = useState(false);
@@ -46,6 +46,7 @@ const Field = ( { label, type, name, formName, returnValueToForm } ) => {
                return <textarea
                             name={name}
                             id={`${formName}_${name}`}
+                            placeholder={placeholder}
                             onChange={ (e) => handleChange(e.target.value) }
                         /> 
 
@@ -63,6 +64,7 @@ const Field = ( { label, type, name, formName, returnValueToForm } ) => {
                             type={type}
                             name={name}
                             formName={formName}
+                            placeholder={placeholder}
                             onFocus={onFocus}
                             onBlur={onBlur}
                         />
