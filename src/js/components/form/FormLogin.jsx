@@ -72,7 +72,7 @@ const FormLogin = ( { name, className } ) => {
         let body = document.body;        
         body.addEventListener("keyup", keyPressEvent);
 
-        return ()=>{ body.removeEventListener("keyup", keyPressEvent);}
+        return body.removeEventListener("keyup", keyPressEvent);
 
     }, [])
 

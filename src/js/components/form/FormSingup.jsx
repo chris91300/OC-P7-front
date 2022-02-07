@@ -51,7 +51,7 @@ const FormSignup = ( { name } ) => {
         console.log("on ajout le keypress event dans sign up")
         body.addEventListener("keyup", keyPressEvent);
 
-        return ()=>{ body.removeEventListener("keyup", keyPressEvent);}
+        return body.removeEventListener("keyup", keyPressEvent);
     }, [])
 
     /**
