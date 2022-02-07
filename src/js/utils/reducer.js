@@ -14,7 +14,11 @@ const initialState = {
         admin : false,
     },
     medias : [],
-    comments : {}
+    comments : {},
+    admin : {
+        medias : [],
+        comments : []
+    }
 }
 
 

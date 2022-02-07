@@ -6,6 +6,7 @@ import store from '../utils/store';
 import Menu from './Menu.jsx';
 import Medias from './Medias.jsx';
 import Accueil from './Accueil.jsx';
+import Dashboard from './Dashboard.jsx';
 
 
 /**
@@ -22,6 +23,7 @@ export function App(){
 
                     <Route path="/menu" element={ <Menu /> } />
                     <Route path="/medias" element={ <Medias /> } />
+                    <Route path="/admin/dashboard" element={ <Dashboard /> } />
                     <Route path="/" element={ <Accueil /> } />
 
                 </Routes>
