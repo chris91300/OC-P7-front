@@ -55,6 +55,9 @@
 
     &__action{
         display: flex;
+        border-top: 2px solid grey;
+        border-bottom: 2px solid gray;
+        padding: 5px 0;
 
         & button{
             flex: 1;
@@ -66,7 +69,7 @@
             transition: background-color 0.5s;
 
             &:hover{
-                background-color: lightgray;
+                background-color: lightcoral;
             }
 
             & svg{

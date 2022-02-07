@@ -26,8 +26,6 @@ const MediasList = ()=>{
         }
         try{
             let mediasList = await useFetch(urlGetMedias, options);
-            console.log("dans use effect")
-            console.log(mediasList)
 
             dispatch({
                 type : "SET_MEDIAS",
@@ -42,14 +40,10 @@ const MediasList = ()=>{
         }
         
     }, [])
-    console.log("medias vaut")
-    console.log(medias)
 
 
-    // ne marche pas les <Media /> ne sont pas renvoyés
+    
     const render = ()=>{
-        console.log("render le component")
-        console.log("error vaut => "+error)
         if ( error != ""){
             return <p className="error">{error}</p>
         } else {

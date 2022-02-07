@@ -1,0 +1,61 @@
+
+
+.comment{
+    display: flex;
+    align-items: flex-start;
+    border: 2px solid transparent;
+    font-size: 0.9rem;
+
+    &:nth-child(odd){
+        flex-direction: row-reverse;
+        & .profil__image{
+            margin-right: 0;
+            margin-left: 20px;
+        }
+    }    
+
+    &__informations{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        & p{
+            margin: 2px 0;
+        }
+
+        &__comment{
+            background-color: lightgray;
+            padding: 5px 10px;
+            border-radius: 10px;
+
+            &.reported{
+                background-color: rgb(245, 141, 141);
+        
+                
+            }
+        }
+
+
+        &__buttons{
+
+            & button{
+                padding: 5px 15px;
+                border-bottom: 1px solid transparent;
+                transition: border-bottom-color 0.5s;
+
+                &:hover{
+                    border-bottom-color: $primary_color_darken;
+                }
+
+                & svg{
+                    margin-right: 5px;
+
+                    &.reported{
+                        color: red;
+                    }
+                }
+            }
+        }
+    }
+    
+}

@@ -1,10 +1,8 @@
 
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import CreateMedia from "./CreateMedia.jsx";
 import Footer from "./Footer.jsx";
 import HeaderApp from "./HeaderApp.jsx";
-import Loading from "./Loading.jsx";
 import MediasList from "./MediasList.jsx";
 import ProfilAside from "./ProfilAside.jsx";
 

@@ -31,8 +31,8 @@ const Media = ( { data } )=>{
     const { id, userId, title, text, urlImage, reported, userLiked, user, createdAt } = data;
     const { pseudo, urlProfil } = user;
     const [ comments, setComments ] = useState(data.comment);
-   // console.log("les commentaire pour le media "+id)
-    //console.log(comments)
+    console.log("les commentaire pour le media "+id)
+    console.log(comments)
     const createdDate = getDate(createdAt);
     const [ totalUserLiked, setTotalUserLiked ] = useState( userLiked.length );
     const [ userLikedCopy, setUserLikedCopy ] = useState( [...userLiked ] );
@@ -141,7 +141,6 @@ const Media = ( { data } )=>{
 
 
     const addNewComment = (comment)=>{
-        console.log("on est dans addNexComment")
 
         let listOfComments = comments ? [...comments] : [];
         listOfComments.push(comments)

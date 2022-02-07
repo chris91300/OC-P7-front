@@ -20,6 +20,7 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
 
     const urlApiCreateComment = "http://localhost:3000/api/comments/"+mediaId;
     const urlProfil = useSelector( ( state ) => state.user.urlProfil);
+    const pseudo = useSelector( ( state ) => state.user.pseudo);
     const [ fields, setFields] = useState({...defautlFields})
     const [ errorMessage, setErrorMessage ] = useState("");
     const dispatch = useDispatch();
@@ -57,7 +58,20 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
             let newComment = await useFetch(urlApiCreateComment, options)
             console.log("voici le nouveau commentaire")
             console.log(newComment)
-            returnNewComment(newComment)
+            //returnNewComment(newComment)
+            newComment.user = {
+                urlProfil : urlProfil,
+                pseudo : pseudo
+            }
+            newComment.reported = false;
+            
+            dispatch({
+                type : "ADD_COMMENT",
+                value : {
+                    mediaId : mediaId,
+                    comment : newComment}
+
+                })
            
 
         } catch (err){

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import useFetch from "../utils/fetch";
+import ButtonSimple from "./ButtonSimple.jsx";
+import Comment from "./Comment.jsx";
 import Loading from "./Loading.jsx";
 
 
@@ -12,20 +14,19 @@ const Comments = ({ mediaId })=>{
 
     const urlApiGetComments = "http://localhost:3000/api/comments/"+mediaId;
     const [ loading, setLoading ] = useState(true)
-    const comments = useSelector( ( state ) => state.comments[mediaId])
+    const [ userWantToSeeComments, setUserWantToSeeComments ] = useState(false)
+    let comments = useSelector( ( state ) => state.comments)
+    comments = comments[mediaId];
     const dispatch = useDispatch();
 
     /**
      * get all comments for  media with the id mediaId
      */
     useEffect( async()=>{
-        console.log("dans useEffect on va récup les commentaires et comments vaut ")
-        console.log(comments)
+        
         try{
 
             let commentsList = await useFetch(urlApiGetComments)
-            console.log("list des commentaires dans le use Effect")
-            console.log(commentsList)
             
             dispatch({type : "SET_COMMENTS", value : { mediaId : mediaId, comments : commentsList}})
             setLoading(false);
@@ -39,20 +40,59 @@ const Comments = ({ mediaId })=>{
 
     }, [])
 
+    
 
-    useEffect(()=>{
-        console.log("les comments ont été modifiés")
-        console.log(comments)
-    }, [comments])
-
-
-    const showComments = ()=>{
-        return comments.length === 0 ? <p>il n'y a pas de commentaire</p> : <p>il y a des commentaires</p>
+    /**
+     * show comments if there are any
+     */
+     const areThereAnyComment = ()=>{
+        return comments.length === 0 ? <p className="no-comment">aucun commentaire</p> : showComments()
     }
+
+
+    /**
+     * map the array comments and create a Comment component for each comment
+     */
+    const showComments = ()=>{
+        return (
+            <div className="comments">
+                {userWantToSeeComments ?
+                    mapComments()
+                    :
+                    <ButtonSimple className="no-marge" onClick={handleClick}>{`voir les commentaires ( ${comments.length} )`}</ButtonSimple>
+                }
+                
+                
+            </div>
+        )
+    }
+
+
+    const handleClick = ()=>{
+        userWantToSeeComments? setUserWantToSeeComments(false) : setUserWantToSeeComments(true)
+        
+    }
+
+    /**
+     * map the array comments and create a Comment component for each comment
+     */
+     const mapComments = ()=>{
+
+        return (
+                <>
+                <ButtonSimple onClick={handleClick}>masquer les commentaires</ButtonSimple>
+                {comments.map( ( comment ) => <Comment data={comment} key={comment.id}/>)}
+                <ButtonSimple onClick={handleClick}>masquer les commentaires</ButtonSimple>
+                </>
+            )
+            
+    }
+
+
 
     return (
         <>
-        {loading ? <Loading size="small" /> : showComments()}
+        {loading ? <Loading size="small" /> : areThereAnyComment()}
         </>)
 }
 

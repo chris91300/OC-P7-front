@@ -1,11 +1,13 @@
 
 
 const getDate = (completedDate)=>{
-    let [ usDate, other ] =  completedDate.split("T");
+    let [ usDate, time ] =  completedDate.split("T");
     let [ year, month, day ] = usDate.split("-");
     let date = `${day}-${month}-${year}`;
+    let [hours, millisecond] = time.split(".");
 
-    return date;
+
+    return [ date, hours ];
 }
 
 
