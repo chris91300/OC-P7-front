@@ -6,4 +6,9 @@ footer{
     padding: 20px 0;
     border-top: 2px solid $primary-color_darken;
     width: 100%;
+
+    & img{
+        width: 90%;
+        max-width: 300px;
+    }
 }
