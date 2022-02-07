@@ -55,7 +55,7 @@ const Comments = ({ mediaId })=>{
      */
     const showComments = ()=>{
         return (
-            <div className="comments">
+            <div className="comments" id={`media_${mediaId}_comments`} >
                 {userWantToSeeComments ?
                     mapComments()
                     :
@@ -69,7 +69,20 @@ const Comments = ({ mediaId })=>{
 
 
     const handleClick = ()=>{
-        userWantToSeeComments? setUserWantToSeeComments(false) : setUserWantToSeeComments(true)
+        let userWantToSee = !userWantToSeeComments;
+        
+        setUserWantToSeeComments(userWantToSee);
+
+        if ( !userWantToSee) {
+            let elementId = `media_${mediaId}_comments`;
+            let element = document.getElementById(elementId);
+            let position = element.getBoundingClientRect();
+            let positionY = position.y;
+        
+            scroll(0, positionY);
+        }
+
+
         
     }
 
