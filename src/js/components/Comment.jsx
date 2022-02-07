@@ -20,7 +20,9 @@ const Comment = ( { data } )=>{
     const [ createAtDate, createAtHours ] = getDate(createdAt);
 
     const [ commentIsReported, setCommentIsReported ] = useState(reported);
-    const user = useSelector( (state) =>state.user )
+    const user = useSelector( (state) =>state.user );
+
+    const [ error, setError ] = useState("");
 
 
 
@@ -40,12 +42,14 @@ const Comment = ( { data } )=>{
                 },
                 body : JSON.stringify(body)
             }
-
+            
             let response = await useFetch(urlApiRportedComment, options)
             setCommentIsReported(true);
+            setError("");
+            
 
         } catch(err){
-            console.log(err)
+            setError(err.message)
         }
         
     }
@@ -68,6 +72,7 @@ const Comment = ( { data } )=>{
                         {reported ? <FaFlag className="reported" /> : <FaRegFlag />}                        
                         signaler
                     </ButtonSimple>
+                    <p className="error">{error}</p>
                 </div>
             </div>
         </div>
