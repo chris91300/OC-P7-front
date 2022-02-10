@@ -1,5 +1,6 @@
 
 import React from "react";
+import AppLayout from "./AppLayout.jsx";
 import CreateMedia from "./CreateMedia.jsx";
 import Footer from "./Footer.jsx";
 import HeaderApp from "./HeaderApp.jsx";
@@ -14,20 +15,15 @@ const Medias = ()=>{
     console.log("on est dans medais")
     
     return(
-        <>
-        <HeaderApp />
-        <main>
-            <h1>FORUM MULTIMEDIAS</h1>
+        <AppLayout title="FORUM MULTIMEDIAS">
             <div className="main__container">
                 <ProfilAside />
                 <div className="main__container__section">
                     <CreateMedia />
                     <MediasList />   
                 </div>
-            </div>          
-        </main>
-        <Footer />
-        </>
+            </div> 
+        </AppLayout>
     ) 
 }
 

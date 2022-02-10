@@ -27,6 +27,9 @@ nav{
     }
 
 
+    
+
+
     @media screen and (min-width: map-get($breakpoints, "tablette")){
 
         & .nav__mobile{
@@ -35,6 +38,11 @@ nav{
 
         & .nav__bigger-than-mobile{
             display: flex;
+
+            & a, button{
+                width: 150px;
+                text-align: center;
+            }
         }
     }
 }

@@ -1,20 +1,15 @@
 
 import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import logo from '../../img/logo.png';
-import ButtonSimple from './ButtonSimple.jsx';
+import NavMenu from "./NavMenu.jsx";
 import ProfilImage from "./ProfilImage.jsx";
 
 
 
-const HeaderApp = ( { onClick } )=>{
+const HeaderApp = ( { showMenuForMobile } )=>{
 
-    const admin = useSelector((state) => state.user.admin);
     
-    
-
-    const disconnect = ()=>{
+    const disconnect = (  )=>{
         console.log("on se déconnecte")
     }
 
@@ -23,15 +18,11 @@ const HeaderApp = ( { onClick } )=>{
         <header>
             <img src={logo}></img>
             <nav>
-                <div className="nav__mobile" onClick={onClick}>
+                <div className="nav__mobile" onClick={()=> showMenuForMobile()}>
                     <ProfilImage />
                 </div>
 
-                <div className="nav__bigger-than-mobile">
-                    {admin ? <Link to="/dashboard">dashboard</Link> : null}
-                    <Link to="/profil" title="voir mon profil" >profil</Link>
-                    <ButtonSimple title="se déconnecter" onClick={disconnect}>se déconnecter</ButtonSimple>
-                </div>                
+                <NavMenu />              
             </nav>
         </header>
 

@@ -20,6 +20,7 @@ h1, h2, h3, h4, p, a, a:visited{
 
 h1{
     text-align: center;
+    margin-top: 30px;
 }
 
 html, body, #app{
@@ -32,7 +33,7 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px 0;
+    /*padding: 30px 0;*/
     flex: 1;
     background-color: $primary_color;
 }

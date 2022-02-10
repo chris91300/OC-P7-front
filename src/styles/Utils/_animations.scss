@@ -10,14 +10,25 @@
 //  to hide the form connection
 @keyframes hideForm {
 
-    from{ width: 100%;}
-    to{ width: 1px}
+    from { width: 100%;}
+    to { width: 1px}
     
 }
 
 
 // loading
 @keyframes turn {
-    from{ transform: rotate(-1turn);}
+    from { transform: rotate(-1turn);}
     
+}
+
+
+@keyframes showMenuMobile {
+    from {left : 100%}
+    to {left: 0}
+}
+
+@keyframes hideMenuMobile {
+    from {left : 0}
+    to {left: 100%}
 }
