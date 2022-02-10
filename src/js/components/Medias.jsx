@@ -7,8 +7,11 @@ import MediasList from "./MediasList.jsx";
 import ProfilAside from "./ProfilAside.jsx";
 
 
+/**
+ * the medias page
+ */
 const Medias = ()=>{
-
+    console.log("on est dans medais")
     
     return(
         <>

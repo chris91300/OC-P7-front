@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -8,6 +7,11 @@ import Loading from "./Loading.jsx";
 import Media from "./Media.jsx";
 
 
+
+/**
+ * Component MediaList
+ * Represent all the medias
+ */
 const MediasList = ()=>{
 
     const urlGetMedias = "http://localhost:3000/api/medias/";
@@ -17,6 +21,11 @@ const MediasList = ()=>{
     const userToken = useSelector((state) => state.user.token)
     const dispatch = useDispatch();
 
+
+    /**
+     * when component did mount
+     * get all the medias
+     */
     useEffect( async ()=>{
         let options = {
             method : 'GET',
@@ -37,12 +46,20 @@ const MediasList = ()=>{
             
         } finally{
             setIsLoading(false)
+
+            return ()=>{}
         }
         
     }, [])
 
 
     
+    /**
+     * the the good component in terms of if there is
+     * an error
+     * or no media
+     * or medias
+     */
     const render = ()=>{
         if ( error != ""){
             return <p className="error">{error}</p>
@@ -57,9 +74,9 @@ const MediasList = ()=>{
                 
                 )
             } else {
-               // return <p>Il y a des medias</p>
                 
                return medias.map((media) => <Media key={media.id} data={media} />)
+
             }
 
         }
@@ -73,13 +90,6 @@ const MediasList = ()=>{
         {isLoading ?
             <Loading />
             : render()
-            /*medias.length == 0 ?
-                <>
-                <p>Aucun media n'a été posté pour le moment</p>
-                <p>Serez-vous le premier ou la première ?</p>
-                </>
-            :
-            medias.map((media) => {return <Media key={media.id} data={media} />})*/
         }
         
         </section>

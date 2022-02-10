@@ -8,6 +8,9 @@ import DashboardMedias from "./DashboardMedias.jsx";
 import DashboardComments from "./DashboardComments.jsx";
 
 
+/**
+ * the page of the administrator dashboard
+ */
 const Dashboard = ()=>{
 
 

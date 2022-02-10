@@ -4,7 +4,11 @@ import { useSelector } from "react-redux";
 import ProfilImage from "./ProfilImage.jsx";
 import getDate from "../utils/getDate.js";
 
-
+/**
+ * Component ProfilAside
+ * show information about the user
+ * when the windows size is over 768px
+ */
 const ProfilAside = ()=>{
 
     const user = useSelector( (state) => state.user )

@@ -6,6 +6,9 @@ import HeaderApp from "./HeaderApp.jsx";
 import Menus from "./Menus.jsx";
 
 
+/**
+ * the page menu
+ */
 const Menu = ()=>{
 
     const user = useSelector((state) => state.user);

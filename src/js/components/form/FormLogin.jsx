@@ -218,7 +218,7 @@ const FormLogin = ( { name, className } ) => {
      * get inputs value and log in user
      */
     const loginUser = async ()=>{
-        //console.log("login user")
+        
         let body = {
             pseudo : fields.pseudo.value,
             password : fields.password.value

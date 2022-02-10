@@ -7,7 +7,14 @@ import dashboard from '../../img/dashboard_big.jpg';
 import MenusItem from "./MenusItem.jsx";
 
 
-
+/**
+ * the list of the menu
+ * FORUM MULTIMEDIA
+ * FORUM TEXT ( coming soon )
+ * DASHBOARD if admin
+ * @param {*} admin if user is admin or not
+ * @returns 
+ */
 const Menus = ( { admin } )=>{
 
 
@@ -15,14 +22,14 @@ const Menus = ( { admin } )=>{
         <div className="menus">
             <MenusItem
                 img={forumMultimedia}
-                link="/medias"
+                linkUrl="/medias"
                 title="accéder au forum sur les multimedias"
                 altText="image représentant un logo de forum sur les multimedias"
                 text="forum multimedias"
             />
             <MenusItem
                 img={forumTexts}
-                link="/menu"
+                linkUrl="/menu"
                 title="accéder au forum pour communiquer entre employés"
                 altText="image représentant un logo de forum pour communiquer entre employés"
                 className="disabled"
@@ -32,7 +39,7 @@ const Menus = ( { admin } )=>{
             { admin ?
             <MenusItem
                 img={dashboard}
-                link="/admin/dashboard"
+                linkUrl="/admin/dashboard"
                 title="accéder au dashboard administrateur"
                 altText="image représentant un logo de dashboard administrateur"
                 text="dashboard admin"

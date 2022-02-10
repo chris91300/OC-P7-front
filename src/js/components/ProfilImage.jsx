@@ -3,7 +3,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 
-
+/**
+ * Image of one user
+ * @param {string} user image src 
+ * @returns 
+ */
 const ProfilImage = ( { url=undefined } )=>{
 
     url =  url == undefined ? useSelector( ( state ) => state.user.urlProfil ) : url;

@@ -46,6 +46,10 @@ const FormSignup = ( { name } ) => {
     const dispatch = useDispatch();
 
 
+    /**
+     * when component did mount
+     * add to the event listener the function keyPressEvent for keyup
+     */
     useEffect(()=>{
         let body = document.body;
         console.log("on ajout le keypress event dans sign up")
@@ -73,6 +77,14 @@ const FormSignup = ( { name } ) => {
         }
     }
 
+
+    /**
+     * set informations about the input value
+     * and change the state fields
+     * @param {string} name input name
+     * @param {*} value input value
+     * @param {boolean} isValid if value is valid
+     */
     const changeFields = (name, value, isValid) => {
         let newFields = {...fields};
         fields[name].value = value;
@@ -80,6 +92,11 @@ const FormSignup = ( { name } ) => {
         setFields(newFields);
     }
 
+
+    /**
+     * verify if the form is valid and can create a new user
+     * @param {object} e the event object
+     */
     const submit = (e) => {
         e.preventDefault();
         if (
@@ -133,6 +150,9 @@ const FormSignup = ( { name } ) => {
 
 
 
+    /**
+     * signup a new user
+     */
     const signupUser = async ()=>{
         let body = {
             lastName : fields.lastName.value,

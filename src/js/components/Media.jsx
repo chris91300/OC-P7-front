@@ -23,6 +23,11 @@ import Comments from "./Comments.jsx";
  * delete choix 3 => fas fa-trash
  */
 
+
+/**
+ * Represent one media
+ * @param {object} data the informations about the media
+ */
 const Media = ( { data } )=>{
     
     const currentUser = useSelector( ( state ) => state.user );
@@ -31,16 +36,13 @@ const Media = ( { data } )=>{
     const { id, userId, title, text, urlImage, reported, userLiked, user, createdAt } = data;
     const { pseudo, urlProfil } = user;
     const [ comments, setComments ] = useState(data.comment);
-    console.log("les commentaire pour le media "+id)
-    console.log(comments)
-    const createdDate = getDate(createdAt);
+    const [ createdAtDate, createdAtHour ] = getDate(createdAt);
     const [ totalUserLiked, setTotalUserLiked ] = useState( userLiked.length );
     const [ userLikedCopy, setUserLikedCopy ] = useState( [...userLiked ] );
     const [ mediaReported, setMediaReported ] = useState( reported );
     const urlApiLikeMedia = `http://localhost:3000/api/medias/${id}/like`;
     const urlApiReportedMedia = `http://localhost:3000/api/medias/${id}/reported`;
-  //  console.log("on est dans Media.jsx")
-  //  console.log(data)
+  
 
 
     /**
@@ -140,6 +142,9 @@ const Media = ( { data } )=>{
     
 
 
+    /**
+     * n'est plus utilisé. a supprimer après vérification
+     */
     const addNewComment = (comment)=>{
 
         let listOfComments = comments ? [...comments] : [];
@@ -167,7 +172,10 @@ const Media = ( { data } )=>{
         <div className={mediaReported ? "media reported" : "media"}>
             <div className="media__author">
                 <ProfilImage url={urlProfil}/>
-                <p>{pseudo}</p>   
+                <div className="media__author__informations">
+                    <p>{pseudo}</p>
+                    <p>{`ajouté le ${createdAtDate} à ${createdAtHour}`}</p>
+                </div>  
                 {mediaReported? <FaFlag /> : null}             
             </div>
             <div className="media__title">

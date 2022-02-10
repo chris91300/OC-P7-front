@@ -3,6 +3,9 @@ import React from "react";
 import imgGroupomania from '../../img/groupomania.jpg';
 
 
+/**
+ * the component Footer
+ */
 const Footer = ()=>{
 
     return(

@@ -75,14 +75,9 @@ function Reducer(state = initialState, action){
             if( typeof action.value === "object")
             {
                 let mediaId = action.value.mediaId;
-                console.log("reducer : mediaId => "+mediaId)
                 let comment = action.value.comment
-                console.log("reducer : comment => ")
-                console.log(comment)
                 let nextComments = {...state.comments};
                 nextComments[mediaId].push(comment);
-                console.log("reducer : nextComments => ")
-                console.log(nextComments)
                 
                 return {...state, comments : nextComments}
             }

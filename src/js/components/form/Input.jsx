@@ -5,7 +5,7 @@ import formFields from "../../utils/formFields";
 
 
 /**
- * 
+ * a input element
  * @param {string} type le type de l'input (text | email | number ...)
  * @param {string} name input name
  * @returns 
@@ -14,12 +14,12 @@ const Input = ( { type, name, onBlur, onFocus, formName, placeholder } ) => {
     
     const [ value, setValue ] = useState("");
 
-    //  met à jour la valeur de l'input
+    //  update the input value
     const handleChange = (event)=>{        
         setValue(event.target.value);
     }
 
-    //  vérifie la conformité de la valeur
+    //  verify if the input value is valid
     const checkValue = ()=>{
         
         let regex = formFields[name].regex;

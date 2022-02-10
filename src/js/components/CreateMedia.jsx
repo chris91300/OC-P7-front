@@ -1,16 +1,22 @@
 
 import React, { useState } from "react";
 import FormCreateMedia from "./form/FormCreateMedia.jsx";
-import ProfilImage from "./ProfilImage.jsx";
 import { FaPlusCircle } from "react-icons/fa"
 
 
-
+/**
+ * Component CreateMedia
+ * allow to show or hide the formCreateMedia */
 const CreateMedia = ()=>{
 
 
     const [showForm, setShowForm ] = useState(false);
 
+
+    /**
+     * when user click on the title
+     * show or hide the form
+     */
     const handleClick= ()=>{
         if ( showForm ) {
             setShowForm(false);

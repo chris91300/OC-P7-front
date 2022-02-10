@@ -16,7 +16,6 @@ const Comment = ( { data } )=>{
     const authorPseudo = data.user.pseudo;
     const { mediaId, text, createdAt, reported } = data;
     const urlApiRportedComment = `http://localhost:3000/api/comments/${mediaId}/${commentId}/reported`;
-    //let reported = data.reported == false || data.reported == "0" ? false : true;
     const [ createAtDate, createAtHours ] = getDate(createdAt);
 
     const [ commentIsReported, setCommentIsReported ] = useState(reported);
@@ -26,6 +25,10 @@ const Comment = ( { data } )=>{
 
 
 
+    /**
+     * when user click on reported
+     * send request to the API in order to update the column reported 
+     */
     const reportedComment = async ()=>{
 
         try{

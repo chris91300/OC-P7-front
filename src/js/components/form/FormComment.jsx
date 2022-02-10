@@ -9,6 +9,9 @@ import ButtonSubmit from "./ButtonSubmit.jsx";
 import Field from "./Field.jsx";
 
 
+/**
+ * default value of input form
+ */
 const defautlFields = {
     comment : {
         value : "",
@@ -16,6 +19,14 @@ const defautlFields = {
     }
 }
 
+
+/**
+ * Component FormComment
+ * Manage the creation fo one comment
+ * @param {string} name the form name
+ * @param {string} mediaId the media id 
+ * @param {string} name the user id
+ */
 const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
 
     const urlApiCreateComment = "http://localhost:3000/api/comments/"+mediaId;
@@ -26,6 +37,13 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
     const dispatch = useDispatch();
 
 
+    /**
+     * set informations about the input value
+     * and change the state fields
+     * @param {string} name input name
+     * @param {*} value input value
+     * @param {boolean} isValid if value is valid
+     */
     const changeFields = (name, value, isValid) => {
         
         let newFields = {...fields};
@@ -36,48 +54,52 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
 
 
 
-
+    /**
+     * submit the form
+     * @param {object} e the event object
+     */
     const submit = async (e)=>{
         e.preventDefault();
+        if ( fields.comment.value != "" ) {
 
-        let body = {
-            userId : userId,
-            text : fields.comment.value
-        }
-        
-        let options = {
-            method : 'POST',
-            headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json'
-            },
-            body : JSON.stringify(body)
-        }
-
-        try{
-            let newComment = await useFetch(urlApiCreateComment, options)
-            console.log("voici le nouveau commentaire")
-            console.log(newComment)
-            //returnNewComment(newComment)
-            newComment.user = {
-                urlProfil : urlProfil,
-                pseudo : pseudo
+            let body = {
+                userId : userId,
+                text : fields.comment.value
             }
-            newComment.reported = false;
             
-            dispatch({
-                type : "ADD_COMMENT",
-                value : {
-                    mediaId : mediaId,
-                    comment : newComment}
+            let options = {
+                method : 'POST',
+                headers: {
+                    'Accept': 'application/json', 
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify(body)
+            }
 
-                })
-           
+            try{
+                let newComment = await useFetch(urlApiCreateComment, options)
+                
+                newComment.user = {
+                    urlProfil : urlProfil,
+                    pseudo : pseudo
+                }
+                newComment.reported = false;
+                
+                dispatch({
+                    type : "ADD_COMMENT",
+                    value : {
+                        mediaId : mediaId,
+                        comment : newComment}
 
-        } catch (err){
-            setErrorMessage(err.message)
-            console.log(err.message)
+                    })
+            
+
+            } catch (err){
+                setErrorMessage(err.message)
+                console.log(err.message)
+            }
         }
+
     }
 
     return(

@@ -9,6 +9,14 @@ import Comment from "./Comment.jsx";
 import Loading from "./Loading.jsx";
 
 
+
+/**
+ * Component Comments
+ * when component did mount => get all comment of the current media
+ * inform user if there ara or not comments
+ * and show or hide comments
+ * @param {*} mediaId the media id
+ */
 const Comments = ({ mediaId })=>{
 
 
@@ -68,6 +76,10 @@ const Comments = ({ mediaId })=>{
     }
 
 
+    /**
+     * show or hide comments
+     * and if hide, scroll to the start of comments
+     */
     const handleClick = ()=>{
         let userWantToSee = !userWantToSeeComments;
         
@@ -85,6 +97,7 @@ const Comments = ({ mediaId })=>{
 
         
     }
+    
 
     /**
      * map the array comments and create a Comment component for each comment
