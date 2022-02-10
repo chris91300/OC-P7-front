@@ -2,6 +2,16 @@
 nav{
     font-size: 1.2rem;
 
+    & .profil__image{
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+    }
+
+    & .nav__bigger-than-mobile{
+        display: none;
+    }
+
     & .btn__no-style{
         display: inline-block;
         width: 150px;
@@ -14,5 +24,17 @@ nav{
 
     & a:hover{
         font-weight: bold;
+    }
+
+
+    @media screen and (min-width: map-get($breakpoints, "tablette")){
+
+        & .nav__mobile{
+            display: none;
+        }
+
+        & .nav__bigger-than-mobile{
+            display: flex;
+        }
     }
 }

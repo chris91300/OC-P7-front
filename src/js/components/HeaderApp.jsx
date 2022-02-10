@@ -4,17 +4,15 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from '../../img/logo.png';
 import ButtonSimple from './ButtonSimple.jsx';
+import ProfilImage from "./ProfilImage.jsx";
 
 
 
-const HeaderApp = ()=>{
+const HeaderApp = ( { onClick } )=>{
 
     const admin = useSelector((state) => state.user.admin);
-
-    const goToProfil = ()=>{
-        console.log("go to profil")
-    }
-
+    
+    
 
     const disconnect = ()=>{
         console.log("on se déconnecte")
@@ -25,9 +23,15 @@ const HeaderApp = ()=>{
         <header>
             <img src={logo}></img>
             <nav>
-                {admin ? <Link to="/dashboard">dashboard</Link> : null}
-                <ButtonSimple title="voir mon profil" onClick={goToProfil}>profil</ButtonSimple>
-                <ButtonSimple title="se déconnecter" onClick={disconnect}>se déconnecter</ButtonSimple>
+                <div className="nav__mobile" onClick={onClick}>
+                    <ProfilImage />
+                </div>
+
+                <div className="nav__bigger-than-mobile">
+                    {admin ? <Link to="/dashboard">dashboard</Link> : null}
+                    <Link to="/profil" title="voir mon profil" >profil</Link>
+                    <ButtonSimple title="se déconnecter" onClick={disconnect}>se déconnecter</ButtonSimple>
+                </div>                
             </nav>
         </header>
 
