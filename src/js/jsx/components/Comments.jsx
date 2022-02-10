@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import useFetch from "../utils/fetch";
+import useFetch from "../../utils/fetch";
 import ButtonSimple from "./ButtonSimple.jsx";
 import Comment from "./Comment.jsx";
 import Loading from "./Loading.jsx";

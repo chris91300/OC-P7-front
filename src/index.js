@@ -1,7 +1,7 @@
 import './styles/main.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './js/components/App.jsx';
+import { App } from './js/jsx/App.jsx';
 
 
 

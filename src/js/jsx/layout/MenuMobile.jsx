@@ -1,7 +1,7 @@
 
 import React from "react";
 import { useState } from "react";
-import ButtonSimple from "./ButtonSimple.jsx";
+import ButtonSimple from "../components/ButtonSimple.jsx";
 import NavMenu from "./NavMenu.jsx";
 
 

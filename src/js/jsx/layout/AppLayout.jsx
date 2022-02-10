@@ -1,11 +1,9 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import Footer from "./Footer.jsx";
 import HeaderApp from "./HeaderApp.jsx";
 import MenuMobile from "./MenuMobile.jsx";
-import Menus from "./Menus.jsx";
 
 
 /**

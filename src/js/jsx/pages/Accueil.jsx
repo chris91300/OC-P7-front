@@ -1,9 +1,9 @@
 
 import React, { useState } from "react";
-import Footer from "./Footer.jsx";
-import FormLogin from "./form/FormLogin.jsx";
-import FormSignup from "./form/FormSingup.jsx";
-import HeaderAccueil from "./HeaderAccueil.jsx";
+import Footer from "../layout/Footer.jsx";
+import FormLogin from "../form/FormLogin.jsx";
+import FormSignup from "../form/FormSingup.jsx";
+import HeaderAccueil from "../layout/HeaderAccueil.jsx";
 
 
 /**

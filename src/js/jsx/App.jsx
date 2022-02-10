@@ -3,10 +3,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../utils/store';
 
-import Menu from './Menu.jsx';
-import Medias from './Medias.jsx';
-import Accueil from './Accueil.jsx';
-import Dashboard from './Dashboard.jsx';
+import Menu from './pages/Menu.jsx';
+import Medias from './pages/Medias.jsx';
+import Accueil from './pages/Accueil.jsx';
+import Dashboard from './pages/Dashboard.jsx';
 
 
 /**

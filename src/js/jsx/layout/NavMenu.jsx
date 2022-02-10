@@ -2,7 +2,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ButtonSimple from "./ButtonSimple.jsx";
+import ButtonSimple from "../components/ButtonSimple.jsx";
 
 
 /**

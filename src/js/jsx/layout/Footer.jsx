@@ -1,6 +1,6 @@
 
 import React from "react";
-import imgGroupomania from '../../img/groupomania.jpg';
+import imgGroupomania from '../../../img/groupomania.jpg';
 
 
 /**

@@ -1,9 +1,9 @@
 
 import React from "react";
 
-import forumTexts from '../../img/forum_texts.jpg';
-import forumMultimedia from '../../img/forum_multimedias.jpg';
-import dashboard from '../../img/dashboard_big.jpg';
+import forumTexts from '../../../img/forum_texts.jpg';
+import forumMultimedia from '../../../img/forum_multimedias.jpg';
+import dashboard from '../../../img/dashboard_big.jpg';
 import MenusItem from "./MenusItem.jsx";
 
 

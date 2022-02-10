@@ -1,11 +1,9 @@
 
 import React from "react";
-import AppLayout from "./AppLayout.jsx";
-import CreateMedia from "./CreateMedia.jsx";
-import Footer from "./Footer.jsx";
-import HeaderApp from "./HeaderApp.jsx";
-import MediasList from "./MediasList.jsx";
-import ProfilAside from "./ProfilAside.jsx";
+import AppLayout from "../layout/AppLayout.jsx";
+import CreateMedia from "../components/CreateMedia.jsx";
+import MediasList from "../components/MediasList.jsx";
+import ProfilAside from "../layout/ProfilAside.jsx";
 
 
 /**

@@ -1,12 +1,12 @@
 
 import React from "react";
-import getDate from "../utils/getDate";
+import getDate from "../../utils/getDate";
 import ProfilImage from "./ProfilImage.jsx";
 import { FaRegFlag, FaFlag } from "react-icons/fa";
 import ButtonSimple from "./ButtonSimple.jsx";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import useFetch from "../utils/fetch";
+import useFetch from "../../utils/fetch";
 
 const Comment = ( { data } )=>{    
     

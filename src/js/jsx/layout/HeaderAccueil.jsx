@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '../../img/logo.png';
-import ButtonSimple from './ButtonSimple.jsx';
+import logo from '../../../img/logo.png';
+import ButtonSimple from '../components/ButtonSimple.jsx';
 
 
 /**

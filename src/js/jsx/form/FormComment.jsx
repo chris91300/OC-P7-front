@@ -4,7 +4,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useFetch from "../../utils/fetch.js";
-import ProfilImage from "../ProfilImage.jsx";
+import ProfilImage from "../components/ProfilImage.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
 import Field from "./Field.jsx";
 

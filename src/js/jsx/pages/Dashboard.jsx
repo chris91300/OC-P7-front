@@ -1,12 +1,10 @@
 
 
 import React from "react";
-import HeaderApp from "./HeaderApp.jsx";
-import Footer from "./Footer.jsx";
-import ProfilAside from "./ProfilAside.jsx";
-import DashboardMedias from "./DashboardMedias.jsx";
-import DashboardComments from "./DashboardComments.jsx";
-import AppLayout from "./AppLayout.jsx";
+import ProfilAside from "../layout/ProfilAside.jsx";
+import DashboardMedias from "../components/DashboardMedias.jsx";
+import DashboardComments from "../components/DashboardComments.jsx";
+import AppLayout from "../layout/AppLayout.jsx";
 
 
 /**

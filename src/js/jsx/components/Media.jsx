@@ -2,14 +2,14 @@
 
 import React from "react";
 import { useSelector } from "react-redux";
-import getDate from '../utils/getDate';
+import getDate from '../../utils/getDate';
 import ProfilImage from "./ProfilImage.jsx";
 import ButtonSimple from "./ButtonSimple.jsx";
-import { FaHeart, FaComments, FaFlag, FaRegFlag, FaRegTrashAlt } from "react-icons/fa";
+import { FaFlag, FaRegFlag, FaRegTrashAlt } from "react-icons/fa";
 import { AiFillHeart, AiOutlineHeart, AiOutlineComment } from "react-icons/ai";
-import FormComment from "./form/FormComment.jsx";
+import FormComment from "../form/FormComment.jsx";
 import { useState } from "react";
-import useFetch from "../utils/fetch";
+import useFetch from "../../utils/fetch";
 import Comments from "./Comments.jsx";
 
 /**
