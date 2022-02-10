@@ -7,6 +7,7 @@ exports.APPLICATION = ( req, res ) => {
 
 
 exports.GET_SESSION = ( req, res ) => {
+    console.log("get session")
    
     let session = req.session;
     if ( session.userSession ) {
@@ -32,8 +33,15 @@ exports.GET_SESSION = ( req, res ) => {
 
 
 exports.SET_SESSION = ( req, res ) => {
-
+    console.log("set session")
     req.session.userSession = req.body;
     res.status(200).json({message : "session créé"})
+
+}
+
+exports.DELETE_SESSION = ( req, res ) => {
+    console.log("delete session")
+    req.session.destroy();
+    res.status(200).json( { status : "ok", message : "session supprimé" } )
 
 }
