@@ -31,7 +31,6 @@ const defautlFields = {
 const FormLogin = ( { name, className } ) => {
 
     const loginUserUrl = "http://localhost:3000/api/users/login";
-    const sessionUrl = "http://localhost:3000/api/session";
     const urlMenu = "/menu";
 
     const [ redirect, setRedirect ] = useState(false);
@@ -77,38 +76,6 @@ const FormLogin = ( { name, className } ) => {
     }, [])
 
 
-    /**
-     * when the component did mount
-     * check if there is a session not expired
-     * if there is one, loginUser()
-     * else nothing
-     */
-    useEffect( async ()=>{
-        
-        try{
-
-            let response = await useFetch("/session");
-            
-            if ( response.sessionIsOk) {
-
-                let user = response.user;
-                if ( user.pseudo != "" & user.password != "" ) {
-                    let newFields = {...fields};
-                    fields.pseudo.value = user.pseudo;
-                    fields.pseudo.isValid = true;
-                    fields.password.value = user.password;
-                    fields.password.isValid = true;
-                    setFields(newFields);
-                    loginUser();
-                }
-            }
-            
-
-        } catch(err){
-            
-        }
-        
-    }, [])
 
     /**
      * if user press Enter key,

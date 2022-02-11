@@ -21,11 +21,13 @@ exports.GET_SESSION = ( req, res ) => {
 
         }
         else {
+            console.log("la session a expiré")
             //req.session.userSession = {}
             res.status(200).json( { sessionIsOk : false } )
         }
         
     } else {
+        console.log("session.userSession false")
         //req.session.userSession = {}
         res.status(200).json( { sessionIsOk : false } )
     }

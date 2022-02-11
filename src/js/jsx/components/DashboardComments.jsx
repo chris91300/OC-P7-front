@@ -24,9 +24,15 @@ const DashboardComments = ()=>{
             }
 
             const commentsReported = await useFetch(urlApiAdminGetCommentsReported, options);
+            console.log("comments reported")
             console.log(commentsReported)
+
         } catch(err){
+
             console.log(err)
+
+        } finally{
+            return ()=>{}
         }
         
     }, [])

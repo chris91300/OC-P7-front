@@ -36,9 +36,15 @@ const DashboardMedias = ()=>{
             }
 
             const mediasReported = await useFetch(urlApiAdminGetMediasReported, options);
+            console.log("medias reported")
             console.log(mediasReported)
+
         } catch(err){
+
             console.log(err)
+
+        } finally{
+            return ()=>{}
         }
         
     }, [])

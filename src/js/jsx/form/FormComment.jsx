@@ -92,6 +92,7 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
                         comment : newComment}
 
                     })
+                resetForm();
             
 
             } catch (err){
@@ -100,6 +101,16 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
             }
         }
 
+    }
+
+
+    /**
+     * reset fields of the form
+     */
+    const resetForm = ()=>{
+        let field = document.getElementById(`comment_media_${mediaId}_comment`)
+        field.value = null;
+        setFields(defautlFields);
     }
 
     return(
