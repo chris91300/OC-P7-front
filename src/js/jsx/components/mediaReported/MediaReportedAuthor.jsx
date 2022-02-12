@@ -1,8 +1,13 @@
 
 import React from "react";
-import ProfilImage from "./ProfilImage.jsx";
+import ProfilImage from "../ProfilImage.jsx";
 
 
+/**
+ * the container of informations about the media author
+ * @param {string} author the media author 
+ * @param {string} urlProfil the url of the picture of the author 
+ */
 const MediaReportedAuthor = ( { author, urlProfil } )=>{
 
 

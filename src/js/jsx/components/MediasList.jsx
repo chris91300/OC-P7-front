@@ -4,13 +4,13 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import useFetch from "../../utils/fetch";
 import Loading from "./Loading.jsx";
-import Media from "./Media.jsx";
+import Media from "./media/Media.jsx";
 
 
 
 /**
  * Component MediaList
- * Represent all the medias
+ * Container of all medias
  */
 const MediasList = ()=>{
 

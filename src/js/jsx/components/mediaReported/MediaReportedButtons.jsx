@@ -3,16 +3,18 @@ import React from "react";
 import { FaRegFlag, FaRegTrashAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import useFetch from "../../utils/fetch.js";
+import useFetch from "../../../utils/fetch.js";
+import ButtonSimple from "../ButtonSimple.jsx";
 
-import ButtonSimple from "./ButtonSimple.jsx";
 
-
+/**
+ * the container of buttons to manage the reported media
+ * @param {string} id the media id 
+ */
 const MediaReportedButtons = ( { id } )=>{
 
     const urlDeleteMedia = `http://localhost:3000/api/admin/medias/${id}/delete`;
     const urlRemoveReportedMedia = `http://localhost:3000/api/admin/medias/${id}/remove_reported`;    
-    
     const userToken = useSelector( ( state ) => state.user.token)
     const dispatch = useDispatch();
 

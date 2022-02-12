@@ -6,10 +6,12 @@ import MediaReportedDate from "./MediaReportedDate.jsx";
 import MediaReportedPresentation from "./MediaReportedPresentation.jsx";
 
 
-
+/**
+ * 
+ * @param {object} data informations about the media
+ */
 const MediaReported = ( { data } )=>{
 
-    console.log(data)
     const author = data.user;
     const { id, createdAt, title, text, urlImage } = data;
 

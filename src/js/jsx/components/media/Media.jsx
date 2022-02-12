@@ -1,16 +1,12 @@
 
 
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import getDate from '../../utils/getDate';
-import ProfilImage from "./ProfilImage.jsx";
-import ButtonSimple from "./ButtonSimple.jsx";
-import { FaFlag, FaRegFlag, FaRegTrashAlt } from "react-icons/fa";
-import { AiFillHeart, AiOutlineHeart, AiOutlineComment } from "react-icons/ai";
-import FormComment from "../form/FormComment.jsx";
-import { useState } from "react";
-import useFetch from "../../utils/fetch";
-import Comments from "./Comments.jsx";
+
+import getDate from '../../../utils/getDate';
+import FormComment from "../../form/FormComment.jsx";
+import useFetch from "../../../utils/fetch";
+import Comments from "../Comments.jsx";
 import MediaAuthor from "./MediaAuthor.jsx";
 import MediaTitle from "./MediaTitle.jsx";
 import MediaPicture from "./MediaPicture.jsx";

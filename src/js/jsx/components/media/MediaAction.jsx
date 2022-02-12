@@ -1,14 +1,21 @@
 
 import React from "react";
-import ButtonSimple from "./ButtonSimple.jsx";
+import ButtonSimple from "../ButtonSimple.jsx";
 import { FaRegFlag, FaRegTrashAlt } from "react-icons/fa";
 import { AiOutlineHeart, AiOutlineComment } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import useFetch from "../../utils/fetch.js";
+import useFetch from "../../../utils/fetch.js";
 import { useDispatch } from "react-redux";
 
 
-
+/**
+ * the container of the buttons like, comment, reported and for admin, delete
+ * @param {string} id the media id
+ * @param {function} like a callback. use if user like this 
+ * @param {function} scrollToComment a callback. use if user when read a comment * 
+ * @param {function} reportedMedia a callback. use if user want to reported the media
+ * @param {boolean} admin if the user is an administrator
+ */
 const MediaAction = ( { id, like, scrollToComment, reportedMedia, admin } )=>{
 
     const urlDeleteMedia = `http://localhost:3000/api/admin/medias/${id}/delete`;

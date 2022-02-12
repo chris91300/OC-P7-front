@@ -2,7 +2,11 @@
 import React from "react";
 import { AiFillHeart } from "react-icons/ai";
 
-
+/**
+ * the container of the media title
+ * @param {string} title the media title 
+ * @param {number} totalUserLiked the totle of users who liked this media 
+ */
 const MediaTitle = ( { title, totalUserLiked } )=>{
 
 

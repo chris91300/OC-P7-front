@@ -1,8 +1,12 @@
 
 import React from "react";
-import getDate from "../../utils/getDate";
+import getDate from "../../../utils/getDate";
 
 
+/**
+ * the container of the date of the creation of the media
+ * @param {string} date the date of the creation of the media
+ */
 const MediaReportedDate = ( { date } )=>{
 
     const [ createdDate, createdHour ] = getDate(date);
