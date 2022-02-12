@@ -55,6 +55,23 @@ function Reducer(state = initialState, action){
                 return {...state, medias : nextMedias}
             }
             else {return state}
+
+
+
+        case "DELETE_MEDIA":            
+
+            if( !isNaN(action.value))
+            {
+                let nextMedias = [...state.medias];
+                nextMedias.forEach( (media, index ) => {
+                    if ( media.id == action.value ) {
+                        nextMedias.splice(index, 1);
+                    }
+                });
+                
+                return {...state, medias : nextMedias}
+            }
+            else {return state}
             
 
         case "SET_COMMENTS":

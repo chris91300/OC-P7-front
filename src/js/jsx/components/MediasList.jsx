@@ -68,8 +68,8 @@ const MediasList = ()=>{
             if ( medias.length == 0 ) {
                 return (
                     <>
-                    <p>Aucun media n'a été posté pour le moment</p>
-                    <p>Serez-vous le premier ou la première ?</p>
+                    <p className="no-media">Aucun media n'a été posté pour le moment</p>
+                    <p className="no-media">Serez-vous le premier ou la première ?</p>
                     </>
                 
                 )

@@ -17,6 +17,7 @@
     border-right-color: $primary-color_darken;
     border-bottom-color: $primary-color_darken;
     border-left-color: $primary-color_darken;
+    margin: auto;
     animation: turn 1s 0s linear infinite;
 
     &.small{
