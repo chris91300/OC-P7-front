@@ -14,11 +14,10 @@ const initialState = {
         admin : false,
     },
     medias : [],
-    comments : {},
-    admin : {
-        medias : [],
-        comments : []
-    }
+    comments : {},    
+    medias_reported : {},
+    comments_reported : {}
+    
 }
 
 
@@ -82,6 +81,63 @@ function Reducer(state = initialState, action){
                 return {...state, comments : nextComments}
             }
             else {return state}
+
+
+
+        case "ADD_MEDIAS_REPORTED":
+            if( typeof action.value === "object")
+            {
+                let mediasReported = {...state.medias_reported};
+                action.value.map( ( media ) =>{
+                    mediasReported[media.id] = media;
+                })
+                
+                return {...state, medias_reported : mediasReported}
+            }
+            else {return state}
+
+
+        case "REMOVE_MEDIA_REPORTED":
+
+            let mediasReported = {...state.medias_reported};
+            if( mediasReported[action.value] != undefined) {
+
+                delete mediasReported[action.value];
+                return {...state, medias_reported : mediasReported}
+
+            } else {
+
+                return state;
+            }
+
+
+
+        case "ADD_COMMENTS_REPORTED":
+            if( typeof action.value === "object")
+            {
+                let commentsReported = {...state.comments_reported};
+                action.value.map( ( comment ) =>{
+                    commentsReported[comment.id] = comment;
+                })
+                console.log("dans add comments reported")
+                console.log(commentsReported)
+                return {...state, comments_reported : commentsReported}
+            }
+            else {return state}
+
+
+        case "REMOVE_COMMENT_REPORTED":
+
+            let commentsReported = {...state.comments_reported};
+            if( commentsReported[action.value] != undefined) {
+
+                delete commentsReported[action.value];
+                return {...state, comments_reported : commentsReported}
+
+            } else {
+                
+                return state;
+            }
             
 
 

@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import useFetch from "../../utils/fetch";
 import Loading from "./Loading.jsx";
@@ -10,8 +11,9 @@ const DashboardMedias = ( )=>{
 
     const urlApiAdminGetMediasReported = "http://localhost:3000/api/admin/medias/reported";
     const userToken = useSelector((state) => state.user.token);
-    const [ mediasReported, setMediasReported ] = useState([]);
+    const mediasReported = useSelector( ( state ) => state.medias_reported );
     const [ isLoading, setIsLoading ] = useState(true);
+    const dispatch = useDispatch();
     
 
     /**
@@ -38,7 +40,11 @@ const DashboardMedias = ( )=>{
             }
 
             let mediasReported = await useFetch(urlApiAdminGetMediasReported, options);
-            setMediasReported(mediasReported)
+            dispatch({
+                type : "ADD_MEDIAS_REPORTED",
+                value : mediasReported
+            })
+            
             setIsLoading(false)
 
         } catch(err){
@@ -55,7 +61,16 @@ const DashboardMedias = ( )=>{
 
     const renderMedias = ()=>{
 
-        return mediasReported.map( (media) => <MediaReported data={media} key={media.id} />)
+        if ( Object.keys(mediasReported).length == 0 ) {
+
+            return <p>Aucun media n'a été signalé.</p>
+
+        } else {
+
+            return Object.entries( mediasReported ).map( ( [ index, media ] ) => <MediaReported data={media} key={media.id} />)
+
+        }
+        
 
     }
 

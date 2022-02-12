@@ -3,15 +3,22 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import useFetch from "../../utils/fetch";
 import Loading from "./Loading.jsx";
-import CommentReported from "./CommentsReported.jsx";
+import CommentReported from "./CommentReported.jsx";
+import { useDispatch } from "react-redux";
 
 
 const DashboardComments = ( )=>{
 
     const urlApiAdminGetCommentsReported = "http://localhost:3000/api/admin/comments/reported";
     const userToken = useSelector((state) => state.user.token);
-    const [ commentsReported, setCommentsReported ] = useState([]);
+    const commentsReported = useSelector( ( state ) => state.comments_reported );
+    const dispatch = useDispatch();
     const [ isLoading, setIsLoading ] = useState(true);
+
+    console.log("comments_reported")
+    console.log(commentsReported)
+
+
     /**
      * get all coments reported when component did mount
      */
@@ -26,9 +33,12 @@ const DashboardComments = ( )=>{
             }
 
             let commentsReported = await useFetch(urlApiAdminGetCommentsReported, options);
-            console.log("comments reported")
+            console.log("retour de l'api")
             console.log(commentsReported)
-            setCommentsReported(commentsReported);
+            dispatch({
+                type : "ADD_COMMENTS_REPORTED",
+                value : commentsReported
+            })
             setIsLoading(false)
 
         } catch(err){
@@ -45,7 +55,16 @@ const DashboardComments = ( )=>{
 
     const renderComments = ()=>{
 
-        return commentsReported.map( (comment) => <CommentReported data={comment} key={comment.id} />)
+        if ( Object.keys(commentsReported).length == 0 ) {
+
+            return <p>Aucun commentaire n'a été signalé.</p>
+
+        } else {
+
+            return Object.entries( commentsReported ).map( ( [ index, comment ] ) => <CommentReported data={comment} key={comment.id} />)
+
+        }
+        
 
     }
 
