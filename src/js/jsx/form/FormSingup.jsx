@@ -52,7 +52,7 @@ const FormSignup = ( { name } ) => {
      */
     useEffect(()=>{
         let body = document.body;
-        console.log("on ajout le keypress event dans sign up")
+        
         body.addEventListener("keyup", keyPressEvent);
 
         return body.removeEventListener("keyup", keyPressEvent);

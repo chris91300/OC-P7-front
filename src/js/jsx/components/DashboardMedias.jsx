@@ -1,16 +1,18 @@
 
-import React from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import useFetch from "../../utils/fetch";
+import Loading from "./Loading.jsx";
+import MediaReported from "./MediaReported.jsx";
 
 
-const DashboardMedias = ()=>{
+const DashboardMedias = ( )=>{
 
     const urlApiAdminGetMediasReported = "http://localhost:3000/api/admin/medias/reported";
-    const userToken = useSelector((state) => state.user.token)
-
-
+    const userToken = useSelector((state) => state.user.token);
+    const [ mediasReported, setMediasReported ] = useState([]);
+    const [ isLoading, setIsLoading ] = useState(true);
+    
 
     /**
      * OBJECTIF :
@@ -35,13 +37,14 @@ const DashboardMedias = ()=>{
                 }
             }
 
-            const mediasReported = await useFetch(urlApiAdminGetMediasReported, options);
-            console.log("medias reported")
-            console.log(mediasReported)
+            let mediasReported = await useFetch(urlApiAdminGetMediasReported, options);
+            setMediasReported(mediasReported)
+            setIsLoading(false)
 
         } catch(err){
 
             console.log(err)
+            setIsLoading(false)
 
         } finally{
             return ()=>{}
@@ -49,7 +52,19 @@ const DashboardMedias = ()=>{
         
     }, [])
 
-    return <h2>MEDIAS SIGNALÉS</h2>
+
+    const renderMedias = ()=>{
+
+        return mediasReported.map( (media) => <MediaReported data={media} key={media.id} />)
+
+    }
+
+    return( 
+        <div id="admin_medias_reported" className="admin__reported__container show">
+            <h2>MEDIAS SIGNALÉS</h2>
+            { isLoading ? <Loading /> : renderMedias()}
+        </div>
+    )
 }
 
 

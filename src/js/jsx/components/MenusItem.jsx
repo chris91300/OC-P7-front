@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
  * @returns 
  */
 const MenusItem = ( { img, linkUrl, title, altText, className, text, comingSoon } )=>{
-    console.log("menu item")
+    
 
     return(
         <Link to={linkUrl} title={title} className={className? className : null}>
