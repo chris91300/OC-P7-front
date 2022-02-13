@@ -24,6 +24,7 @@ const Comments = ({ mediaId })=>{
     const [ loading, setLoading ] = useState(true)
     const [ userWantToSeeComments, setUserWantToSeeComments ] = useState(false)
     let comments = useSelector( ( state ) => state.comments)
+    let token = useSelector( ( state ) => state.user.token)
     comments = comments[mediaId];
     const dispatch = useDispatch();
 
@@ -34,7 +35,16 @@ const Comments = ({ mediaId })=>{
         
         try{
 
-            let commentsList = await useFetch(urlApiGetComments)
+            let options = {
+                method : 'GET',
+                headers: {
+                    'Accept': 'application/json', 
+                    'Content-Type': 'application/json',
+                    'Authorization' : 'Bearer '+token
+                }
+            }
+
+            let commentsList = await useFetch(urlApiGetComments, options)
             
             dispatch({type : "SET_COMMENTS", value : { mediaId : mediaId, comments : commentsList}})
             setLoading(false);

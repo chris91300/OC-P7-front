@@ -11,6 +11,11 @@
         align-items: center;
         flex: 1;
         max-width: 100%;
+
+        @media screen and (min-width: map-get($breakpoints, "tablette")){
+            margin-left: 190px;
+        }
+        
     }
 
     

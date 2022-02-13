@@ -50,11 +50,11 @@ const MediaAction = ( { id, like, scrollToComment, reportedMedia, admin } )=>{
 
     return(
         <div className="media__action">
-            <ButtonSimple onClick={()=> like()}><AiOutlineHeart />j'aime</ButtonSimple>
-            <ButtonSimple onClick={()=> scrollToComment()}><AiOutlineComment />commenter</ButtonSimple>
-            <ButtonSimple onClick={()=> reportedMedia()}><FaRegFlag />signaler</ButtonSimple>
+            <ButtonSimple onClick={()=> like()}><AiOutlineHeart /><span className="text-icon">j'aime</span></ButtonSimple>
+            <ButtonSimple onClick={()=> scrollToComment()}><AiOutlineComment /><span className="text-icon">commenter</span></ButtonSimple>
+            <ButtonSimple onClick={()=> reportedMedia()}><FaRegFlag /><span className="text-icon">signaler</span></ButtonSimple>
             {admin ? 
-            <ButtonSimple onClick={deleteMedia} ><FaRegTrashAlt />supprimer</ButtonSimple> : null}
+            <ButtonSimple onClick={deleteMedia} ><FaRegTrashAlt /><span className="text-icon">supprimer</span></ButtonSimple> : null}
         </div>
     )
 

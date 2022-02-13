@@ -17,7 +17,7 @@ const CommentReported = ( { data } )=>{
 
 
     return(
-        <div className="reported">
+        <div className="item-reported">
             <ReportedAuthor
                 author={authorPseudo}
                 url={authorProfil}
@@ -25,7 +25,7 @@ const CommentReported = ( { data } )=>{
             
             <ReportedDate date={createdAt}/>
 
-            <p className="reported__comment">{ text }</p>
+            <p className="item-reported__comment">{ text }</p>
 
             <ReportedButtons
                 id={commentId}

@@ -20,6 +20,7 @@ const Comment = ( { data } )=>{
 
     const [ commentIsReported, setCommentIsReported ] = useState(reported);
     const user = useSelector( (state) =>state.user );
+    const token = user.token
 
     const [ error, setError ] = useState("");
 
@@ -41,7 +42,8 @@ const Comment = ( { data } )=>{
                 method : 'POST',
                 headers: {
                     'Accept': 'application/json', 
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization' : 'Bearer '+token
                 },
                 body : JSON.stringify(body)
             }
@@ -72,7 +74,7 @@ const Comment = ( { data } )=>{
 
                 <div className="comment__informations__buttons">
                     <ButtonSimple onClick={reportedComment}>
-                        {commentIsReported ? <FaFlag className="reported" /> : <FaRegFlag />}                        
+                        {commentIsReported ? <FaFlag className="flag-reported" /> : <FaRegFlag />}                        
                         signaler
                     </ButtonSimple>
                     <p className="error">{error}</p>

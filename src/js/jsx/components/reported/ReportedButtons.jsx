@@ -148,10 +148,12 @@ const ReportedButtons = ( { id, type } )=>{
 
 
     return(
-        <div className="reported__buttons">
+        <>
+        <div className="item-reported__buttons">
             <button onClick={removeReported}><FaRegFlag />retirer le signalement</button>
             <button onClick={deleteReported}><FaRegTrashAlt />supprimer</button>
         </div>
+        </>
     )
 }
 

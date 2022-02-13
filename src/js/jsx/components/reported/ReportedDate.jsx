@@ -12,7 +12,7 @@ const ReportedDate = ( { date } )=>{
     const [ createdDate, createdHour ] = getDate(date);
 
     return(
-        <div className="reported__date">
+        <div className="item-reported__date">
             <p>
                 <span className="bold">Posté le </span>
                 {`${createdDate} à ${createdHour}`}

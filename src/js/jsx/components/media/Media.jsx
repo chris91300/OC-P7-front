@@ -21,6 +21,7 @@ import MediaAction from "./MediaAction.jsx";
 const Media = ( { data, alone } )=>{
     
     const currentUser = useSelector( ( state ) => state.user );
+    const token = currentUser.token;
     const admin = currentUser.admin;
     const currentUserId = currentUser.id;
     const { id, userId, title, text, urlImage, reported, userLiked, user, createdAt } = data;
@@ -66,7 +67,7 @@ const Media = ( { data, alone } )=>{
      * if non => add user id on userLiked array and on database
      */
     const like = async ()=>{
-        
+         
         let listUserLiked = [...userLikedCopy]
         let index = listUserLiked.indexOf(currentUserId)
         let like = index === -1 ? 1 : 0;        
@@ -81,7 +82,8 @@ const Media = ( { data, alone } )=>{
             method : 'POST',
             headers: {
                 'Accept': 'application/json', 
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : 'Bearer '+token
             },
             body : JSON.stringify(body)
         }
@@ -134,7 +136,8 @@ const Media = ( { data, alone } )=>{
             method : 'POST',
             headers: {
                 'Accept': 'application/json', 
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : 'Bearer '+token
             },
             body : JSON.stringify(body)
         }

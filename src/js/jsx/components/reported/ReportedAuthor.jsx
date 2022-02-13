@@ -12,7 +12,7 @@ const ReportedAuthor = ( { author, urlProfil } )=>{
 
 
     return(
-        <div className="reported__author">
+        <div className="item-reported__author">
             <p className="bold">Auteur </p>
             <p className="title">{author}</p>
             <ProfilImage url={urlProfil} />

@@ -4,6 +4,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import picture from "../../../img/groupomania.jpg";
 
+
+/**
+ * PAGE 404
+ */
 const Page404 = ()=>{
 
 

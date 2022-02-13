@@ -30,8 +30,10 @@ const defautlFields = {
 const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
 
     const urlApiCreateComment = "http://localhost:3000/api/comments/"+mediaId;
-    const urlProfil = useSelector( ( state ) => state.user.urlProfil);
-    const pseudo = useSelector( ( state ) => state.user.pseudo);
+    const user = useSelector( ( state ) => state.user);
+    const urlProfil = user.urlProfil;
+    const pseudo = user.pseudo;
+    const token = user.token;
     const [ fields, setFields] = useState({...defautlFields})
     const [ errorMessage, setErrorMessage ] = useState("");
     const dispatch = useDispatch();
@@ -71,7 +73,8 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
                 method : 'POST',
                 headers: {
                     'Accept': 'application/json', 
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization' : 'Bearer '+token
                 },
                 body : JSON.stringify(body)
             }

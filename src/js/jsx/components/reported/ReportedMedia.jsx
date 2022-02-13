@@ -7,12 +7,12 @@ const ReportedMedia = ( { title, urlImage, description } )=>{
     
 
     return(
-        <div className="reported__media">
+        <div className="item-reported__media">
             <p>{title}</p>
-            <div className="reported__media__picture">
+            <div className="item-reported__media__picture">
                 <img src={urlImage} />
             </div>
-            <p className="reported__media__description">{description}</p>
+            <p className="item-reported__media__description">{description}</p>
         </div>
     )
 

@@ -16,7 +16,7 @@ const MediaReported = ( { data } )=>{
     const { id, createdAt, title, text, urlImage } = data;
 
     return (
-        <div id={`media_reported_${id}`}  className="reported">
+        <div id={`media_reported_${id}`}  className="item-reported">
             <ReportedAuthor
                 author={author.pseudo}
                 urlProfil={author.urlProfil}
