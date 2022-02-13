@@ -28,7 +28,7 @@ const HeaderAccueil = ( { changeClass } ) => {
 
     return(
         <>
-        <header>
+        <header id="header_accueil">
             <img src={logo}></img>
             <nav>
                 <ButtonSimple title="inscription" onClick={onClick}>s'inscrire</ButtonSimple>

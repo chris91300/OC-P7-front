@@ -11,12 +11,6 @@ import ProfilImage from "../components//ProfilImage.jsx";
  */
 const HeaderApp = ( { showMenuForMobile } )=>{
 
-    /**
-     * disconnect the user
-     */
-    const disconnect = (  )=>{
-        console.log("on se déconnecte")
-    }
 
     return(
         <>

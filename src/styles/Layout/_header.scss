@@ -1,12 +1,15 @@
 
 header{
-    display: flex;
-    flex-direction: column;
+    display: flex;    
     align-items: center;
     justify-content: space-between;
     padding: 20px 3%;
     width: 100%;
     border-bottom: 2px solid $primary_color_darken;
+
+    &#header_accueil{
+        flex-direction: column;
+    }
 
     @media screen and (min-width: map-get($breakpoints, "mobile-landscape")){
         flex-direction: row;
