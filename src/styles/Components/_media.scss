@@ -21,6 +21,10 @@
         border-color: red;
     }
 
+    &.alone{
+        align-self: center;
+    }
+
 
     &__author{
         display: flex;

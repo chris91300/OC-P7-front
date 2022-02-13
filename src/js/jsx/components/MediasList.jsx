@@ -64,8 +64,10 @@ const MediasList = ()=>{
         if ( error != ""){
             return <p className="error">{error}</p>
         } else {
+ 
+            let length = medias.length;
 
-            if ( medias.length == 0 ) {
+            if ( length == 0 ) {
                 return (
                     <>
                     <p className="no-media">Aucun media n'a été posté pour le moment</p>
@@ -74,8 +76,10 @@ const MediasList = ()=>{
                 
                 )
             } else {
+
+                let alone = length == 1 ? true : false;
                 
-               return medias.map((media) => <Media key={media.id} data={media} />)
+               return medias.map((media) => <Media key={media.id} data={media} alone={alone} />)
 
             }
 

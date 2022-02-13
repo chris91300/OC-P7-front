@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import useFetch from "../../utils/fetch";
 import Loading from "./Loading.jsx";
-import MediaReported from "./mediaReported/MediaReported.jsx";
+import MediaReported from "./MediaReported.jsx";
 
 
 const DashboardMedias = ( )=>{

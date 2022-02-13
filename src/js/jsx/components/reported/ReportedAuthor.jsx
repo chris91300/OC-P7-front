@@ -8,12 +8,12 @@ import ProfilImage from "../ProfilImage.jsx";
  * @param {string} author the media author 
  * @param {string} urlProfil the url of the picture of the author 
  */
-const MediaReportedAuthor = ( { author, urlProfil } )=>{
+const ReportedAuthor = ( { author, urlProfil } )=>{
 
 
     return(
-        <div className="media-reported__author">
-            <p>Auteur </p>
+        <div className="reported__author">
+            <p className="bold">Auteur </p>
             <p className="title">{author}</p>
             <ProfilImage url={urlProfil} />
         </div>
@@ -22,4 +22,4 @@ const MediaReportedAuthor = ( { author, urlProfil } )=>{
 }
 
 
-export default MediaReportedAuthor;
+export default ReportedAuthor;

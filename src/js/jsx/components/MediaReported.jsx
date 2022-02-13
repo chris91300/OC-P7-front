@@ -1,9 +1,9 @@
 
 import React from "react";
-import MediaReportedAuthor from "./MediaReportedAuthor.jsx";
-import MediaReportedButtons from "./MediaReportedButtons.jsx";
-import MediaReportedDate from "./MediaReportedDate.jsx";
-import MediaReportedPresentation from "./MediaReportedPresentation.jsx";
+import ReportedAuthor from "./reported/ReportedAuthor.jsx";
+import ReportedButtons from "./reported/ReportedButtons.jsx";
+import ReportedDate from "./reported/ReportedDate.jsx";
+import ReportedMedia from "./reported/ReportedMedia.jsx";
 
 
 /**
@@ -16,21 +16,22 @@ const MediaReported = ( { data } )=>{
     const { id, createdAt, title, text, urlImage } = data;
 
     return (
-        <div id={`media_reported_${id}`}  className="media-reported">
-            <MediaReportedAuthor
+        <div id={`media_reported_${id}`}  className="reported">
+            <ReportedAuthor
                 author={author.pseudo}
                 urlProfil={author.urlProfil}
             />
-            <MediaReportedDate
+            <ReportedDate
                 date={createdAt}
             />
-            <MediaReportedPresentation
+            <ReportedMedia
                 title={title}
                 description={text}
                 urlImage={urlImage}
             />
-            <MediaReportedButtons
+            <ReportedButtons
                 id={id}
+                type="media"
             />
         </div>
     )

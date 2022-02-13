@@ -18,7 +18,7 @@ import MediaAction from "./MediaAction.jsx";
  * Represent one media
  * @param {object} data the informations about the media
  */
-const Media = ( { data } )=>{
+const Media = ( { data, alone } )=>{
     
     const currentUser = useSelector( ( state ) => state.user );
     const admin = currentUser.admin;
@@ -32,6 +32,29 @@ const Media = ( { data } )=>{
     const [ mediaReported, setMediaReported ] = useState( reported );
     const urlApiLikeMedia = `http://localhost:3000/api/medias/${id}/like`;
     const urlApiReportedMedia = `http://localhost:3000/api/medias/${id}/reported`;
+
+
+    /**
+     * construct the clasName of the media
+     * @returns {string} className the className of the media 
+     */
+    const MediaClass = ()=>{
+        let className = "media";
+
+        if ( mediaReported ) {
+
+            className = className + " reported";
+
+        }
+
+        if ( alone ) {
+            
+            className = className + " alone";
+
+        }
+
+        return className;
+    }
   
 
 
@@ -147,7 +170,7 @@ const Media = ( { data } )=>{
 
 
     return (
-        <div className={mediaReported ? "media reported" : "media"}>
+        <div className={MediaClass()}>
             <MediaAuthor
                 urlProfil={urlProfil}
                 pseudo={pseudo}
