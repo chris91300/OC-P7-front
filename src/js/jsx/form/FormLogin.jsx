@@ -119,6 +119,11 @@ const FormLogin = ( { name, className } ) => {
      */
     const submit = (e) => {
         e.preventDefault();
+        /*console.log("submit login")
+        console.log("pseudo => "+fields.pseudo.value)
+        console.log("pseudo is valid => "+fields.pseudo.isValid)
+        console.log("password => "+fields.password.value)
+        console.log("password is valid => "+fields.password.isValid)*/
         if (
             fields.pseudo.isValid &
             fields.password.isValid
@@ -157,7 +162,7 @@ const FormLogin = ( { name, className } ) => {
             let element = document.getElementById(name+"_"+key);
             //console.log(element)
             let value = element.value;
-            /*console.log("on est dans LOGIN")
+           /* console.log("on est dans LOGIN")
             console.log("key => " + key)
             console.log("value => " + value)
             console.log("regex => "+formFields[key].regex)*/
@@ -175,7 +180,7 @@ const FormLogin = ( { name, className } ) => {
             }
 
         })
-        //console.log("le form est valid ? => "+formIsValid)
+       // console.log("le form est valid ? => "+formIsValid)
         setFields(newFields);
         return formIsValid;
     }
@@ -223,7 +228,7 @@ const FormLogin = ( { name, className } ) => {
 
         if ( redirect ) {
             
-            return <Navigate to={urlMenu} />
+            return <Navigate to={"/voiture"} />
             
         } else {
             

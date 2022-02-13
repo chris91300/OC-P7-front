@@ -1,0 +1,18 @@
+
+#page_404{
+    max-width: 600px;
+    background-color: white;
+    justify-content: center;
+
+
+    & p{
+        font: 1.2rem;
+        color: $primary_color_darken;
+    }
+
+    & a{
+        color: $primary_color_darken;
+        
+
+    }
+}
