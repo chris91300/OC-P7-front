@@ -17,7 +17,7 @@ const HeaderApp = ( { showMenuForMobile } )=>{
         <header>
             <img src={logo}></img>
             <nav>
-                <div className="nav__mobile" onClick={()=> showMenuForMobile()}>
+                <div className="nav__mobile" onClick={()=> showMenuForMobile("show")}>
                     <ProfilImage />
                 </div>
 

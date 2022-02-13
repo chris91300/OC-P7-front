@@ -24,11 +24,11 @@
 
 
 @keyframes showMenuMobile {
-    from {left : 100%}
+    //from {left : 100%}
     to {left: 0}
 }
 
 @keyframes hideMenuMobile {
-    from {left : 0}
+  //  from {left : 0}
     to {left: 100%}
 }

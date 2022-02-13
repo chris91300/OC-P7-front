@@ -12,24 +12,24 @@ import MenuMobile from "./MenuMobile.jsx";
 const AppLayout = ( { title, children } )=>{
 
     
-    const [ showMenuMobile, setshowMenuMobile ] = useState(false)
+    const [ showMenuMobile, setshowMenuMobile ] = useState("hide")
    
 
     /**
-     * show or hide navigation container for mobile
+     * show or hide navigation container for mobile 
      */
-    const showMenuForMobile = ()=>{
-        let show = showMenuMobile ? false : true;
-        setshowMenuMobile(show);
+    const toogleMenuForMobile = (status)=>{
+        //let show = showMenuMobile ? false : true;
+        setshowMenuMobile(status);
     }
 
     return(
         <>
-        <HeaderApp showMenuForMobile={ showMenuForMobile }/>
+        <HeaderApp showMenuForMobile={ toogleMenuForMobile }/>
         <main>
             <h1>{ title }</h1>
             {children}
-            {showMenuMobile ? <MenuMobile /> : null }
+            <MenuMobile status={showMenuMobile} hideMenuForMobile={ toogleMenuForMobile }/>
         </main>
         <Footer />
         </>
