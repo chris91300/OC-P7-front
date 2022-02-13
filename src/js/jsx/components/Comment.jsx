@@ -8,6 +8,11 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import useFetch from "../../utils/fetch";
 
+
+/**
+ * represente one comment
+ * @param {object} data informations about the comment 
+ */
 const Comment = ( { data } )=>{    
     
     const commentId = data.id;

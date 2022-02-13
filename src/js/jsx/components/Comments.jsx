@@ -23,6 +23,7 @@ const Comments = ({ mediaId })=>{
     const urlApiGetComments = "http://localhost:3000/api/comments/"+mediaId;
     const [ loading, setLoading ] = useState(true)
     const [ userWantToSeeComments, setUserWantToSeeComments ] = useState(false)
+    const [ error, setError ] = useState("")
     let comments = useSelector( ( state ) => state.comments)
     let token = useSelector( ( state ) => state.user.token)
     comments = comments[mediaId];
@@ -51,6 +52,7 @@ const Comments = ({ mediaId })=>{
 
         } catch (err){
             console.log(err)
+            setError(err.message)
         }
         
 
@@ -64,6 +66,7 @@ const Comments = ({ mediaId })=>{
      * show comments if there are any
      */
      const areThereAnyComment = ()=>{
+         
         return comments.length === 0 ? <p className="no-comment">aucun commentaire</p> : showComments()
     }
 
@@ -129,6 +132,7 @@ const Comments = ({ mediaId })=>{
     return (
         <>
         {loading ? <Loading size="small" /> : areThereAnyComment()}
+        <p className="error">{error}</p>
         </>)
 }
 

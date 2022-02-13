@@ -7,7 +7,7 @@ import ReportedMedia from "./reported/ReportedMedia.jsx";
 
 
 /**
- * 
+ * represente one reported media
  * @param {object} data informations about the media
  */
 const MediaReported = ( { data } )=>{

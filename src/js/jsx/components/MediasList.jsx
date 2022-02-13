@@ -34,6 +34,7 @@ const MediasList = ()=>{
             }
         }
         try{
+            
             let mediasList = await useFetch(urlGetMedias, options);
 
             dispatch({

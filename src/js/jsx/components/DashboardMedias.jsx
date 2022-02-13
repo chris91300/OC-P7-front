@@ -7,24 +7,18 @@ import Loading from "./Loading.jsx";
 import MediaReported from "./MediaReported.jsx";
 
 
+/**
+ * list of the reported medias in dashboard admin
+ */
 const DashboardMedias = ( )=>{
 
     const urlApiAdminGetMediasReported = "http://localhost:3000/api/admin/medias/reported";
     const userToken = useSelector((state) => state.user.token);
     const mediasReported = useSelector( ( state ) => state.medias_reported );
     const [ isLoading, setIsLoading ] = useState(true);
+    const [ error, setError ] = useState("");
     const dispatch = useDispatch();
     
-
-    /**
-     * OBJECTIF :
-     * 1 RÉGLER LE PROBLÈME DE LOGIN SI ENTER KEY ET PASSWORD FAUX
-     * 2 FINIR LE DASHBOARD
-     * POUR LEMOMENT LES ROUTES FONCTIONNENT. 
-     */
-
-
-
 
     /**
      * get all medias reported when component did mount
@@ -50,6 +44,7 @@ const DashboardMedias = ( )=>{
         } catch(err){
 
             console.log(err)
+            setError(err.message)
             setIsLoading(false)
 
         } finally{
@@ -61,16 +56,23 @@ const DashboardMedias = ( )=>{
 
     const renderMedias = ()=>{
 
-        if ( Object.keys(mediasReported).length == 0 ) {
+        if ( error != "" ){
 
-            return <p>Aucun media n'a été signalé.</p>
+            return <p className="error">{ error }</p>
 
         } else {
 
-            return Object.entries( mediasReported ).map( ( [ index, media ] ) => <MediaReported data={media} key={media.id} />)
+            if ( Object.keys(mediasReported).length == 0 ) {
+
+                return <p>Aucun media n'a été signalé.</p>
+    
+            } else {
+    
+                return Object.entries( mediasReported ).map( ( [ index, media ] ) => <MediaReported data={media} key={media.id} />)
+    
+            }
 
         }
-        
 
     }
 

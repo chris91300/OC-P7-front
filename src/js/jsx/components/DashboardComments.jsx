@@ -7,6 +7,9 @@ import CommentReported from "./CommentReported.jsx";
 import { useDispatch } from "react-redux";
 
 
+/**
+ * the list of all reported comments in dashboard admin
+ */
 const DashboardComments = ( )=>{
 
     const urlApiAdminGetCommentsReported = "http://localhost:3000/api/admin/comments/reported";
@@ -14,9 +17,7 @@ const DashboardComments = ( )=>{
     const commentsReported = useSelector( ( state ) => state.comments_reported );
     const dispatch = useDispatch();
     const [ isLoading, setIsLoading ] = useState(true);
-
-    console.log("comments_reported")
-    console.log(commentsReported)
+    const [ error, setError ] = useState("");
 
 
     /**
@@ -44,6 +45,7 @@ const DashboardComments = ( )=>{
         } catch(err){
 
             console.log(err)
+            setError(err.message)
             setIsLoading(false)
 
         } finally{
@@ -55,16 +57,23 @@ const DashboardComments = ( )=>{
 
     const renderComments = ()=>{
 
-        if ( Object.keys(commentsReported).length == 0 ) {
+        if ( error != "" ) {
 
-            return <p>Aucun commentaire n'a été signalé.</p>
+            return <p className="error">{ error }</p>
 
         } else {
 
-            return Object.entries( commentsReported ).map( ( [ index, comment ] ) => <CommentReported data={comment} key={comment.id} />)
+            if ( Object.keys(commentsReported).length == 0 ) {
+
+                return <p>Aucun commentaire n'a été signalé.</p>
+    
+            } else {
+    
+                return Object.entries( commentsReported ).map( ( [ index, comment ] ) => <CommentReported data={comment} key={comment.id} />)
+    
+            }
 
         }
-        
 
     }
 

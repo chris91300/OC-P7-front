@@ -1,6 +1,13 @@
 
 import React from "react";
 
+
+/**
+ * the container of 2 buttons
+ * admin can check the reported medias or reported comments
+ * @param {function} showMediasReported callback for show medias reported
+ * @param {function} showCommentsReported callback for show comments reported
+ */
 const DashboardNavigator = ( { showMediasReported, showCommentsReported } )=>{
 
 
