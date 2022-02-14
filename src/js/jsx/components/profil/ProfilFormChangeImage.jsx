@@ -1,11 +1,10 @@
 
-import React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import Field from "../../form/Field.jsx";
 import ButtonSubmit from "../../form/ButtonSubmit.jsx";
-import { useState } from "react";
-import { useSelector } from "react-redux";
 import useFetch from "../../../utils/fetch";
-import { useDispatch } from "react-redux";
 
 // default fields value
 const defautlFields = {
@@ -15,6 +14,12 @@ const defautlFields = {
     }
 }
 
+
+/**
+ * form for change the picture of the user profil
+ * @param {function} hideForm callback for hide the form 
+ * @returns 
+ */
 const ProfilFormChangeImage = ( { hideForm } )=>{
     
     const dispatch = useDispatch();

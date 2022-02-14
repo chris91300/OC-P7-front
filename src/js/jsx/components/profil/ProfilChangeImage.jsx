@@ -1,24 +1,25 @@
 
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import { BsFillCameraFill } from "react-icons/bs";
-import Input from '../../form/Input.jsx';
-import { useState } from "react";
+
 import ProfilFormChangeImage from "./ProfilFormChangeImage.jsx";
 
+
+/**
+ * Component allow to change the picture of the profil user
+ */
 const ProfilChangeImage = ()=>{
 
 
-    const user = useSelector( ( state ) => state.user );
-    const { lastName, firstName, pseudo, urlProfil } = user;
     const [ showForm, setShowForm ] = useState(false);
 
-  
+      
 
-    
-
+    /**
+     * return the good component
+     */
     const renderComponents = ()=>{
-        console.log("showform => "+showForm)
+        
         if ( showForm ) {
 
             return <ProfilFormChangeImage hideForm={ ()=>setShowForm(false) }/>;

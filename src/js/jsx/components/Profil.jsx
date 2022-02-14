@@ -7,11 +7,15 @@ import ProfilDeleteUser from "./profil/ProfilDeleteUser.jsx";
 import ProfilOneData from "./profil/ProfilOneData.jsx";
 
 
+/**
+ * the profil of the current user
+ * show informations about him
+ */
 const Profil = ()=>{
 
 
     const user = useSelector( ( state ) => state.user );
-    const { lastName, firstName, pseudo, urlProfil } = user;
+    const { lastName, firstName, pseudo } = user;
 
 
     return(

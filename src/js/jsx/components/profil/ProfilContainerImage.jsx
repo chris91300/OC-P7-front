@@ -3,6 +3,9 @@ import React from "react";
 import ProfilImage from "../ProfilImage.jsx";
 
 
+/**
+ * contains the big picture
+ */
 const ProfilContainerImage = ()=>{
 
     return(

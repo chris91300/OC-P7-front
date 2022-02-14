@@ -7,27 +7,42 @@ import useFetch from "../../../utils/fetch.js";
 import { useDispatch } from "react-redux";
 
 
-
+/**
+ * form for remove definitively the user of the database
+ * @param {function} hideForm  callback allow to hide the form
+ */
 const ProfilFormDeleteUser = ( { hideForm } )=>{
 
     const user = useSelector( ( state ) => state.user);
     const [ disconnected, setDisconnected ] = useState(false);
+    const [ error, setError ] = useState("");
     const dispatch = useDispatch();
     const userId = user.id;
     const token = user.token;
+
+    const urlProfil = user.urlProfil;
     const urlDeleteUser = `http://localhost:3000/api/users/${userId}/delete`;
 
 
+    /**
+     * submit the form in order to delete user
+     * @param {object} e the event object
+     */
     const submit = async (e) => {
-        e.preventDefault();
-        console.log("on delete user")
+        e.preventDefault();        
 
+        let body = {
+            urlProfil : urlProfil
+        }
+        
         let options = {
             method : 'DELETE',
             headers: {
                 'Accept': 'application/json',
+                'Content-Type': 'application/json',
                 'Authorization' : 'Bearer '+token
-            }
+            },
+            body : JSON.stringify(body)
         }
 
         try{
@@ -37,13 +52,14 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
             disconnect();
             
         } catch (err){
+
             setError(err.message)
             console.log(err.message)
         }
     }
 
      /**
-     * disconnect the user
+     * disconnect the user after deleted him
      */
       const disconnect = async (  )=>{
         console.log("on se déconnecte")
@@ -67,12 +83,15 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
                 setDisconnected(true)
             }
         } catch(err){
-            console.log(err)
+            setDisconnected(true)
         }
     }
 
 
 
+    /**
+     * return the form
+     */
     const renderForm = ()=>{
 
         return(
@@ -87,6 +106,7 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
                     <button className="like-submit" onClick={()=> hideForm()}>annuler</button>
     
                 </div>      
+                { error != "" ? <p className="error">{ error }</p> : null }
     
                     
     

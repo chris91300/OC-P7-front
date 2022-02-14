@@ -1,12 +1,14 @@
 
 import React from "react";
 import { useState } from "react";
-
 import { FaUserAltSlash } from "react-icons/fa";
+
 import ProfilFormDeleteUser from "./ProfilFormDeleteUser.jsx";
 
 
-
+/**
+ * Contain the possibility to delete the user profil
+ */
 const ProfilDeleteUser = ()=>{
 
     const [ showForm, setShowForm ] = useState(false);
@@ -14,7 +16,9 @@ const ProfilDeleteUser = ()=>{
   
 
     
-
+    /**
+     * return the good component
+     */
     const renderComponents = ()=>{
         
         if ( showForm ) {
