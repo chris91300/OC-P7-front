@@ -15,6 +15,9 @@ import DashboardNavigator from "../components/DashboardNavigator.jsx";
 const Dashboard = ()=>{
 
 
+    /**
+     * show the container of reported medias and hide the container of reported comments
+     */
     const showMediasReported = ()=>{
         let adminMediasReportedElement = document.getElementById("admin_medias_reported");
         let adminCommentsReportedElement = document.getElementById("admin_comments_reported");
@@ -29,6 +32,9 @@ const Dashboard = ()=>{
         }
     }
 
+    /**
+     * show the container of reported comments and hide the container of reported media
+     */
     const showCommentsReported = ()=>{
         
         let adminMediasReportedElement = document.getElementById("admin_medias_reported");

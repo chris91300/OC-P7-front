@@ -9,6 +9,10 @@ header{
 
     &#header_accueil{
         flex-direction: column;
+
+        @media screen and (min-width: map-get($breakpoints, "mobile-landscape")){
+            flex-direction: row;
+        }
     }
 
     @media screen and (min-width: map-get($breakpoints, "mobile-landscape")){

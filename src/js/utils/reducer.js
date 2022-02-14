@@ -37,6 +37,20 @@ function Reducer(state = initialState, action){
            
 
 
+        case "SET_USER_PICTURE":
+            console.log("set user picture")
+            if( typeof action.value === "string")
+            {console.log("c un string")
+            console.log(action.value)
+                let newUser = {...state.user};
+
+                newUser.urlProfil = action.value;
+                console.log(newUser)
+                return {...state, user : newUser}
+            }
+            else { return state}
+
+
 
         case "SET_MEDIAS":
             if( typeof action.value === "object")

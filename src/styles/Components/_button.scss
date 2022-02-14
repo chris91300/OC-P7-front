@@ -9,7 +9,7 @@
 
 //submit input
 
-input[type=submit]{
+input[type=submit], button.like-submit{
     border-radius: 20px;
     background-color: white;
     border-color: $primary_color_darken;

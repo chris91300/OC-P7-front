@@ -13,7 +13,10 @@
         max-width: 100%;
 
         @media screen and (min-width: map-get($breakpoints, "tablette")){
-            margin-left: 190px;
+            &:not(.section-profil){
+                margin-left: 190px;
+            }
+            
         }
         
     }

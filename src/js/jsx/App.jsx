@@ -8,6 +8,7 @@ import Medias from './pages/Medias.jsx';
 import Accueil from './pages/Accueil.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Page404 from './pages/Page404.jsx';
+import PageProfil from './pages/PageProfil.jsx';
 
 
 /**
@@ -22,6 +23,7 @@ export function App(){
 
                 <Routes>
 
+                    <Route path="/profil" element={ <PageProfil /> } />
                     <Route path="/menu" element={ <Menu /> } />
                     <Route path="/medias" element={ <Medias /> } />
                     <Route path="/admin/dashboard" element={ <Dashboard /> } />
