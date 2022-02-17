@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from "react-router-dom";
+
 import Field from "./Field.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
 import formFields from "../../utils/formFields";
 import useFetch from "../../utils/fetch.js";
-import { useDispatch } from "react-redux";
+import Loading from '../components/Loading.jsx';
 
 
 // default user value
@@ -34,7 +35,8 @@ const FormLogin = ( { name, className } ) => {
     const urlMenu = "/menu";
 
     const [ redirect, setRedirect ] = useState(false);
-    const [ fields, setFields] = useState({...defautlFields})
+    const [ fields, setFields] = useState({...defautlFields});
+    const [ isLoading, setIsLoading ] = useState(false);
     const [ errorMessage, setErrorMessage ] = useState("");
     const user = useSelector((state)=> state.user);    
     const dispatch = useDispatch();
@@ -119,27 +121,32 @@ const FormLogin = ( { name, className } ) => {
      */
     const submit = (e) => {
         e.preventDefault();
-        if (
-            fields.pseudo.isValid &
-            fields.password.isValid
-            ) {
+        if ( !isLoading ) {
+
+        
+            if ( fields.pseudo.isValid & fields.password.isValid) {
                 //console.log("AAA")
+                setErrorMessage("");
+                setIsLoading(true)
                 loginUser();
 
             } else {
 
                 let formIsValid = checkInput();
                 if (formIsValid){
-                   // console.log("BBB")
+                    // console.log("BBB")
+                    setErrorMessage("");
+                    setIsLoading(true)
                     loginUser();
 
                 } else {
-                   // console.log("CCC")
+                    // console.log("CCC")
                     setErrorMessage("formulaire non valide.");
                     
                 }
                 
             }
+        }
             
 
     }
@@ -204,11 +211,15 @@ const FormLogin = ( { name, className } ) => {
 
             let user = await useFetch(loginUserUrl, options)
             dispatch({type : "SET_USER", value : user})
-            let response = await useFetch("/session/set", options)            
+            let response = await useFetch("/session/set", options)  
+            
+            setIsLoading(false)          
             setRedirect(true)
             
 
         } catch (err){
+            
+            setIsLoading(false)  
             setErrorMessage(err.message)
             console.log(err.message)
         }
@@ -233,7 +244,8 @@ const FormLogin = ( { name, className } ) => {
                         <h2>SE CONNECTER</h2>
                         <Field label="Pseudo" type="text" name="pseudo" formName={name} returnValueToForm={changeFields} />
                         <Field label="Password" type="password" name="password" formName={name} returnValueToForm={changeFields} />
-                        <ButtonSubmit onClick={submit} />
+                        <ButtonSubmit onClick={submit} /> 
+                        {isLoading ? <Loading /> : null }
                         <p className="form__error">{ errorMessage }</p>
                     </form>
                     

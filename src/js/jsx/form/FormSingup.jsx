@@ -6,6 +6,7 @@ import ButtonSubmit from "./ButtonSubmit.jsx";
 import formFields from "../../utils/formFields";
 import { useDispatch } from "react-redux";
 import useFetch from "../../utils/fetch.js";
+import Loading from '../components/Loading.jsx';
 
 // default user value
 const defautlFields = {
@@ -43,6 +44,7 @@ const FormSignup = ( { name } ) => {
 
     const [ fields, setFields] = useState({...defautlFields})
     const [ errorMessage, setErrorMessage ] = useState("");
+    const [ isLoading, setIsLoading ] = useState(false);
     const dispatch = useDispatch();
 
 
@@ -106,10 +108,14 @@ const FormSignup = ( { name } ) => {
             fields.email.isValid &
             fields.password.isValid
             ) {
+                setErrorMessage("");
+                setIsLoading(true)
                 signupUser();
             } else {
                 let formIsValid = checkInput();
                 if (formIsValid){
+                    setErrorMessage("");
+                    setIsLoading(true)
                     signupUser();
                 } else {
                     
@@ -183,9 +189,12 @@ const FormSignup = ( { name } ) => {
                 password : fields.password.value
             }
 
+            
+            setIsLoading(false)
             dispatch({type : 'SET_USER', value : user})
 
         } catch (err){
+            setIsLoading(false)
             setErrorMessage(err.message)
             console.log(err.message)
         }
@@ -204,6 +213,7 @@ const FormSignup = ( { name } ) => {
             <Field label="Email" type="email" name="email" formName={name} returnValueToForm={changeFields} />
             <Field label="Password" type="password" name="password" formName={name} returnValueToForm={changeFields} />
             <ButtonSubmit onClick={submit} />
+            {isLoading ? <Loading /> : null }
             <p className="form__error">{ errorMessage }</p>
         </form>
         

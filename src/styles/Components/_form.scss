@@ -55,11 +55,11 @@
         border-right: 2px solid black;
 
         &.hide{
-            animation: hideForm 2s 0s forwards;
+            animation: hideForm 1s 0s forwards;
         }
 
         &.show{
-            animation: showForm 2s 0s forwards;
+            animation: showForm 1s 0s forwards;
         }
     }
 }
@@ -73,8 +73,16 @@ form{
     flex-direction: column;
     align-items: center;
 
-        & .error{
-             text-align: center;
-        }
+    & .error{
+            text-align: center;
+    }
+
+    & .loading{
+        margin: 0;
+        width: 20px;
+        height: 20px;
+        border-width: 3px;
+    }
     
+
 }
