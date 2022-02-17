@@ -24,6 +24,21 @@ const formFields = {
         errorMessage : "Votre mot de passe a un format non valid. Min 8 charactères, 1 majuscule, 1 chiffre, 1 charactère spécial ( !@#$%^&* )"
     },
 
+    oldPassword : {
+        regex : /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/,
+        errorMessage : "Votre mot de passe a un format non valid. Min 8 charactères, 1 majuscule, 1 chiffre, 1 charactère spécial ( !@#$%^&* )"
+    },
+
+    newPassword : {
+        regex : /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/,
+        errorMessage : "Votre mot de passe a un format non valid. Min 8 charactères, 1 majuscule, 1 chiffre, 1 charactère spécial ( !@#$%^&* )"
+    },
+
+    verificationNewPassword : {
+        regex : /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/,
+        errorMessage : "Votre mot de passe a un format non valid. Min 8 charactères, 1 majuscule, 1 chiffre, 1 charactère spécial ( !@#$%^&* )"
+    },
+
     title : {
         regex : /[^\=\{\}\\\/]/,
         errorMessage : "Votre titre a un format non valide. pas de signe = { } \\ /."

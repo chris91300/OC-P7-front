@@ -5,6 +5,7 @@ import ProfilChangeImage from "./profil/ProfilChangeImage.jsx";
 import ProfilContainerImage from "./profil/ProfilContainerImage.jsx";
 import ProfilDeleteUser from "./profil/ProfilDeleteUser.jsx";
 import ProfilOneData from "./profil/ProfilOneData.jsx";
+import ProfilChangePassword from "./profil/ProfilChangePassword.jsx";
 
 
 /**
@@ -25,6 +26,7 @@ const Profil = ()=>{
             <ProfilOneData label="Prénom :" value={firstName} />
             <ProfilOneData label="Pseudo :" value={pseudo} />
             <ProfilChangeImage />
+            <ProfilChangePassword />
             <ProfilDeleteUser />
         </div>
     )

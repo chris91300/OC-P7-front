@@ -47,5 +47,10 @@ button, input[type=submit]{
 }
 
 .error{
-    color: red;
+    color: $error_color;
+}
+
+.success{
+    color: $success_color;
+    text-align: center;
 }
