@@ -9,7 +9,16 @@ router.get("/session", GET_SESSION);
 
 router.post("/session/set", SET_SESSION);
 
-router.delete("/session/delete", DELETE_SESSION)
+router.delete("/session/delete", DELETE_SESSION);
+
+/**
+ * ERROR 404
+ * redirect to '/'
+ */
+router.get(/.*/, (req, res) =>{
+
+    res.status(301).redirect("/")
+  })
 
 
 

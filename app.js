@@ -45,7 +45,7 @@ app.use(helmet.contentSecurityPolicy({
 
 app.set('views', path.join(__dirname, 'views')); 
 app.set('view engine', 'ejs');
-app.use(express.static("dist"));// voir comment indiquer "/dist"
+app.use(express.static("dist"));
 app.use('/', appRoutes);
 
 
