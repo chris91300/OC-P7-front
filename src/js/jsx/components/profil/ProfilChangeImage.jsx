@@ -26,12 +26,14 @@ const ProfilChangeImage = ()=>{
 
         } else {
 
-            return <button
-                        className="btn__no-style"
-                        onClick={()=>setShowForm(true) }
-                    >
-                        <BsFillCameraFill />modifier votre photo de profil
+            return(
+                <div className="profil__data profil-item">
+                    <BsFillCameraFill />
+                    <button className="btn__no-style" onClick={()=>setShowForm(true) }>
+                        modifier votre photo de profil
                     </button>
+                </div>
+            )
 
         }
     }

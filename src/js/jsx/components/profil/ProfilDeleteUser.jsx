@@ -27,12 +27,17 @@ const ProfilDeleteUser = ()=>{
 
         } else {
 
-            return <button
-                        className="btn__no-style"
-                        onClick={()=>setShowForm(true) }
-                    >
-                        <FaUserAltSlash />supprimer votre profil
+            return (
+                <div className="profil__data profil-item">
+                    <FaUserAltSlash />
+                    <button className="btn__no-style" onClick={()=>setShowForm(true) } >
+                        supprimer votre profil
                     </button>
+                </div>
+
+            )
+            
+            
 
         }
     }

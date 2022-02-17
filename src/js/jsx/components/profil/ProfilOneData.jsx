@@ -11,7 +11,7 @@ const ProfilOneData = ( { label, value } )=>{
 
 
     return(
-        <div className="profil__data">
+        <div className="profil__data profil-item">
             <p className="bold">{ label }</p>
             <p>{ value }</p>
         </div>
