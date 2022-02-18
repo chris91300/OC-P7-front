@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import formFields from "../../utils/formFields";
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 
 
 
@@ -13,6 +14,7 @@ import formFields from "../../utils/formFields";
 const Input = ( { type, name, onBlur, onFocus, formName, placeholder } ) => {
     
     const [ value, setValue ] = useState("");
+    const [ typeInput, setTypeInput ] = useState(type);
 
     //  update the input value
     const handleChange = (event)=>{        
@@ -30,8 +32,31 @@ const Input = ( { type, name, onBlur, onFocus, formName, placeholder } ) => {
         
     }
 
-    return <input 
-                type={type}
+
+
+    const changeType = ()=>{
+
+        if ( typeInput === "password" ) {
+            setTypeInput("text")
+        } else {
+            setTypeInput("password")
+        }
+    }
+
+
+    const getIconEye = ()=>{
+
+        if ( typeInput === "password"){
+            return <AiFillEye onClick={changeType}/>
+        }  else {
+            return <AiFillEyeInvisible onClick={changeType}/>
+        }
+    }
+
+    return (
+        <>
+            <input 
+                type={type != "password" ? type : typeInput}
                 id={`${formName}_${name}`}
                 name = {name}
                 placeholder={placeholder}
@@ -40,6 +65,10 @@ const Input = ( { type, name, onBlur, onFocus, formName, placeholder } ) => {
                 onBlur={checkValue}
                 onFocus={onFocus}
             ></input>
+            { type === "password" ? getIconEye() : null }
+
+        </>
+    )
 }
 
 

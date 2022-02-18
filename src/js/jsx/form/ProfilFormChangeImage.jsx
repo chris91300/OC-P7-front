@@ -58,7 +58,7 @@ const ProfilFormChangeImage = ( { hideForm } )=>{
 
         if ( !isLoading ) {
 
-            setErrorMessage("");
+            setError("");
             setIsLoading(true);
         
             if ( fields["profil-image"].isValid ) {

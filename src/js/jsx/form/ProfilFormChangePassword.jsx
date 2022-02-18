@@ -67,7 +67,7 @@ const ProfilChangePassword = ( { hideForm } )=>{
         
         if ( !isLoading ) {
 
-            setErrorMessage("");
+            setError("");
             setIsLoading(true);
         
             let oldPasswordIsValid = fields.oldPassword.isValid;

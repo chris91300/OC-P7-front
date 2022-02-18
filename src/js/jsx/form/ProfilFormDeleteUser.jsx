@@ -35,7 +35,7 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
         
         if ( !isLoading ) {
 
-            setErrorMessage("");
+            setError("");
             setIsLoading(true)
         
 
