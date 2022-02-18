@@ -74,7 +74,7 @@ const Comment = ( { data } )=>{
                 <div className={commentIsReported ? "comment__informations__comment reported" :"comment__informations__comment" }>
                     <p><span className="bold">{ authorPseudo }</span></p>
                     <p><span className="bold">{ `posté le ${createAtDate} à ${createAtHours}` }</span></p>
-                    <p>{ text }</p>
+                    <p className="comment__informations__comment_text">{ text }</p>
                 </div>
 
                 <div className="comment__informations__buttons">
