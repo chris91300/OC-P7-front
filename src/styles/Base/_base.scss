@@ -54,3 +54,16 @@ button, input[type=submit]{
     color: $success_color;
     text-align: center;
 }
+
+.warning{
+    color: red;
+}
+
+
+input:not([type=file]), textarea{
+    border-radius: 20px;
+    padding: 5px;
+    border-color: $primary_color_darken;
+    border-style: solid;
+    border-width: 2px;
+}

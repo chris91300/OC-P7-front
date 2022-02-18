@@ -64,7 +64,7 @@ const Comment = ( { data } )=>{
         
     }
 
-
+ 
     return(
         <div className="comment">
             <div className="comment__profil">

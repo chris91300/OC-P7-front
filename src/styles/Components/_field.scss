@@ -2,8 +2,6 @@
 .field{
     display: flex;
     align-items: flex-start;
-    /*align-self: stretch;*/
-    /*padding: 0 20px;*/
 
     &__input{
         display: flex;
@@ -20,8 +18,9 @@
         & svg {
             position: absolute;
             font-size: 1.5em;
-            right: 0;
             cursor: pointer;
+            top: 4px;
+            right: 3px;
         }
         
 

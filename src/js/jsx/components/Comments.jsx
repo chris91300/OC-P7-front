@@ -23,6 +23,7 @@ const Comments = ({ mediaId })=>{
     const urlApiGetComments = "http://localhost:3000/api/comments/"+mediaId;
     const [ loading, setLoading ] = useState(true)
     const [ userWantToSeeComments, setUserWantToSeeComments ] = useState(false)
+    const [ scrollTo, setScrollTo ] = useState(false)
     const [ error, setError ] = useState("")
     let comments = useSelector( ( state ) => state.comments)
     let token = useSelector( ( state ) => state.user.token)
@@ -61,6 +62,29 @@ const Comments = ({ mediaId })=>{
     }, [])
 
     
+    /**
+     * if user close the comments list, scroll to the top of the comments
+     */
+    useEffect(()=>{
+        
+        if ( scrollTo) {    
+            
+            let userWantToSee = !userWantToSeeComments;
+
+            if ( !userWantToSee) {
+                
+                let elementId = `media_${mediaId}_comments`;
+                let element = document.getElementById(elementId);
+                let position = element.getBoundingClientRect();
+                let positionY = position.y;
+            
+                scroll(0, positionY);
+                setScrollTo(false);
+            }
+        }
+
+        return ()=>{};
+    }, [scrollTo])
 
     /**
      * show comments if there are any
@@ -97,16 +121,11 @@ const Comments = ({ mediaId })=>{
         let userWantToSee = !userWantToSeeComments;
         
         setUserWantToSeeComments(userWantToSee);
+        
 
         if ( !userWantToSee) {
-            let elementId = `media_${mediaId}_comments`;
-            let element = document.getElementById(elementId);
-            let position = element.getBoundingClientRect();
-            let positionY = position.y;
-        
-            scroll(0, positionY);
+            setScrollTo(true);
         }
-
 
         
     }

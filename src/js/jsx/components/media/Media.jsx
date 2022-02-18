@@ -173,7 +173,7 @@ const Media = ( { data, alone } )=>{
 
 
     return (
-        <div className={MediaClass()}>
+        <div className={MediaClass()} id={`media_${id}`}>
             <MediaAuthor
                 urlProfil={urlProfil}
                 pseudo={pseudo}

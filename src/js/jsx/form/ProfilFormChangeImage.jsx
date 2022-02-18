@@ -57,42 +57,51 @@ const ProfilFormChangeImage = ( { hideForm } )=>{
         e.preventDefault();
 
         if ( !isLoading ) {
+            console.log("IMAGE ")
 
-            setError("");
-            setIsLoading(true);
-        
-            if ( fields["profil-image"].isValid ) {
+            if ( fields["profil-image"].value != "" ) {
 
-                let formData = new FormData();        
-                formData.append("image", fields["profil-image"].value)
-                formData.append("urlProfil", urlProfil)
+            
+                setError("");
+                setIsLoading(true);
+            
+                if ( fields["profil-image"].isValid ) {
+
+                    let formData = new FormData();        
+                    formData.append("image", fields["profil-image"].value)
+                    formData.append("urlProfil", urlProfil)
 
 
-                let options = {
-                    method : 'PUT',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Authorization' : 'Bearer '+token
-                    },
-                    body : formData
+                    let options = {
+                        method : 'PUT',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Authorization' : 'Bearer '+token
+                        },
+                        body : formData
+                    }
+
+                    try{
+                        
+                        let response = await useFetch(urlUpdatePicture, options);
+                        
+                        setIsLoading(false)
+                        dispatch({type : 'SET_USER_PICTURE', value : response.newUrlProfil })
+                        reset();
+                        
+                    } catch (err){
+
+                        setIsLoading(false)
+                        setError(err.message)
+                        console.log(err.message)
+                    }
+
+
                 }
 
-                try{
-                    
-                    let response = await useFetch(urlUpdatePicture, options);
-                    
-                    setIsLoading(false)
-                    dispatch({type : 'SET_USER_PICTURE', value : response.newUrlProfil })
-                    reset();
-                    
-                } catch (err){
-
-                    setIsLoading(false)
-                    setError(err.message)
-                    console.log(err.message)
-                }
-
-
+            } else {
+                setIsLoading(false)
+                setError("merci de choisir une image")
             }
         }
     }

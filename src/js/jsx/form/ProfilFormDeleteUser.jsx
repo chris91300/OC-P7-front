@@ -73,7 +73,7 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
      * disconnect the user after deleted him
      */
       const disconnect = async (  )=>{
-        console.log("on se déconnecte")
+        
         let options = {
             method : 'DELETE',
             headers: {
@@ -106,10 +106,10 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
     const renderForm = ()=>{
 
         return(
-            <form method="delete" action="#" className="profil__form">
+            <form method="delete" action="#" className="profil__form" >
     
-                <p>Tous les médias et commentaires que vous avez postés seront supprimés.</p>
-                <p>Êtes-vous sûre de vouloir supprimer votre profil ?</p>
+                <p className="warning">Tous les médias et commentaires que vous avez postés seront supprimés.</p>
+                <p className="warning">Êtes-vous sûre de vouloir supprimer votre profil ?</p>
     
                 <div className="profil__form__buttons">
     
