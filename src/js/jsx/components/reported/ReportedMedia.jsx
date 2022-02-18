@@ -2,6 +2,12 @@
 import React from "react";
 
 
+/**
+ * return the title, image and description of the media
+ * @param {string} title media title
+ * @param {string} urlImage media picture src
+ * @param {string} description media description
+ */
 const ReportedMedia = ( { title, urlImage, description } )=>{
 
     

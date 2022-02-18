@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
+
 import useFetch from "../../utils/fetch.js";
 import ButtonSimple from "../components/ButtonSimple.jsx";
 
@@ -51,7 +52,7 @@ const NavMenu = ()=>{
         return(
             <div className="nav__bigger-than-mobile">
                 {admin ? <Link to="/admin/dashboard">dashboard</Link> : null}
-                <Link to="/menu" title="voir la page des menus" >menus</Link>
+                <Link to="/menu" title="voir la page des menus" >menu</Link>
                 <Link to="/profil" title="voir mon profil" >profil</Link>
                 <ButtonSimple title="se déconnecter" onClick={disconnect}>se déconnecter</ButtonSimple>
             </div> 

@@ -101,12 +101,15 @@ const FormSignup = ( { name } ) => {
      */
     const submit = (e) => {
         e.preventDefault();
-        if (
-            fields.lastName.isValid &
-            fields.firstName.isValid &
-            fields.pseudo.isValid &
-            fields.email.isValid &
-            fields.password.isValid
+
+        if ( !isLoading ) {
+        
+            if (
+                fields.lastName.isValid &
+                fields.firstName.isValid &
+                fields.pseudo.isValid &
+                fields.email.isValid &
+                fields.password.isValid
             ) {
                 setErrorMessage("");
                 setIsLoading(true)
@@ -123,6 +126,7 @@ const FormSignup = ( { name } ) => {
                 }
                 
             }
+        }
 
 
     }

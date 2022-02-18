@@ -10,7 +10,7 @@ import useFetch from "../../utils/fetch.js";
 import Loading from '../components/Loading.jsx';
 
 
-// default user value
+// default user value 
 const defautlFields = {
     pseudo : {
         value : "",
@@ -125,7 +125,7 @@ const FormLogin = ( { name, className } ) => {
 
         
             if ( fields.pseudo.isValid & fields.password.isValid) {
-                //console.log("AAA")
+               
                 setErrorMessage("");
                 setIsLoading(true)
                 loginUser();
@@ -134,13 +134,13 @@ const FormLogin = ( { name, className } ) => {
 
                 let formIsValid = checkInput();
                 if (formIsValid){
-                    // console.log("BBB")
+                   
                     setErrorMessage("");
                     setIsLoading(true)
                     loginUser();
 
                 } else {
-                    // console.log("CCC")
+                    
                     setErrorMessage("formulaire non valide.");
                     
                 }
@@ -161,28 +161,24 @@ const FormLogin = ( { name, className } ) => {
         let newFields = {...fields};
         
         Object.entries(defautlFields).map(( [ key, data ]) => {
-            let element = document.getElementById(name+"_"+key);
-            //console.log(element)
-            let value = element.value;
-            /*console.log("on est dans LOGIN")
-            console.log("key => " + key)
-            console.log("value => " + value)
-            console.log("regex => "+formFields[key].regex)*/
+
+            let element = document.getElementById(name+"_"+key);            
+            let value = element.value;           
             
             if ( formFields[key].regex.test(value)){
-               // console.log("valide")
+               
                 fields[key].value = value;
                 fields[key].isValid = true;
                 
             } else {
-               // console.log("non valid")
+               
                 fields[key].value = value;
                 fields[key].isValid = false;
                 formIsValid = false;
             }
 
         })
-        //console.log("le form est valid ? => "+formIsValid)
+        
         setFields(newFields);
         return formIsValid;
     }

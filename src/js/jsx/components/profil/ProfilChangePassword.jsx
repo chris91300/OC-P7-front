@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { BsFillShieldLockFill } from "react-icons/bs";
 
-import ProfilFormChangePassword from "./ProfilFormChangePassword.jsx";
+import ProfilFormChangePassword from "../../form/ProfilFormChangePassword.jsx";
 
 
 /**

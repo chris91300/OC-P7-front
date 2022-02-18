@@ -1,10 +1,11 @@
 
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import Field from "./Field.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
-import { useDispatch } from "react-redux";
 import useFetch from "../../utils/fetch.js";
-import { useSelector } from "react-redux";
+import Loading from '../components/Loading.jsx';
 
 
 /**
@@ -37,6 +38,7 @@ const FormCreateMedia = ( { name, handleClick } ) => {
 
     const [ fields, setFields] = useState({...defautlFields})
     const [ errorMessage, setErrorMessage ] = useState("");
+    const [ isLoading, setIsLoading ] = useState(false);
     const medias = useSelector( ( state ) => state.medias);
     const user = useSelector( ( state ) => state.user);
     const dispatch = useDispatch();
@@ -65,17 +67,23 @@ const FormCreateMedia = ( { name, handleClick } ) => {
      */
     const submit = (e) => {
         e.preventDefault();
-        if (
-            fields.title.isValid &
-            fields.text.isValid &
-            fields.image.isValid 
+
+        if ( !isLoading ) {
+        
+            if (
+                fields.title.isValid &
+                fields.text.isValid &
+                fields.image.isValid 
             ) {
+                setErrorMessage("");
+                setIsLoading(true)
                 createMedia();
             } else {
                 setErrorMessage("formulaire non valide.")
                 console.log("form non valide même après verif")
                 
             }
+        }
 
 
     }
@@ -109,10 +117,12 @@ const FormCreateMedia = ( { name, handleClick } ) => {
             
             let media = await useFetch(createMediaUrl, options)
             
+            setIsLoading(false)
             dispatch({type : 'ADD_MEDIA', value : media })
             reset();
             
         } catch (err){
+            setIsLoading(false)
             setErrorMessage(err.message)
             console.log(err.message)
         }
@@ -122,7 +132,7 @@ const FormCreateMedia = ( { name, handleClick } ) => {
 
     /**
      * after create media and if request is valid
-     * reset fields and hide the form
+     * reset fields and hide the form 
      */
     const reset = ()=>{
 
@@ -144,6 +154,7 @@ const FormCreateMedia = ( { name, handleClick } ) => {
             <Field label="description" type="textarea" name="text" formName={name} returnValueToForm={changeFields} />
             <Field label="media" type="file" name="image" formName={name} returnValueToForm={changeFields} />
             <ButtonSubmit onClick={submit} />
+            {isLoading ? <Loading /> : null }
             <p className="error">{ errorMessage }</p>
         </form>
         

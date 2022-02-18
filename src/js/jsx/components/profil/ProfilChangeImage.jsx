@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { BsFillCameraFill } from "react-icons/bs";
 
-import ProfilFormChangeImage from "./ProfilFormChangeImage.jsx";
+import ProfilFormChangeImage from "../../form/ProfilFormChangeImage.jsx";
 
 
 /**

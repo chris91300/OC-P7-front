@@ -1,9 +1,11 @@
 
 import React, { useState } from "react";
-import Field from "../../form/Field.jsx";
-import ButtonSubmit from "../../form/ButtonSubmit.jsx";
 import { useSelector } from "react-redux";
-import useFetch from "../../../utils/fetch.js";
+
+import Field from "./Field.jsx";
+import ButtonSubmit from "./ButtonSubmit.jsx";
+import useFetch from "../../utils/fetch.js";
+import Loading from '../components/Loading.jsx';
 
 
 
@@ -33,6 +35,7 @@ const ProfilChangePassword = ( { hideForm } )=>{
     const [ fields, setFields] = useState({...defautlFields});
     const [ error, setError ] = useState("");
     const [ success, setSuccess ] = useState("");
+    const [ isLoading, setIsLoading ] = useState(false);
     const user = useSelector( ( state ) => state.user );
     const userId = user.id;
     const token = user.token;
@@ -61,28 +64,34 @@ const ProfilChangePassword = ( { hideForm } )=>{
      */
     const submit = (e) => {
         e.preventDefault();
-        c
-        let oldPasswordIsValid = fields.oldPassword.isValid;
-        let newPasswordIsValid = fields.newPassword.isValid;
-        let verificationNewPasswordIsValid = fields.verificationNewPassword.isValid;
-        let newPassword = fields.newPassword.value;
-        let verificationNewPassword = fields.verificationNewPassword.value;
+        
+        if ( !isLoading ) {
 
-        if ( oldPasswordIsValid & newPasswordIsValid & verificationNewPasswordIsValid ) {
+            setErrorMessage("");
+            setIsLoading(true);
+        
+            let oldPasswordIsValid = fields.oldPassword.isValid;
+            let newPasswordIsValid = fields.newPassword.isValid;
+            let verificationNewPasswordIsValid = fields.verificationNewPassword.isValid;
+            let newPassword = fields.newPassword.value;
+            let verificationNewPassword = fields.verificationNewPassword.value;
 
-            if ( newPassword === verificationNewPassword ) {
-                
-                sendNewPassword();
+            if ( oldPasswordIsValid & newPasswordIsValid & verificationNewPasswordIsValid ) {
 
+                if ( newPassword === verificationNewPassword ) {
+                    
+                    sendNewPassword();
+
+                } else {
+                    setIsLoading(false)
+                    setError("la verification du mot de passe a échoué.");
+
+                }
             } else {
-
-                setError("la verification du mot de passe a échoué.");
+                setIsLoading(false)
+                setError("form non valid");
 
             }
-        } else {
-
-            setError("form non valid");
-
         }
 
     }
@@ -120,11 +129,14 @@ const ProfilChangePassword = ( { hideForm } )=>{
 
             let response = await useFetch(urlChangePasswordUser, options)
 
+            setIsLoading(false)
             setError("");
             setSuccess(response.message);
             setTimeout(()=>{reset();}, 1500)
 
         } catch(err) {
+
+            setIsLoading(false)
             setError(err.message);
         }
         
@@ -178,6 +190,7 @@ const ProfilChangePassword = ( { hideForm } )=>{
 
             </div>
 
+            {isLoading ? <Loading /> : null }
             {error != "" ? <p className="error">{ error }</p> : null}
             {success != "" ? <p className="success">{ success }</p> : null}
             

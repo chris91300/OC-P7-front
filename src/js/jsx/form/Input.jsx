@@ -21,8 +21,7 @@ const Input = ( { type, name, onBlur, onFocus, formName, placeholder } ) => {
 
     //  verify if the input value is valid
     const checkValue = ()=>{
-        console.log("check value name =>"+name)
-        console.log(formFields[name])
+        
         let regex = formFields[name].regex;
         let errorMessage = value === "" ? "" : formFields[name].errorMessage;
         let isValid = regex.test(value) ? true : false;

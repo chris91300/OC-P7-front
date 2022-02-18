@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { FaUserAltSlash } from "react-icons/fa";
 
-import ProfilFormDeleteUser from "./ProfilFormDeleteUser.jsx";
+import ProfilFormDeleteUser from "../../form/ProfilFormDeleteUser.jsx";
 
 
 /**

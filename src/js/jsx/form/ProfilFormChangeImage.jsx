@@ -2,9 +2,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Field from "../../form/Field.jsx";
-import ButtonSubmit from "../../form/ButtonSubmit.jsx";
-import useFetch from "../../../utils/fetch";
+import Field from "./Field.jsx";
+import ButtonSubmit from "./ButtonSubmit.jsx";
+import useFetch from "../../utils/fetch";
+import Loading from '../components/Loading.jsx';
 
 // default fields value
 const defautlFields = {
@@ -25,6 +26,7 @@ const ProfilFormChangeImage = ( { hideForm } )=>{
     const dispatch = useDispatch();
     const [ fields, setFields] = useState({...defautlFields});
     const [ error, setError ] = useState("");
+    const [ isLoading, setIsLoading ] = useState(false);
     const user = useSelector( ( state ) => state.user);
     const userId = user.id;
     const token = user.token;
@@ -53,34 +55,45 @@ const ProfilFormChangeImage = ( { hideForm } )=>{
      */
     const submit = async (e)=>{
         e.preventDefault();
-        if ( fields["profil-image"].isValid ) {
 
-            let formData = new FormData();        
-            formData.append("image", fields["profil-image"].value)
-            formData.append("urlProfil", urlProfil)
+        if ( !isLoading ) {
+
+            setErrorMessage("");
+            setIsLoading(true);
+        
+            if ( fields["profil-image"].isValid ) {
+
+                let formData = new FormData();        
+                formData.append("image", fields["profil-image"].value)
+                formData.append("urlProfil", urlProfil)
 
 
-            let options = {
-                method : 'PUT',
-                headers: {
-                    'Accept': 'application/json',
-                    'Authorization' : 'Bearer '+token
-                },
-                body : formData
+                let options = {
+                    method : 'PUT',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization' : 'Bearer '+token
+                    },
+                    body : formData
+                }
+
+                try{
+                    
+                    let response = await useFetch(urlUpdatePicture, options);
+                    
+                    setIsLoading(false)
+                    dispatch({type : 'SET_USER_PICTURE', value : response.newUrlProfil })
+                    reset();
+                    
+                } catch (err){
+
+                    setIsLoading(false)
+                    setError(err.message)
+                    console.log(err.message)
+                }
+
+
             }
-
-            try{
-                
-                let response = await useFetch(urlUpdatePicture, options)            
-                dispatch({type : 'SET_USER_PICTURE', value : response.newUrlProfil })
-                reset();
-                
-            } catch (err){
-                setError(err.message)
-                console.log(err.message)
-            }
-
-
         }
     }
 
@@ -112,7 +125,7 @@ const ProfilFormChangeImage = ( { hideForm } )=>{
                 <button className="like-submit" onClick={()=> hideForm()}>annuler</button>
 
             </div>
-
+            {isLoading ? <Loading /> : null }
             {error != "" ? <p className="error">{ error }</p> : null}
             
 

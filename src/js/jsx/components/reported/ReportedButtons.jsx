@@ -1,10 +1,10 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { FaRegFlag, FaRegTrashAlt } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import useFetch from "../../../utils/fetch.js";
-import ButtonSimple from "../ButtonSimple.jsx";
+import Loading from '../Loading.jsx';
 
 
 /**
@@ -19,51 +19,72 @@ const ReportedButtons = ( { id, type } )=>{
     const urlRemoveReportedComment = `http://localhost:3000/api/admin/comments/${id}/remove_reported`;    
     const userToken = useSelector( ( state ) => state.user.token)
     const dispatch = useDispatch();
+    const [ isLoading, setIsLoading ] = useState(false);
+    const [ errorMessage, setErrorMessage ] = useState("");
 
 
+    /**
+     * remove media or comment
+     */
     const removeReported = ()=>{
         
-        let options = {
-            method : 'GET',
-            headers: {
-                'Authorization' : 'Bearer '+userToken
+        if ( !isLoading ){
+
+            setErrorMessage("");
+            setIsLoading(true)
+        
+            let options = {
+                method : 'GET',
+                headers: {
+                    'Authorization' : 'Bearer '+userToken
+                }
             }
-        }
-        switch(type) {
+            switch(type) {
 
-            case "media":
-                removeReportedMedia(options);
-                break
+                case "media":
+                    removeReportedMedia(options);
+                    break
 
-            case "comment":
-                removeReportedComment(options);
-                break
+                case "comment":
+                    removeReportedComment(options);
+                    break
 
-            default:
-                //nothing
+                default:
+                    //nothing
+            }
         }
     }
 
+
+    /**
+     * delete media or comment
+     */
     const deleteReported = ()=>{
+
+        if ( !isLoading ){
+
+            setErrorMessage("");
+            setIsLoading(true)
         
-        let options = {
-            method : 'DELETE',
-            headers: {
-                'Authorization' : 'Bearer '+userToken
+            let options = {
+                method : 'DELETE',
+                headers: {
+                    'Authorization' : 'Bearer '+userToken
+                }
             }
-        }
 
-        switch(type) {
+            switch(type) {
 
-            case "media":
-                deleteReportedMedia(options);
-                break
+                case "media":
+                    deleteReportedMedia(options);
+                    break
 
-            case "comment":
-                deleteReportedComment(options);
-                break
-            default:
-                //nothing
+                case "comment":
+                    deleteReportedComment(options);
+                    break
+                default:
+                    //nothing
+            }
         }
     }
 
@@ -73,7 +94,9 @@ const ReportedButtons = ( { id, type } )=>{
     const deleteReportedMedia = async (options)=>{
         try{
 
-            let response = await useFetch(urlDeleteMedia, options)
+            let response = await useFetch(urlDeleteMedia, options);
+            
+            setIsLoading(false)
             dispatch({
                 type : "REMOVE_MEDIA_REPORTED",
                 value : id 
@@ -81,6 +104,9 @@ const ReportedButtons = ( { id, type } )=>{
 
 
         } catch(err){
+
+            setIsLoading(false)
+            setErrorMessage(err.message);            
             console.log(err)
         }
     }
@@ -93,8 +119,9 @@ const ReportedButtons = ( { id, type } )=>{
         
         try{            
 
-            let response = await useFetch(urlRemoveReportedMedia, options)
+            let response = await useFetch(urlRemoveReportedMedia, options);
 
+            setIsLoading(false);
             dispatch({
                 type : "REMOVE_MEDIA_REPORTED",
                 value : id 
@@ -102,6 +129,9 @@ const ReportedButtons = ( { id, type } )=>{
 
 
         } catch(err){
+
+            setIsLoading(false)
+            setErrorMessage(err.message);            
             console.log(err)
         }
     }
@@ -112,7 +142,9 @@ const ReportedButtons = ( { id, type } )=>{
        const deleteReportedComment = async (options)=>{
         try{            
 
-            let response = await useFetch(urlDeleteComment, options)
+            let response = await useFetch(urlDeleteComment, options);
+
+            setIsLoading(false);
             dispatch({
                 type : "REMOVE_COMMENT_REPORTED",
                 value : id 
@@ -120,6 +152,9 @@ const ReportedButtons = ( { id, type } )=>{
 
 
         } catch(err){
+            
+            setIsLoading(false)
+            setErrorMessage(err.message);            
             console.log(err)
         }
     }
@@ -135,6 +170,7 @@ const ReportedButtons = ( { id, type } )=>{
 
             let response = await useFetch(urlRemoveReportedComment, options)
 
+            setIsLoading(false);
             dispatch({
                 type : "REMOVE_COMMENT_REPORTED",
                 value : id 
@@ -142,6 +178,9 @@ const ReportedButtons = ( { id, type } )=>{
 
 
         } catch(err){
+            
+            setIsLoading(false)
+            setErrorMessage(err.message);            
             console.log(err)
         }
     }
@@ -153,6 +192,8 @@ const ReportedButtons = ( { id, type } )=>{
             <button onClick={removeReported}><FaRegFlag />retirer le signalement</button>
             <button onClick={deleteReported}><FaRegTrashAlt />supprimer</button>
         </div>
+        {isLoading ? <Loading /> : null }
+         <p className="form__error">{ errorMessage }</p>
         </>
     )
 }

@@ -3,10 +3,12 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import useFetch from "../../utils/fetch.js";
 import ProfilImage from "../components/ProfilImage.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
 import Field from "./Field.jsx";
+import Loading from '../components/Loading.jsx';
 
 
 /**
@@ -31,6 +33,7 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
 
     const urlApiCreateComment = "http://localhost:3000/api/comments/"+mediaId;
     const user = useSelector( ( state ) => state.user);
+    const [ isLoading, setIsLoading ] = useState(false);
     const urlProfil = user.urlProfil;
     const pseudo = user.pseudo;
     const token = user.token;
@@ -62,45 +65,58 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
      */
     const submit = async (e)=>{
         e.preventDefault();
-        if ( fields.comment.value != "" ) {
 
-            let body = {
-                userId : userId,
-                text : fields.comment.value
-            }
-            
-            let options = {
-                method : 'POST',
-                headers: {
-                    'Accept': 'application/json', 
-                    'Content-Type': 'application/json',
-                    'Authorization' : 'Bearer '+token
-                },
-                body : JSON.stringify(body)
-            }
+        if ( !isLoading ) {
 
-            try{
-                let newComment = await useFetch(urlApiCreateComment, options)
-                
-                newComment.user = {
-                    urlProfil : urlProfil,
-                    pseudo : pseudo
+        
+            if ( fields.comment.value != "" ) {
+
+                setErrorMessage("");
+                setIsLoading(true)
+
+                let body = {
+                    userId : userId,
+                    text : fields.comment.value
                 }
-                newComment.reported = false;
                 
-                dispatch({
-                    type : "ADD_COMMENT",
-                    value : {
-                        mediaId : mediaId,
-                        comment : newComment}
+                let options = {
+                    method : 'POST',
+                    headers: {
+                        'Accept': 'application/json', 
+                        'Content-Type': 'application/json',
+                        'Authorization' : 'Bearer '+token
+                    },
+                    body : JSON.stringify(body)
+                }
 
-                    })
-                resetForm();
-            
+                try{
+                    let newComment = await useFetch(urlApiCreateComment, options)
+                    
+                    newComment.user = {
+                        urlProfil : urlProfil,
+                        pseudo : pseudo
+                    }
+                    newComment.reported = false;
 
-            } catch (err){
-                setErrorMessage(err.message)
-                console.log(err.message)
+                    
+                    setIsLoading(false);
+                    
+                    dispatch({
+                        type : "ADD_COMMENT",
+                        value : {
+                            mediaId : mediaId,
+                            comment : newComment}
+
+                        }) 
+                    resetForm();
+                
+
+                } catch (err){
+
+                    setIsLoading(false)
+                    setErrorMessage(err.message)                
+                    console.log(err.message)
+                }
             }
         }
 
@@ -108,7 +124,7 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
 
 
     /**
-     * reset fields of the form
+     * reset fields of the form 
      */
     const resetForm = ()=>{
         let field = document.getElementById(`comment_media_${mediaId}_comment`)
@@ -129,6 +145,7 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
                     returnValueToForm={changeFields} />
             </div>
             <ButtonSubmit onClick={submit} />
+            {isLoading ? <Loading /> : null }
             <p className="form__error">{ errorMessage }</p>
         </form>
     )

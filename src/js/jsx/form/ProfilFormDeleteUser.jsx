@@ -1,10 +1,11 @@
 
 import React, {useState} from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
-import ButtonSubmit from "../../form/ButtonSubmit.jsx"
-import useFetch from "../../../utils/fetch.js";
-import { useDispatch } from "react-redux";
+
+import ButtonSubmit from "./ButtonSubmit.jsx"
+import useFetch from "../../utils/fetch";
+import Loading from '../components/Loading.jsx';
 
 
 /**
@@ -16,6 +17,7 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
     const user = useSelector( ( state ) => state.user);
     const [ disconnected, setDisconnected ] = useState(false);
     const [ error, setError ] = useState("");
+    const [ isLoading, setIsLoading ] = useState(false);
     const dispatch = useDispatch();
     const userId = user.id;
     const token = user.token;
@@ -29,32 +31,41 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
      * @param {object} e the event object
      */
     const submit = async (e) => {
-        e.preventDefault();        
-
-        let body = {
-            urlProfil : urlProfil
-        }
+        e.preventDefault();
         
-        let options = {
-            method : 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization' : 'Bearer '+token
-            },
-            body : JSON.stringify(body)
-        }
+        if ( !isLoading ) {
 
-        try{
-            
-            let response = await useFetch(urlDeleteUser, options)            
-            
-            disconnect();
-            
-        } catch (err){
+            setErrorMessage("");
+            setIsLoading(true)
+        
 
-            setError(err.message)
-            console.log(err.message)
+            let body = {
+                urlProfil : urlProfil
+            }
+            
+            let options = {
+                method : 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization' : 'Bearer '+token
+                },
+                body : JSON.stringify(body)
+            }
+
+            try{
+                
+                let response = await useFetch(urlDeleteUser, options)            
+                
+                setIsLoading(false);
+                disconnect();
+                
+            } catch (err){
+
+                setIsLoading(false);
+                setError(err.message)
+                console.log(err.message)
+            }
         }
     }
 
@@ -105,7 +116,8 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
                     <ButtonSubmit onClick={submit} value="supprimer"/>
                     <button className="like-submit" onClick={()=> hideForm()}>annuler</button>
     
-                </div>      
+                </div>  
+                {isLoading ? <Loading /> : null }    
                 { error != "" ? <p className="error">{ error }</p> : null }
     
                     
