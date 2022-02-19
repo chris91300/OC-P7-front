@@ -196,6 +196,7 @@ const Media = ( { data, alone } )=>{
             <MediaAction
                 id={id}
                 like={like}
+                userLiked={userLikedCopy}
                 scrollToComment={scrollToComment}
                 reportedMedia={reportedMedia}
                 admin={admin}

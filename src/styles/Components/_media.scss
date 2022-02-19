@@ -89,6 +89,10 @@
         border-bottom: 2px solid gray;
         padding: 5px 0;
 
+        & .user-like-media{
+            color: red;
+        }
+
         & button{
             flex: 1;
             display: flex;
