@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import useFetch from "../../utils/fetch";
+
 import Loading from "./Loading.jsx";
 import CommentReported from "./CommentReported.jsx";
 import { useDispatch } from "react-redux";
+import useRequestApi from "../../utils/requestApi";
 
 
 /**
@@ -12,8 +13,7 @@ import { useDispatch } from "react-redux";
  */
 const DashboardComments = ( )=>{
 
-    const urlApiAdminGetCommentsReported = "http://localhost:3000/api/admin/comments/reported";
-    const userToken = useSelector((state) => state.user.token);
+    const token = useSelector((state) => state.user.token);
     const commentsReported = useSelector( ( state ) => state.comments_reported );
     const dispatch = useDispatch();
     const [ isLoading, setIsLoading ] = useState(true);
@@ -26,16 +26,14 @@ const DashboardComments = ( )=>{
      useEffect( async ()=>{
 
         try{
-            let options = {
-                method : 'GET',
-                headers: {
-                    'Authorization' : 'Bearer '+userToken
-                }
-            }
+            
 
-            let commentsReported = await useFetch(urlApiAdminGetCommentsReported, options);
-            console.log("retour de l'api")
-            console.log(commentsReported)
+            let commentsReported = await useRequestApi({
+                entity : 'admin',
+                request : 'getCommentsReported',
+                token : token
+            });
+            
             dispatch({
                 type : "ADD_COMMENTS_REPORTED",
                 value : commentsReported

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 
-import useFetch from "../../utils/fetch.js";
+import requestSelf from "../../utils/requestSelf.js";
 import ButtonSimple from "../components/ButtonSimple.jsx";
 
 
@@ -22,16 +22,13 @@ const NavMenu = ()=>{
      */
     const disconnect = async (  )=>{
         console.log("on se déconnecte")
-        let options = {
-            method : 'DELETE',
-            headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json'
-            }
-        }
+        
 
         try{
-            let response = await useFetch("/session/delete", options)
+            let response = await requestSelf({
+                entity : 'session',
+                request : 'delete'
+            })
 
             if ( response.status === "ok" ) {
 

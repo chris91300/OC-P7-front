@@ -1,12 +1,12 @@
 
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import useFetch from "../../utils/fetch";
+
 import ButtonSimple from "./ButtonSimple.jsx";
 import Comment from "./Comment.jsx";
 import Loading from "./Loading.jsx";
+import requestApi from '../../utils/requestApi';
 
 
 
@@ -19,8 +19,6 @@ import Loading from "./Loading.jsx";
  */
 const Comments = ({ mediaId })=>{
 
-
-    const urlApiGetComments = "http://localhost:3000/api/comments/"+mediaId;
     const [ loading, setLoading ] = useState(true)
     const [ userWantToSeeComments, setUserWantToSeeComments ] = useState(false)
     const [ scrollTo, setScrollTo ] = useState(false)
@@ -29,6 +27,7 @@ const Comments = ({ mediaId })=>{
     let token = useSelector( ( state ) => state.user.token)
     comments = comments[mediaId];
     const dispatch = useDispatch();
+    
 
     /**
      * get all comments for  media with the id mediaId
@@ -37,16 +36,12 @@ const Comments = ({ mediaId })=>{
         
         try{
 
-            let options = {
-                method : 'GET',
-                headers: {
-                    'Accept': 'application/json', 
-                    'Content-Type': 'application/json',
-                    'Authorization' : 'Bearer '+token
-                }
-            }
-
-            let commentsList = await useFetch(urlApiGetComments, options)
+            let commentsList = await requestApi({
+                entity : 'comments',
+                request : 'getAll',
+                token : token,
+                mediaId : mediaId
+            })
             
             dispatch({type : "SET_COMMENTS", value : { mediaId : mediaId, comments : commentsList}})
             setLoading(false);

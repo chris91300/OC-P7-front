@@ -6,8 +6,9 @@ import { Navigate } from "react-router-dom";
 import Field from "./Field.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
 import formFields from "../../utils/formFields";
-import useFetch from "../../utils/fetch.js";
 import Loading from '../components/Loading.jsx';
+import requestApi from "../../utils/requestApi.js";
+import requestSelf from "../../utils/requestSelf.js";
 
 
 // default user value 
@@ -31,9 +32,7 @@ const defautlFields = {
  */
 const FormLogin = ( { name, className } ) => {
 
-    const loginUserUrl = "http://localhost:3000/api/users/login";
     const urlMenu = "/menu";
-
     const [ redirect, setRedirect ] = useState(false);
     const [ fields, setFields] = useState({...defautlFields});
     const [ isLoading, setIsLoading ] = useState(false);
@@ -193,21 +192,24 @@ const FormLogin = ( { name, className } ) => {
             pseudo : fields.pseudo.value,
             password : fields.password.value
         }
-
-        let options = {
-            method : 'POST',
-            headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json'
-            },
-            body : JSON.stringify(body)
-        }
+        body = JSON.stringify(body);
+        
 
         try{
 
-            let user = await useFetch(loginUserUrl, options)
+            let user = await requestApi({
+                entity :'users',
+                request :'login',
+                body : body
+            }) 
+
             dispatch({type : "SET_USER", value : user})
-            let response = await useFetch("/session/set", options)  
+
+            let response = await requestSelf({
+                entity : 'session',
+                request : 'set',
+                body : body
+            })  
             
             setIsLoading(false)          
             setRedirect(true)

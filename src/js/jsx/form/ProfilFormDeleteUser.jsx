@@ -4,8 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 import ButtonSubmit from "./ButtonSubmit.jsx"
-import useFetch from "../../utils/fetch";
 import Loading from '../components/Loading.jsx';
+import requestSelf from "../../utils/requestSelf.js";
+import requestApi from "../../utils/requestApi.js";
 
 
 /**
@@ -23,7 +24,6 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
     const token = user.token;
 
     const urlProfil = user.urlProfil;
-    const urlDeleteUser = `http://localhost:3000/api/users/${userId}/delete`;
 
 
     /**
@@ -42,20 +42,17 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
             let body = {
                 urlProfil : urlProfil
             }
-            
-            let options = {
-                method : 'DELETE',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization' : 'Bearer '+token
-                },
-                body : JSON.stringify(body)
-            }
+            body = JSON.stringify(body);            
 
             try{
                 
-                let response = await useFetch(urlDeleteUser, options)            
+                let response = await requestApi({
+                    entity : 'users',
+                    request : 'delete',
+                    body : body,
+                    userId : userId,
+                    token : token
+                })      
                 
                 setIsLoading(false);
                 disconnect();
@@ -72,18 +69,14 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
      /**
      * disconnect the user after deleted him
      */
-      const disconnect = async (  )=>{
-        
-        let options = {
-            method : 'DELETE',
-            headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json'
-            }
-        }
+      const disconnect = async (  )=>{        
 
         try{
-            let response = await useFetch("/session/delete", options)
+            
+            let response = await requestSelf({
+                entity : 'session',
+                request : 'delete'
+            })
 
             if ( response.status === "ok" ) {
 

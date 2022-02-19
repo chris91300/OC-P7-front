@@ -1,7 +1,7 @@
 
 import React from "react";
 import AppLayout from "../layout/AppLayout.jsx";
-import ProfilAside from "../layout/ProfilAside.jsx";
+//import ProfilAside from "../layout/ProfilAside.jsx";
 import Profil from "../components/Profil.jsx";
 
 

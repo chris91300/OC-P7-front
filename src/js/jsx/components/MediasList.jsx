@@ -1,8 +1,8 @@
 
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import useFetch from "../../utils/fetch";
+import { useDispatch, useSelector } from "react-redux";
+
+import useRequestApi from "../../utils/requestApi";
 import Loading from "./Loading.jsx";
 import Media from "./media/Media.jsx";
 
@@ -14,11 +14,10 @@ import Media from "./media/Media.jsx";
  */
 const MediasList = ()=>{
 
-    const urlGetMedias = "http://localhost:3000/api/medias/";
     const [isLoading, setIsLoading ] = useState(true);
     const [error, setError ] = useState("");
     const medias = useSelector((state) => state.medias);
-    const userToken = useSelector((state) => state.user.token)
+    const token = useSelector((state) => state.user.token)
     const dispatch = useDispatch();
 
 
@@ -27,15 +26,14 @@ const MediasList = ()=>{
      * get all the medias
      */
     useEffect( async ()=>{
-        let options = {
-            method : 'GET',
-            headers: {
-                'Authorization' : 'Bearer '+userToken
-            }
-        }
+        
         try{
             
-            let mediasList = await useFetch(urlGetMedias, options);
+            let mediasList = await useRequestApi({
+                entity : 'medias',
+                request : 'getAll',
+                token : token
+            })
 
             dispatch({
                 type : "SET_MEDIAS",

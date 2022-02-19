@@ -1,12 +1,12 @@
 
-
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import Field from "./Field.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
 import formFields from "../../utils/formFields";
-import { useDispatch } from "react-redux";
-import useFetch from "../../utils/fetch.js";
 import Loading from '../components/Loading.jsx';
+import requestApi from "../../utils/requestApi.js";
 
 // default user value
 const defautlFields = {
@@ -38,9 +38,7 @@ const defautlFields = {
  * @param {string} name: the form name (here signup)
  * @returns 
  */
-const FormSignup = ( { name } ) => {
-
-    const signupUserUrl = "http://localhost:3000/api/users/signup";
+const FormSignup = ( { name } ) => {    
 
     const [ fields, setFields] = useState({...defautlFields})
     const [ errorMessage, setErrorMessage ] = useState("");
@@ -164,6 +162,7 @@ const FormSignup = ( { name } ) => {
      * signup a new user
      */
     const signupUser = async ()=>{
+
         let body = {
             lastName : fields.lastName.value,
             firstName : fields.firstName.value,
@@ -172,17 +171,14 @@ const FormSignup = ( { name } ) => {
             password : fields.password.value
         }
 
-        let options = {
-            method : 'POST',
-            headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json'
-            },
-            body : JSON.stringify(body)
-        }
+        body = JSON.stringify(body);
 
         try{
-            let response = await useFetch(signupUserUrl, options)
+            let response = await requestApi({
+                entity :'users',
+                request :'signup',
+                body : body
+            })
             
             let user = {
                 lastName : response.lastName,

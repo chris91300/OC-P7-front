@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 
 import Field from "./Field.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
-import useFetch from "../../utils/fetch.js";
 import Loading from '../components/Loading.jsx';
+import useRequestApi from "../../utils/requestApi.js";
 
 
 
@@ -39,7 +39,6 @@ const ProfilChangePassword = ( { hideForm } )=>{
     const user = useSelector( ( state ) => state.user );
     const userId = user.id;
     const token = user.token;
-    const urlChangePasswordUser = `http://localhost:3000/api/users/${userId}/update/password`;
 
 
     /**
@@ -105,29 +104,23 @@ const ProfilChangePassword = ( { hideForm } )=>{
      */
     const sendNewPassword = async ()=>{
 
-        let oldPassword = fields.oldPassword.value;
-        let newPassword = fields.newPassword.value;
-        let verificationNewPassword = fields.verificationNewPassword.value;
-
         let body = {
-            oldPassword : oldPassword,
-            newPassword : newPassword,
-            verificationNewPassword : verificationNewPassword
-        }        
-
-        let options = {
-            method : 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization' : 'Bearer '+token
-            },
-            body : JSON.stringify(body)
-        }
+            oldPassword : fields.oldPassword.value,
+            newPassword : fields.newPassword.value,
+            verificationNewPassword : fields.verificationNewPassword.value
+        }       
+        
+        body = JSON.stringify(body);
 
         try{
 
-            let response = await useFetch(urlChangePasswordUser, options)
+            let response = await useRequestApi({
+                entity : 'users',
+                request : 'updatePassword',
+                body : body,
+                userId : userId,
+                token : token
+            })
 
             setIsLoading(false)
             setError("");

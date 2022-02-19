@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Field from "./Field.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
-import useFetch from "../../utils/fetch.js";
 import Loading from '../components/Loading.jsx';
+import useRequestApi from "../../utils/requestApi.js";
 
 
 /**
@@ -34,13 +34,13 @@ const defautlFields = {
  */
 const FormCreateMedia = ( { name, handleClick } ) => {
 
-    const createMediaUrl = "http://localhost:3000/api/medias/create";
 
     const [ fields, setFields] = useState({...defautlFields})
     const [ errorMessage, setErrorMessage ] = useState("");
     const [ isLoading, setIsLoading ] = useState(false);
-    const medias = useSelector( ( state ) => state.medias);
+   // const medias = useSelector( ( state ) => state.medias);
     const user = useSelector( ( state ) => state.user);
+    const token = user.token;
     const dispatch = useDispatch();
 
 
@@ -104,18 +104,16 @@ const FormCreateMedia = ( { name, handleClick } ) => {
         formData.append("userId", user.id)
 
 
-        let options = {
-            method : 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Authorization' : 'Bearer '+user.token
-            },
-            body : formData
-        }
 
         try{
             
-            let media = await useFetch(createMediaUrl, options)
+            let media = await useRequestApi({
+                entity : 'medias',
+                request : 'create',
+                body : formData,
+                token : token,
+                contentType : false
+            })
             
             setIsLoading(false)
             dispatch({type : 'ADD_MEDIA', value : media })

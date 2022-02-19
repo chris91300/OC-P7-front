@@ -75,7 +75,7 @@ const common = {
             filename: 'index.html',
             publicPath : '/',
             chunks : ["index"],
-            favicon : './src/img/icon.ico'
+            //favicon : './src/img/icon.ico'
         })/*,
         new htmlWebpackPlugin({
             inject : true,

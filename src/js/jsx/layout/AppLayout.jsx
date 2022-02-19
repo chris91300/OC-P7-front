@@ -1,6 +1,6 @@
 
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+
 import Footer from "./Footer.jsx";
 import HeaderApp from "./HeaderApp.jsx";
 import MenuMobile from "./MenuMobile.jsx";
@@ -19,7 +19,7 @@ const AppLayout = ( { title, children } )=>{
      * show or hide navigation container for mobile 
      */
     const toogleMenuForMobile = (status)=>{
-        //let show = showMenuMobile ? false : true;
+        
         setshowMenuMobile(status);
     }
 

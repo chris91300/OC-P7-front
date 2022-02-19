@@ -1,14 +1,15 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
+
 import Footer from "../layout/Footer.jsx";
 import FormLogin from "../form/FormLogin.jsx";
 import FormSignup from "../form/FormSingup.jsx";
 import HeaderAccueil from "../layout/HeaderAccueil.jsx";
 import Loading from '../components/Loading.jsx';
-import { useEffect } from "react";
-import useFetch from "../../utils/fetch.js";
-import { useDispatch } from "react-redux";
+import requestSelf from "../../utils/requestSelf.js";
+import requestApi from "../../utils/requestApi.js";
 
 
 
@@ -18,7 +19,6 @@ import { useDispatch } from "react-redux";
  */
 const Accueil = ()=>{
 
-    const loginUserUrl = "http://localhost:3000/api/users/login";
     const [ className, setClassName ] = useState("");
     const [ isLoading, setLoading ] = useState(true);
     const [ sessionExist, setSessionExist ] = useState(false);
@@ -35,7 +35,10 @@ const Accueil = ()=>{
         
         try{
             
-            let response = await useFetch("/session");
+            let response = await requestSelf({
+                entity : 'session',
+                request : 'get'
+            });
             
             if ( response.sessionIsOk) {
                 
@@ -95,20 +98,24 @@ const Accueil = ()=>{
             password : password
         }
 
-        let options = {
-            method : 'POST',
-            headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json'
-            },
-            body : JSON.stringify(body)
-        }
+        body = JSON.stringify(body)
+
 
         try{
 
-            let user = await useFetch(loginUserUrl, options)
-            dispatch({type : "SET_USER", value : user})
-            let response = await useFetch("/session/set", options)            
+            let user = await requestApi({
+                entity : 'users',
+                request : 'login',
+                body : body
+            })
+
+            dispatch({type : "SET_USER", value : user});
+
+            let response = await requestSelf({
+                entity : 'session',
+                request : 'set',
+                body : body
+            });        
            
             setLoading(false);
             

@@ -1,6 +1,5 @@
 
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaUserAltSlash } from "react-icons/fa";
 
 import ProfilFormDeleteUser from "../../form/ProfilFormDeleteUser.jsx";

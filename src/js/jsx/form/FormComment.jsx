@@ -1,14 +1,13 @@
 
 
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import useFetch from "../../utils/fetch.js";
 import ProfilImage from "../components/ProfilImage.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
 import Field from "./Field.jsx";
 import Loading from '../components/Loading.jsx';
+import requestApi from "../../utils/requestApi.js";
 
 
 /**
@@ -31,7 +30,6 @@ const defautlFields = {
  */
 const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
 
-    const urlApiCreateComment = "http://localhost:3000/api/comments/"+mediaId;
     const user = useSelector( ( state ) => state.user);
     const [ isLoading, setIsLoading ] = useState(false);
     const urlProfil = user.urlProfil;
@@ -77,20 +75,20 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
                 let body = {
                     userId : userId,
                     text : fields.comment.value
-                }
-                
-                let options = {
-                    method : 'POST',
-                    headers: {
-                        'Accept': 'application/json', 
-                        'Content-Type': 'application/json',
-                        'Authorization' : 'Bearer '+token
-                    },
-                    body : JSON.stringify(body)
-                }
+                };
+
+                body = JSON.stringify(body)               
+               
 
                 try{
-                    let newComment = await useFetch(urlApiCreateComment, options)
+
+                    let newComment = await requestApi({
+                        entity : 'comments',
+                        request : 'create',
+                        body : body,
+                        token : token,
+                        mediaId : mediaId
+                    })
                     
                     newComment.user = {
                         urlProfil : urlProfil,

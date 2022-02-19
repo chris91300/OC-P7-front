@@ -1,5 +1,6 @@
 
 import React from "react";
+
 import AppLayout from "../layout/AppLayout.jsx";
 import CreateMedia from "../components/CreateMedia.jsx";
 import MediasList from "../components/MediasList.jsx";
@@ -9,8 +10,7 @@ import ProfilAside from "../layout/ProfilAside.jsx";
 /**
  * the medias page
  */
-const Medias = ()=>{
-    console.log("on est dans medais")
+const Medias = ()=>{   
     
     return(
         <AppLayout title="FORUM MULTIMEDIAS">

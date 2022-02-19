@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Field from "./Field.jsx";
 import ButtonSubmit from "./ButtonSubmit.jsx";
-import useFetch from "../../utils/fetch";
 import Loading from '../components/Loading.jsx';
+import useRequestApi from "../../utils/requestApi.js";
 
 // default fields value
 const defautlFields = {
@@ -31,7 +31,6 @@ const ProfilFormChangeImage = ( { hideForm } )=>{
     const userId = user.id;
     const token = user.token;
     const urlProfil = user.urlProfil;
-    const urlUpdatePicture = `http://localhost:3000/api/users/${userId}/update/picture`;
     
 
 
@@ -57,7 +56,6 @@ const ProfilFormChangeImage = ( { hideForm } )=>{
         e.preventDefault();
 
         if ( !isLoading ) {
-            console.log("IMAGE ")
 
             if ( fields["profil-image"].value != "" ) {
 
@@ -71,19 +69,16 @@ const ProfilFormChangeImage = ( { hideForm } )=>{
                     formData.append("image", fields["profil-image"].value)
                     formData.append("urlProfil", urlProfil)
 
-
-                    let options = {
-                        method : 'PUT',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Authorization' : 'Bearer '+token
-                        },
-                        body : formData
-                    }
-
                     try{
                         
-                        let response = await useFetch(urlUpdatePicture, options);
+                        let response = await useRequestApi({
+                            entity : 'users',
+                            request : 'updatePicture',
+                            body : formData,
+                            userId : userId,
+                            token : token,
+                            contentType : false
+                        })
                         
                         setIsLoading(false)
                         dispatch({type : 'SET_USER_PICTURE', value : response.newUrlProfil })

@@ -13,7 +13,9 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 10px solid;
+    /*border: 10px solid;*/
+    border-width: 10px;
+    border-style: solid;
     border-right-color: $primary-color_darken;
     border-bottom-color: $primary-color_darken;
     border-left-color: $primary-color_darken;

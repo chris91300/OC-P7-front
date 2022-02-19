@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import useFetch from "../../utils/fetch";
+import { useDispatch, useSelector } from "react-redux";
+
+import useRequestApi from "../../utils/requestApi";
 import Loading from "./Loading.jsx";
 import MediaReported from "./MediaReported.jsx";
 
@@ -12,8 +12,7 @@ import MediaReported from "./MediaReported.jsx";
  */
 const DashboardMedias = ( )=>{
 
-    const urlApiAdminGetMediasReported = "http://localhost:3000/api/admin/medias/reported";
-    const userToken = useSelector((state) => state.user.token);
+    const token = useSelector((state) => state.user.token);
     const mediasReported = useSelector( ( state ) => state.medias_reported );
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState("");
@@ -26,14 +25,13 @@ const DashboardMedias = ( )=>{
     useEffect( async ()=>{
 
         try{
-            let options = {
-                method : 'GET',
-                headers: {
-                    'Authorization' : 'Bearer '+userToken
-                }
-            }
 
-            let mediasReported = await useFetch(urlApiAdminGetMediasReported, options);
+            let mediasReported = await useRequestApi({
+                entity : 'admin',
+                request : 'getMediasReported',
+                token : token
+            });
+
             dispatch({
                 type : "ADD_MEDIAS_REPORTED",
                 value : mediasReported

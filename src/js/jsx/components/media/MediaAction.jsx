@@ -1,11 +1,11 @@
 
 import React from "react";
-import ButtonSimple from "../ButtonSimple.jsx";
+import { useSelector, useDispatch } from "react-redux";
 import { FaRegFlag, FaRegTrashAlt } from "react-icons/fa";
 import { AiOutlineHeart, AiFillHeart, AiOutlineComment } from "react-icons/ai";
-import { useSelector } from "react-redux";
-import useFetch from "../../../utils/fetch.js";
-import { useDispatch } from "react-redux";
+
+import ButtonSimple from "../ButtonSimple.jsx";
+import requestApi from "../../../utils/requestApi.js";
 
 
 /**
@@ -19,10 +19,9 @@ import { useDispatch } from "react-redux";
  */
 const MediaAction = ( { id, like, userLiked, scrollToComment, reportedMedia, admin } )=>{
 
-    const urlDeleteMedia = `http://localhost:3000/api/admin/medias/${id}/delete`;
     const user = useSelector( ( state ) => state.user);
     const userId = user.id;
-    const userToken = user.token;
+    const token = user.token;
     const dispatch = useDispatch();
     const userLikeThisMedia = userLiked.indexOf(userId) != -1 ? true : false;
 
@@ -32,14 +31,14 @@ const MediaAction = ( { id, like, userLiked, scrollToComment, reportedMedia, adm
      const deleteMedia = async ()=>{
         try{
 
-            let options = {
-                method : 'DELETE',
-                headers: {
-                    'Authorization' : 'Bearer '+userToken
-                }
-            }
 
-            let response = await useFetch(urlDeleteMedia, options)
+            let response = await requestApi({
+                entity : 'admin',
+                request : 'deleteMedia',
+                mediaId : id,
+                token : token
+            });
+
             dispatch({
                 type : "DELETE_MEDIA",
                 value : id 

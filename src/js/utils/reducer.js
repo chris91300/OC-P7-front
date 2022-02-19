@@ -23,7 +23,7 @@ const initialState = {
 
 function Reducer(state = initialState, action){
 
-    let nextState;
+   // let nextState;
 
     switch(action.type){
 
@@ -33,23 +33,19 @@ function Reducer(state = initialState, action){
             {
                 return {...state, user : action.value}
             }
-            else { return state}
-           
+            else { return state}           
 
 
         case "SET_USER_PICTURE":
-            console.log("set user picture")
-            if( typeof action.value === "string")
-            {console.log("c un string")
-            console.log(action.value)
+           
+            if( typeof action.value === "string") {
+            
                 let newUser = {...state.user};
-
                 newUser.urlProfil = action.value;
-                console.log(newUser)
+                
                 return {...state, user : newUser}
             }
             else { return state}
-
 
 
         case "SET_MEDIAS":
@@ -69,7 +65,6 @@ function Reducer(state = initialState, action){
                 return {...state, medias : nextMedias}
             }
             else {return state}
-
 
 
         case "DELETE_MEDIA":            
@@ -100,6 +95,7 @@ function Reducer(state = initialState, action){
             }
             else {return state}
 
+
         case "ADD_COMMENT":
             
             if( typeof action.value === "object")
@@ -112,7 +108,6 @@ function Reducer(state = initialState, action){
                 return {...state, comments : nextComments}
             }
             else {return state}
-
 
 
         case "ADD_MEDIAS_REPORTED":
@@ -142,7 +137,6 @@ function Reducer(state = initialState, action){
             }
 
 
-
         case "ADD_COMMENTS_REPORTED":
             if( typeof action.value === "object")
             {
@@ -150,8 +144,7 @@ function Reducer(state = initialState, action){
                 action.value.map( ( comment ) =>{
                     commentsReported[comment.id] = comment;
                 })
-                console.log("dans add comments reported")
-                console.log(commentsReported)
+                
                 return {...state, comments_reported : commentsReported}
             }
             else {return state}
@@ -170,7 +163,6 @@ function Reducer(state = initialState, action){
                 return state;
             }
             
-
 
         default:
             return state;

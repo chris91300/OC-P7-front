@@ -1,3 +1,7 @@
+
+/**
+ * all regex for the differents input
+ */
 const formFields = {
     lastName : {
         regex : /^[a-zA-Zéèêëïîô]+([\- ]{1}[a-zA-Zéèêëïîô]+)?$/,

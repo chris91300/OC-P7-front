@@ -1,6 +1,5 @@
 
-/**
- * 
+/** 
  * @param {string} completedDate a date
  * @returns {object} an array with the date and the hour of the event
  */

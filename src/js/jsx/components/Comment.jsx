@@ -1,12 +1,12 @@
 
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { FaRegFlag, FaFlag } from "react-icons/fa";
+
 import getDate from "../../utils/getDate";
 import ProfilImage from "./ProfilImage.jsx";
-import { FaRegFlag, FaFlag } from "react-icons/fa";
 import ButtonSimple from "./ButtonSimple.jsx";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import useFetch from "../../utils/fetch";
+import useRequestApi from "../../utils/requestApi";
 
 
 /**
@@ -20,13 +20,10 @@ const Comment = ( { data } )=>{
     const authorProfil = data.user.urlProfil;
     const authorPseudo = data.user.pseudo;
     const { mediaId, text, createdAt, reported } = data;
-    const urlApiRportedComment = `http://localhost:3000/api/comments/${mediaId}/${commentId}/reported`;
     const [ createAtDate, createAtHours ] = getDate(createdAt);
-
     const [ commentIsReported, setCommentIsReported ] = useState(reported);
     const user = useSelector( (state) =>state.user );
-    const token = user.token
-
+    const token = user.token;
     const [ error, setError ] = useState("");
 
 
@@ -42,18 +39,18 @@ const Comment = ( { data } )=>{
             let body = {
                 userId : user.id
             }
+
+            body = JSON.stringify(body);            
             
-            let options = {
-                method : 'POST',
-                headers: {
-                    'Accept': 'application/json', 
-                    'Content-Type': 'application/json',
-                    'Authorization' : 'Bearer '+token
-                },
-                body : JSON.stringify(body)
-            }
-            
-            let response = await useFetch(urlApiRportedComment, options)
+            let response = await useRequestApi({
+                entity : 'comments',
+                request : 'reported',
+                body : body,
+                token : token,
+                mediaId : mediaId,
+                commentId : commentId
+            });
+
             setCommentIsReported(true);
             setError("");
             

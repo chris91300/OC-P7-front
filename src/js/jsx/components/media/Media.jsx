@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 
 import getDate from '../../../utils/getDate';
 import FormComment from "../../form/FormComment.jsx";
-import useFetch from "../../../utils/fetch";
 import Comments from "../Comments.jsx";
 import MediaAuthor from "./MediaAuthor.jsx";
 import MediaTitle from "./MediaTitle.jsx";
 import MediaPicture from "./MediaPicture.jsx";
 import MediaAction from "./MediaAction.jsx";
+import useRequestApi from "../../../utils/requestApi";
 
 
 
@@ -27,12 +27,11 @@ const Media = ( { data, alone } )=>{
     const { id, userId, title, text, urlImage, reported, userLiked, user, createdAt } = data;
     const { pseudo, urlProfil } = user;
     const [ comments, setComments ] = useState(data.comment);
+    const [ error, setError ] = useState("");
     const [ createdAtDate, createdAtHour ] = getDate(createdAt);
     const [ totalUserLiked, setTotalUserLiked ] = useState( userLiked.length );
     const [ userLikedCopy, setUserLikedCopy ] = useState( [...userLiked ] );
     const [ mediaReported, setMediaReported ] = useState( reported );
-    const urlApiLikeMedia = `http://localhost:3000/api/medias/${id}/like`;
-    const urlApiReportedMedia = `http://localhost:3000/api/medias/${id}/reported`;
 
 
     /**
@@ -77,20 +76,19 @@ const Media = ( { data, alone } )=>{
             userId : currentUserId,
             like : like
         }
+        body = JSON.stringify(body)
 
-        let options = {
-            method : 'POST',
-            headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json',
-                'Authorization' : 'Bearer '+token
-            },
-            body : JSON.stringify(body)
-        }
+       
 
         try{
 
-            let response = await useFetch(urlApiLikeMedia, options);
+            let response = await useRequestApi({
+                entity : 'medias',
+                request : 'like',
+                body : body,
+                token : token,
+                mediaId : id
+            })
             
             if( like === 1 ){
 
@@ -104,8 +102,8 @@ const Media = ( { data, alone } )=>{
             setUserLikedCopy(listUserLiked);
 
         } catch(err){
-            console.log(err)
-            //  gerer les erreur avec une modal
+            
+            setError("une erreur est survenue.")
         }        
     }
 
@@ -131,26 +129,25 @@ const Media = ( { data, alone } )=>{
         let body = {
             userId : currentUserId,
         }
+        body = JSON.stringify(body)
 
-        let options = {
-            method : 'POST',
-            headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json',
-                'Authorization' : 'Bearer '+token
-            },
-            body : JSON.stringify(body)
-        }
 
         try{
 
-            let response = await useFetch(urlApiReportedMedia, options);
+            let response = await useRequestApi({
+                entity : 'medias',
+                request : 'reported',
+                body : body,
+                token : token,
+                mediaId : id
+            })
             
             setMediaReported(true);
 
         } catch(err){
-            console.log(err)
-            //  gerer les erreur avec une modal
+            
+            setError("une erreur est survenue.")
+            
         }  
 
         
@@ -202,6 +199,7 @@ const Media = ( { data, alone } )=>{
                 admin={admin}
             />
 
+            { error === "" ? null : <p className="error">{ error }</p>}
             <Comments mediaId={id} />
             
             <FormComment
