@@ -232,7 +232,7 @@ const FormLogin = ( { name, className } ) => {
 
         if ( redirect ) {
             
-            return <Navigate to={urlMenu} />
+            return <Navigate to={urlMenu} /> 
             
         } else {
             
