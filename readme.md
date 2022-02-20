@@ -27,7 +27,8 @@ Le projet consiste à construire un réseau social interne pour les employés de
 Il faut créer un fichier .env à la racine du projet.
 Dans le fichier mettre les variables suivantes :
 
-PORT=8080
-COOKIESECRET=<un token>
+PORT=8080  
+
+COOKIESECRET='un token'
 
 
