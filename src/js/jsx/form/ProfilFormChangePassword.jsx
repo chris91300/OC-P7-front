@@ -147,6 +147,15 @@ const ProfilChangePassword = ( { hideForm } )=>{
     }
 
 
+    /**
+     * cancel the form
+     * @param {object} e the event object
+     */
+    const cancel = (e)=>{
+        e.preventDefault();
+        hideForm();
+    }
+
 
 
     return (
@@ -179,7 +188,7 @@ const ProfilChangePassword = ( { hideForm } )=>{
             <div className="profil__form__buttons">
 
                 <ButtonSubmit onClick={submit} />
-                <button className="like-submit" onClick={()=> hideForm()}>annuler</button>
+                <button className="like-submit" onClick={cancel}>annuler</button>
 
             </div>
 

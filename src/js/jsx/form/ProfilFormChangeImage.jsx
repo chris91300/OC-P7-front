@@ -112,8 +112,17 @@ const ProfilFormChangeImage = ( { hideForm } )=>{
     }
 
 
+    /**
+     * cancel the form
+     * @param {object} e the event object
+     */
+    const cancel = (e)=>{
+        e.preventDefault();
+        hideForm();
+    }
+
     return (
-        <form method="post" className="profil__form" onSubmit={submit}>
+        <form method="post" className="profil__form">
 
             <Field
                 label="votre photo"
@@ -126,7 +135,7 @@ const ProfilFormChangeImage = ( { hideForm } )=>{
             <div className="profil__form__buttons">
 
                 <ButtonSubmit onClick={submit} />
-                <button className="like-submit" onClick={()=> hideForm()}>annuler</button>
+                <button className="like-submit" onClick={cancel}>annuler</button>
 
             </div>
             {isLoading ? <Loading /> : null }

@@ -157,9 +157,6 @@ const requestApi = async ( { entity, request, userId, mediaId, commentId, token,
 
         }
 
-        
-
-        
 
     };
     

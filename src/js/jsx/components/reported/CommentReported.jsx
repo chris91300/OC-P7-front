@@ -1,9 +1,9 @@
 
 import React from "react";
 
-import ReportedAuthor from "./reported/ReportedAuthor.jsx";
-import ReportedDate from "./reported/ReportedDate.jsx";
-import ReportedButtons from "./reported/ReportedButtons.jsx";
+import ReportedAuthor from "./ReportedAuthor.jsx";
+import ReportedDate from "./ReportedDate.jsx";
+import ReportedButtons from "./ReportedButtons.jsx";
 
 
 /**

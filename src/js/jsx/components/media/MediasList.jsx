@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import useRequestApi from "../../utils/requestApi";
-import Loading from "./Loading.jsx";
-import Media from "./media/Media.jsx";
+import useRequestApi from "../../../utils/requestApi";
+import Loading from "../Loading.jsx";
+import Media from "./Media.jsx";
 
 
 

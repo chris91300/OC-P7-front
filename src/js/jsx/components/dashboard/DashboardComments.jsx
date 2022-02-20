@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import Loading from "./Loading.jsx";
-import CommentReported from "./CommentReported.jsx";
+import Loading from "../Loading.jsx";
+import CommentReported from "../reported/CommentReported.jsx";
 import { useDispatch } from "react-redux";
-import useRequestApi from "../../utils/requestApi";
+import useRequestApi from "../../../utils/requestApi";
 
 
 /**

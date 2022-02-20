@@ -92,6 +92,15 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
     }
 
 
+    /**
+     * cancel the form
+     * @param {object} e the event object
+     */
+    const cancel = (e)=>{
+        e.preventDefault();
+        hideForm();
+    }
+
 
     /**
      * return the form
@@ -107,7 +116,7 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
                 <div className="profil__form__buttons">
     
                     <ButtonSubmit onClick={submit} value="supprimer"/>
-                    <button className="like-submit" onClick={()=> hideForm()}>annuler</button>
+                    <button className="like-submit" onClick={cancel}>annuler</button>
     
                 </div>  
                 {isLoading ? <Loading /> : null }    

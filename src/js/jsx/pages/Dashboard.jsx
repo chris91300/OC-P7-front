@@ -2,10 +2,10 @@
 import React from "react";
 
 import ProfilAside from "../layout/ProfilAside.jsx";
-import DashboardMedias from "../components/DashboardMedias.jsx";
-import DashboardComments from "../components/DashboardComments.jsx";
+import DashboardMedias from "../components/dashboard/DashboardMedias.jsx";
+import DashboardComments from "../components/dashboard/DashboardComments.jsx";
 import AppLayout from "../layout/AppLayout.jsx";
-import DashboardNavigator from "../components/DashboardNavigator.jsx";
+import DashboardNavigator from "../components/dashboard/DashboardNavigator.jsx";
 
 
 /**
