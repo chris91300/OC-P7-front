@@ -11,7 +11,7 @@ const MediaPicture = ( { urlImage } )=>{
 
     return(
         <div className="media__picture">
-            <img src={urlImage} />
+            <img src={urlImage} alt="Une image posté par un utilisateur."/>
         </div>
     )
 }

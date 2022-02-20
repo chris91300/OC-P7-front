@@ -15,7 +15,7 @@ const HeaderApp = ( { showMenuForMobile } )=>{
     return(
         <>
         <header>
-            <img src={logo}></img>
+            <img src={logo} alt="logo de groupomania"></img>
             <nav>
                 <div className="nav__mobile" onClick={()=> showMenuForMobile("show")}>
                     <ProfilImage />

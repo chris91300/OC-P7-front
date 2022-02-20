@@ -113,7 +113,7 @@ const ProfilFormChangeImage = ( { hideForm } )=>{
 
 
     return (
-        <form method="post" action="#" className="profil__form">
+        <form method="post" className="profil__form" onSubmit={submit}>
 
             <Field
                 label="votre photo"

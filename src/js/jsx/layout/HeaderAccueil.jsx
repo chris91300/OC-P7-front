@@ -30,7 +30,7 @@ const HeaderAccueil = ( { changeClass } ) => {
     return(
         <>
         <header id="header_accueil">
-            <img src={logo}></img>
+            <img src={logo} alt="logo de groupomania"></img>
             <nav>
                 <ButtonSimple title="inscription" onClick={onClick}>s'inscrire</ButtonSimple>
                 <ButtonSimple title="se connecter" onClick={onClick}>se connecter</ButtonSimple>

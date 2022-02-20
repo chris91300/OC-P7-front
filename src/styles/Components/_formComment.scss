@@ -3,7 +3,7 @@
     align-items: center;
     margin-top: 20px;
 
-    & div:not(.loading){
+    &__container{
         display: flex;
         flex-direction: row;
         align-items: flex-start;
@@ -12,6 +12,8 @@
 
     & .field{
         flex: 1;
+        flex-direction: column;
+        align-items: center;
 
         & label{
             width: fit-content;
@@ -20,6 +22,16 @@
         & textarea{
             width: 100%;
         }
+
+        &__input{
+            width: 100%;
+        }
+    }
+
+
+    & .profil__image{
+        position: relative;
+        top: 33px;
     }
 
 }

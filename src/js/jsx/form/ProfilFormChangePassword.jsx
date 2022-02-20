@@ -150,7 +150,7 @@ const ProfilChangePassword = ( { hideForm } )=>{
 
 
     return (
-        <form method="post" action="#" className="profil__form" id="profil_form_change_password">
+        <form method="post" className="profil__form" id="profil_form_change_password" onSubmit={submit}>
 
             <Field
                 label="ancien password"

@@ -4,13 +4,12 @@ import React from "react";
 
 /**
  * a label element
- * @param {string} name the input name
+ * @param {string} htmlFor the for attribut
  * @returns 
  */
-const Label = ( { name, children } ) => {
+const Label = ( { htmlFor, children } ) => {
 
-
-    return <label htmlFor={name}>{ children }</label>
+    return <label htmlFor={htmlFor}>{ children }</label>
 }
 
 export default Label;

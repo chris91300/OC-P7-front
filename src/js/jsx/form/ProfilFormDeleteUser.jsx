@@ -99,7 +99,7 @@ const ProfilFormDeleteUser = ( { hideForm } )=>{
     const renderForm = ()=>{
 
         return(
-            <form method="delete" action="#" className="profil__form" >
+            <form method="delete"  className="profil__form" id="form_delete_user" onSubmit={submit}>
     
                 <p className="warning">Tous les médias et commentaires que vous avez postés seront supprimés.</p>
                 <p className="warning">Êtes-vous sûre de vouloir supprimer votre profil ?</p>

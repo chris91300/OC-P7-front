@@ -147,7 +147,7 @@ const FormCreateMedia = ( { name, handleClick } ) => {
 
 
     return (
-        <form id="form_create_media" method="post" action="#" encType="multipart/form-data">
+        <form id="form_create_media" method="post" encType="multipart/form-data" onSubmit={submit}>
             <Field label="titre" type="text" name="title" formName={name} returnValueToForm={changeFields} />
             <Field label="description" type="textarea" name="text" formName={name} returnValueToForm={changeFields} />
             <Field label="media" type="file" name="image" formName={name} returnValueToForm={changeFields} />

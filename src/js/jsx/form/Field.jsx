@@ -16,7 +16,7 @@ import Label from "./Label.jsx";
  * @returns 
  */
 const Field = ( { label, type, name, formName, placeholder="", returnValueToForm } ) => {
-
+    
     const [ errorMessage, setErrorMessage ] = useState("");
     const [ fieldIsValid, setFieldIsValid ] = useState(false);// voir pour le supprimer car ne sert pas
 
@@ -105,7 +105,7 @@ const Field = ( { label, type, name, formName, placeholder="", returnValueToForm
 
     return(
         <div className="field">            
-            <Label for={name}> { label }</Label>
+            <Label htmlFor={`${formName}_${name}`}> { label }</Label>
             <div className="field__input">
                 { renderInput() }
                 <p className="field__error">{ errorMessage }</p>

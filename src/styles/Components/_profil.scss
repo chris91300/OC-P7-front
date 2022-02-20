@@ -27,6 +27,8 @@
         }
     }
 
+
+
     &__aside{
         display: none;
 
@@ -95,6 +97,7 @@
         padding: 10px;
         background-color: white;
         border-radius: 20px;
+        margin: 20px 0;
 
         & .fields{
             flex-direction: column;

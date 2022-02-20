@@ -131,11 +131,11 @@ const FormComment = ( { name, mediaId, userId, returnNewComment } )=>{
     }
 
     return(
-        <form action="#" method="post" id={"form_"+name} className="form_comment">
-            <div>
+        <form method="post" id={"form_"+name} className="form_comment" onSubmit={submit}>
+            <div className="form_comment__container">
                 <ProfilImage url={urlProfil} />
                 <Field
-                    label=""
+                    label="votre commentaire"
                     type="textarea"
                     name="comment"
                     placeholder="laisser un commentaire"

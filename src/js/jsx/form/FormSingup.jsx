@@ -205,7 +205,7 @@ const FormSignup = ( { name } ) => {
 
 
     return (
-        <form method="post" action="#">
+        <form method="post" onSubmit={submit}>
             <h2>S'INSCRIRE</h2>
             <Field label="Nom" type="text" name="lastName" formName={name} returnValueToForm={changeFields} />
             <Field label="Prénom" type="text" name="firstName" formName={name} returnValueToForm={changeFields} />

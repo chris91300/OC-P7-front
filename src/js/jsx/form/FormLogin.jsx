@@ -238,7 +238,7 @@ const FormLogin = ( { name, className } ) => {
             
             return (     
                 <div id="animated_container" className={ className }>
-                    <form method="post" action="#" id="form_login">
+                    <form method="post" id="form_login" onSubmit={submit}>
                         <h2>SE CONNECTER</h2>
                         <Field label="Pseudo" type="text" name="pseudo" formName={name} returnValueToForm={changeFields} />
                         <Field label="Password" type="password" name="password" formName={name} returnValueToForm={changeFields} />

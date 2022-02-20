@@ -29,7 +29,7 @@ const Menus = ( { admin } )=>{
             />
             <MenusItem
                 img={forumTexts}
-                linkUrl="/menu"
+                linkUrl="/text"
                 title="accéder au forum pour communiquer entre employés"
                 altText="image représentant un logo de forum pour communiquer entre employés"
                 className="disabled"
