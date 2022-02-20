@@ -1,6 +1,6 @@
-## GROUPOMANIA partie frontend
+## GROUPOMANIA partie Application
 
-la partie backend ce trouve [ici](https://github.com/chris91300/OC-P7-back)
+la partie API ce trouve [ici](https://github.com/chris91300/OC-P7-back)
 
 
 ### Objectif du projet :
@@ -29,6 +29,6 @@ Dans le fichier mettre les variables suivantes :
 
 PORT=8080  
 
-COOKIESECRET='un token'
+COOKIESECRET=**'un token'**
 
 
