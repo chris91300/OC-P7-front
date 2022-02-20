@@ -16,6 +16,7 @@ const DashboardNavigator = ( { showMediasReported, showCommentsReported } )=>{
         <div className="dashboard__nav">
             <button
                 className="btn__no-style"
+                autoFocus
                 onClick={()=> showMediasReported()}
                 title="voir les medias qui ont été signalés">
                     Médias
