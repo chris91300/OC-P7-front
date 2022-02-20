@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { APPLICATION, GET_SESSION, SET_SESSION, DELETE_SESSION } = require('../controllers/appController.js');
+const { APPLICATION, GET_SESSION, SET_SESSION, DELETE_SESSION, ERROR_404 } = require('../controllers/appController.js');
 
 
 router.get("", APPLICATION);
@@ -12,13 +12,9 @@ router.post("/session/set", SET_SESSION);
 router.delete("/session/delete", DELETE_SESSION);
 
 /**
- * ERROR 404
- * redirect to '/'
+ * ERROR 404 : redirect to '/'
  */
-router.get(/.*/, (req, res) =>{
-
-    res.status(301).redirect("/")
-  })
+router.get(/.*/, ERROR_404);
 
 
 

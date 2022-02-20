@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
+const cors = require('cors');
 const app = express();
 const session = require('express-session');
 const appRoutes = require('./routes/appRoutes');
@@ -8,6 +9,24 @@ const appRoutes = require('./routes/appRoutes');
 
 
 app.use(express.json());
+
+
+// SECURITY **************************************
+
+app.use(cors({origin : 'http://localhost:8080'}));
+
+app.use(helmet());
+
+// COMMUNICATE WITH THE API
+app.use(helmet.contentSecurityPolicy({
+    directives : {
+      defaultSrc: ["'self'", "localhost:3000"],
+      imgSrc : ["'self'", "localhost:3000"]
+    }}));
+
+
+
+// SESSION *************************************
 
 // creating 24 hours from milliseconds
 const oneDay = 1000 * 60 * 60 * 24;
@@ -17,36 +36,25 @@ app.use(session({
   secret: process.env.COOKIESECRET,
   saveUninitialized:true,
   cookie: { maxAge: oneDay },
-  resave: false
+  resave: false,
+  name : 'jj2jkjliIH4'
 }));
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-   /* res.setHeader('Content-Security-Policy', 'default-src http://localhost:3000');*/
-    next();
-  });
 
 
   
-app.use(helmet());
-// Pour que l'on puisse autoriser à récupérer les images
-app.use(helmet.crossOriginResourcePolicy({ policy: "same-origin" }));
-// pour communiquer avec l'API
-app.use(helmet.contentSecurityPolicy({
-    directives : {
-      defaultSrc: ["'self'", "localhost:3000"],
-      imgSrc : ["'self'", "localhost:3000"]
-    }}));
 
-
-
-
+// SET VIEWS DIRECTORY
 app.set('views', path.join(__dirname, 'views')); 
+
+// SET EXTENSION AND LANGUAGE USED FOR VIEWS
 app.set('view engine', 'ejs');
+
+// INDICATE THE PUBLIC DIRECTORY
 app.use(express.static("dist"));
 app.use("/icon/", express.static("icon"));
+
+// ROUTER
 app.use('/', appRoutes);
 
 
