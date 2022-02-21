@@ -43,11 +43,18 @@
             margin: 0 10px;
             position: fixed;
             height: fit-content;
+            max-width: 200px;
+            overflow: hidden;
 
             & .profil__image{
                 align-self: center;
                 width: 100px;
                 height: 100px;
+            }
+
+            & p {
+                overflow-wrap: break-word;
+                max-width: 100%;
             }
         }
 
