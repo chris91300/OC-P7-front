@@ -92,7 +92,7 @@ const Accueil = ()=>{
      * @param {string} password user password
      */
     const loginUser = async (pseudo, password)=>{
-        console.log("on login user")
+        
         let body = {
             pseudo : pseudo,
             password : password

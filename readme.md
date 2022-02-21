@@ -32,3 +32,8 @@ PORT=8080
 COOKIESECRET=**'un token'**
 
 
+### Administrateur :
+
+Pour les besoins de l'exercice et afin de facilité la création d'un utilisateur qui aura les droits d'administrateur,  
+il suffit de mettre le mot admin (avec ou sans majuscule) dans son pseudo.  
+

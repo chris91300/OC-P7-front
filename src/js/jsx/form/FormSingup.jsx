@@ -196,7 +196,6 @@ const FormSignup = ( { name } ) => {
         } catch (err){
             setIsLoading(false)
             setErrorMessage(err.message)
-            console.log(err.message)
         }
         
     }

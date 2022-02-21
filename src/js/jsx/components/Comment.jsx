@@ -61,6 +61,7 @@ const Comment = ( { data } )=>{
         
     }
 
+
  
     return(
         <div className="comment">
@@ -78,7 +79,7 @@ const Comment = ( { data } )=>{
                     <ButtonSimple onClick={reportedComment}>
                         {commentIsReported ? <FaFlag className="flag-reported" /> : <FaRegFlag />}                        
                         signaler
-                    </ButtonSimple>
+                    </ButtonSimple>                    
                     <p className="error">{error}</p>
                 </div>
             </div>

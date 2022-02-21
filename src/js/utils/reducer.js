@@ -107,7 +107,7 @@ function Reducer(state = initialState, action){
                 
                 return {...state, comments : nextComments}
             }
-            else {return state}
+            else {return state}        
 
 
         case "ADD_MEDIAS_REPORTED":

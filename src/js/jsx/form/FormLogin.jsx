@@ -219,7 +219,6 @@ const FormLogin = ( { name, className } ) => {
             
             setIsLoading(false)  
             setErrorMessage(err.message)
-            console.log(err.message)
         }
         
     }
