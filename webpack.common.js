@@ -12,7 +12,7 @@ const common = {
     },
     output : {
         path : dist_path,
-        publicPath : '/',//dist_path,
+        publicPath : '/',
         filename : 'js/[name]-[contenthash].js'
     },
     
@@ -40,12 +40,7 @@ const common = {
                         options : {
                             name : '[name].[ext]',
                             outputPath: 'img/',
-                           /* postTransformPublicPath : ( p ) => { 
-                                let url = p.split('+')[1];                            
-                                url = url.replace(" ", "");
-                                
-                                return url;
-                            }*/
+                           
                         }
                     }
                 ],
@@ -75,35 +70,13 @@ const common = {
             filename: 'index.html',
             publicPath : '/',
             chunks : ["index"],
-            //favicon : './src/img/icon.ico'
-        })/*,
-        new htmlWebpackPlugin({
-            inject : true,
-            title : "Groupomania-error404",
-            template : './views/error404.ejs',
-            filename: 'error404.html',
-            publicPath : '/',
-            chunks : ["main"],
-        })*/
+            
+        })
         
     ]
 
 }
 
-/*
-//insert dans webpack.plugin un nouveau htmlWebpackPlugin pour chaque projet
-const projects = ['imc', 'newsblog', 'market', 'calculator', 'pendu']
-
-projects.map((file)=>{
-    common.plugins.push(new htmlWebpackPlugin({
-        inject : true,
-        title : "MC-"+file,
-        filename : file+".html",
-        template : `./views/${file}.ejs`,
-        publicPath : '/',
-        chunks : [file]
-    }))
-})*/
 
 
 
